@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import {Schema, model} from "mongoose";
 
 const QuestionSchema = new Schema(
   {
@@ -22,7 +22,7 @@ const QuestionSchema = new Schema(
     comment: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Questioncomment',
+        ref: "Questioncomment",
       },
     ],
   },
@@ -31,6 +31,6 @@ const QuestionSchema = new Schema(
   }
 );
 
-const QuestionModel = model('Question', QuestionSchema);
+const QuestionModel = model("Question", QuestionSchema);
 
-export { QuestionModel };
+export {QuestionModel};
