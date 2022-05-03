@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CommentAddForm from "./FreeboardCommentForm";
+import CommentAddForm from "./questionboardCommentForm";
 import { get } from "../../../api";
 
 function Comments(postId, user) {
