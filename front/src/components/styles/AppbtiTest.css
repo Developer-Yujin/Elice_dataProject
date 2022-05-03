@@ -39,6 +39,48 @@
   height: 100vh;
 }
 
+.area p {
+  width: 100%;
+  position: absolute;
+  top: 20vh;
+  text-align: center;
+  color: white;
+  font-size: 2em;
+}
+
+.area #a1 {
+  position: absolute;
+  border: 2px solid white;
+  background: white;
+  color: #465ec7;
+  width: 250px;
+  height: 50px;
+  font-size: 1em;
+  border-radius: 5px;
+  top: -20vh;
+  bottom: 0px;
+  left: -30vh;
+  right: 0px;
+  margin: auto;
+  transition: 0.3s;
+}
+
+.area #a2 {
+  position: absolute;
+  border: 2px solid white;
+  background: white;
+  color: #465ec7;
+  width: 250px;
+  height: 50px;
+  font-size: 1em;
+  border-radius: 5px;
+  top: -20vh;
+  bottom: 0px;
+  left: 0;
+  right: -30vh;
+  margin: auto;
+  transition: 0.3s;
+}
 .circles {
   position: absolute;
   top: 45vh;

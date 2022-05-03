@@ -19,10 +19,10 @@ function Question1({ answers, setAnswers }) {
   return (
     <article className="area">
       <p>{QuestionLists[i].q1}</p>
-      <button type="button" value="a1" onClick={(e) => SaveAnswers("a1", e.value)}>
+      <button id="a1" type="button" value="a1" onClick={(e) => SaveAnswers("a1", e.value)}>
         {QuestionLists[i].a1}
       </button>
-      <button type="button" value="a2" onClick={(e) => SaveAnswers("a2", e.value)}>
+      <button id="a2" type="button" value="a2" onClick={(e) => SaveAnswers("a2", e.value)}>
         {QuestionLists[i].a2}
       </button>
     </article>
