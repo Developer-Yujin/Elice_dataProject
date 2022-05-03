@@ -1,50 +1,31 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import QuestionLists from "../Components/QuestionLists";
 import AnswerLists from "../Components/AnswerLists";
 
-function Question() {
+function Question1({ answers, setAnswers }) {
   const navigate = useNavigate();
   const [testResult, setTestResult] = useState([]);
+  const i = 4;
 
-  // const SaveAnswers = (name, value) => {
-  //   setTestResult((prev) => ({ ...prev, [name]: value }));
-  // };
-
-  const SaveAnswers9 = async (e) => {
-    e.preventDefault();
-    console.log(testResult);
-    testResult.push(AnswerLists[0].value);
+  const SaveAnswers = (e) => {
+    if (e.value === "a1") answers.push(AnswerLists[0].value);
+    else if (e.value === "a2") answers.push(AnswerLists[1].value);
+    console.log(answers);
+    // setAnswers((prev) => [...prev], answers);
     navigate(`/AppbtiTest/6`);
-    console.log(testResult);
-    setTestResult((prev) => [...prev]);
-  };
-
-  const SaveAnswers10 = async (e) => {
-    e.preventDefault();
-    console.log(testResult);
-    testResult.push(AnswerLists[1].value);
-    console.log(testResult);
-    navigate(`/AppbtiTest/6`);
-    setTestResult((prev) => [...prev]);
   };
 
   return (
-    <main>
-      <article>
-        <h2>Q1. 내가 만드는 앱은~ 다른 사람들이 사용할 때 </h2>
-        {/* css 수정하면 br 지우기! */}
-        <br />
-        <br />
-        <br />
-        <br />
-        <button type="button" value="" onClick={SaveAnswers9}>
-          Sugar처럼 즐길 수 있는 앱이면 좋겠어!
-        </button>
-        <button type="button" value="" onClick={SaveAnswers10}>
-          Salt처럼 꼭 필요한 앱이면 좋겠어!
-        </button>
-      </article>
-    </main>
+    <article className="area">
+      <p>{QuestionLists[i].q1}</p>
+      <button type="button" value="a1" onClick={(e) => SaveAnswers("a1", e.value)}>
+        {QuestionLists[i].a1}
+      </button>
+      <button type="button" value="a2" onClick={(e) => SaveAnswers("a2", e.value)}>
+        {QuestionLists[i].a2}
+      </button>
+    </article>
   );
 }
-export default Question;
+export default Question1;

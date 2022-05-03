@@ -14,8 +14,14 @@ import PostView from "./components/community/freeboard/PostView";
 import AppbtiTest from "./components/appbtitest/AppbtiTest";
 import EditorsPick from "./components/editorspick/EditorsPick";
 
+import Questions from "./components/appbtitest/Questions";
 import Question1 from "./components/appbtitest/Pages/Question1";
 import Question2 from "./components/appbtitest/Pages/Question2";
+import Question3 from "./components/appbtitest/Pages/Question3";
+import Question4 from "./components/appbtitest/Pages/Question4";
+import Question5 from "./components/appbtitest/Pages/Question5";
+import Question6 from "./components/appbtitest/Pages/Question6";
+import Question7 from "./components/appbtitest/Pages/Question7";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -81,8 +87,14 @@ function App() {
             <Route path="/editorspick" element={<EditorsPick />} />
 
             <Route path="/AppbtiTest" element={<AppbtiTest />} />
+            <Route path="/AppbtiTest/0" element={<Questions />} />
             <Route path="/AppbtiTest/1" element={<Question1 />} />
             <Route path="/AppbtiTest/2" element={<Question2 />} />
+            <Route path="/AppbtiTest/3" element={<Question3 />} />
+            <Route path="/AppbtiTest/4" element={<Question4 />} />
+            <Route path="/AppbtiTest/5" element={<Question5 />} />
+            <Route path="/AppbtiTest/6" element={<Question6 />} />
+            <Route path="/AppbtiTest/7" element={<Question7 />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>
