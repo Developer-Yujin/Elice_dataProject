@@ -6,14 +6,14 @@ import AnswerLists from "../Components/AnswerLists";
 function Question1({ answers, setAnswers }) {
   const navigate = useNavigate();
   const [testResult, setTestResult] = useState([]);
-  const i = 0;
+  const i = 5;
 
   const SaveAnswers = (e) => {
     if (e.value === "a1") answers.push(AnswerLists[0].value);
     else if (e.value === "a2") answers.push(AnswerLists[1].value);
     console.log(answers);
     // setAnswers((prev) => [...prev], answers);
-    navigate(`/AppbtiTest/2`);
+    navigate(`/AppbtiTest/7`);
   };
 
   return (
