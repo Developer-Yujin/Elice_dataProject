@@ -19,11 +19,21 @@ class Recruit {
 
   static async findAll(newFilter, order, { currentPage, perPage }) {
     const posts = await RecruitModel.find(newFilter)
+      .find({ tag: { $in: newFilter.tag } })
       .populate('author', 'id email name')
       .sort({ [order]: -1 })
       .skip(perPage * (currentPage -1))
       .limit(perPage);
     return posts;
+  }
+
+  static async findAllNoTag(newFilter, order, { currentPage, perPage }) {
+    const RecruitPosts = await RecruitModel.find(newFilter)
+      .populate('author', 'id email name')
+      .sort({ [order]: -1 })
+      .skip(perPage * (currentPage - 1))
+      .limit(perPage);
+    return RecruitPosts;
   }
 
   static async update({ post_id, newValues }) {

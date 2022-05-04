@@ -12,14 +12,12 @@ class findteamService {
   static async getPosts(filter, { currentPage, perPage }) {
     let newFilter = {};
     let order;
-    // let tag = '';
 
     if (filter.status) {
       newFilter.status = filter.status;
     }
     if (filter.tag) {
       newFilter.tag = filter.tag.split(',');
-      console.log(newFilter.tag);
     }
     if (filter.order) {
       newFilter.order = filter.order;
