@@ -5,6 +5,7 @@ import { UserStateContext } from "../../App";
 
 import Article1 from "./Article1";
 import Article2 from "./Article2";
+import Article3 from "./Article3";
 
 const EditorsPick = function () {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const EditorsPick = function () {
       </span>
       <Article1 />
       <Article2 />
+      <Article3 />
     </ArticleContainer>
   );
 };

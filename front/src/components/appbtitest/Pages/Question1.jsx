@@ -1,31 +1,32 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import QuestionLists from "../Components/QuestionLists";
-import AnswerLists from "../Components/AnswerLists";
+import { QuestionContainer, Progressbar, Progress1, QuestionBox, Button } from "../Components/QuestionSCSS";
 
-function Question1({ answers, setAnswers }) {
+function Question1() {
   const navigate = useNavigate();
-  const [testResult, setTestResult] = useState([]);
   const i = 0;
+  const [answers, setAnswers] = useState([]);
 
-  const SaveAnswers = (e) => {
-    if (e.value === "a1") answers.push(AnswerLists[0].value);
-    else if (e.value === "a2") answers.push(AnswerLists[1].value);
-    console.log(answers);
-    // setAnswers((prev) => [...prev], answers);
-    navigate(`/AppbtiTest/2`);
+  const SavingAnswers = (e) => {
+    const answer = e;
+    const q1answer = answers.concat(answer);
+    navigate(`/AppbtiTest/2`, { state: q1answer });
   };
 
   return (
-    <article className="area">
-      <p>{QuestionLists[i].q1}</p>
-      <button id="a1" type="button" value="a1" onClick={(e) => SaveAnswers("a1", e.value)}>
+    <QuestionContainer>
+      <Progressbar>
+        <Progress1 />
+      </Progressbar>
+      <QuestionBox>{QuestionLists[i].q1}</QuestionBox>
+      <Button id="a1" type="button" value="a1" onClick={() => SavingAnswers("a1")}>
         {QuestionLists[i].a1}
-      </button>
-      <button id="a2" type="button" value="a2" onClick={(e) => SaveAnswers("a2", e.value)}>
+      </Button>
+      <Button id="a2" type="button" value="a2" onClick={() => SavingAnswers("a2")}>
         {QuestionLists[i].a2}
-      </button>
-    </article>
+      </Button>
+    </QuestionContainer>
   );
 }
 export default Question1;

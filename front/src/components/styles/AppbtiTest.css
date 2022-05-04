@@ -33,8 +33,8 @@
 }
 
 .area {
-  background: #4e54c8;
-  background: -webkit-linear-gradient(to left, #8fa8fb, #465ec7);
+  background: #484bcc;
+  background: -webkit-linear-gradient(to left, #8fa8fb, #484bcc);
   width: 100%;
   height: 100vh;
 }

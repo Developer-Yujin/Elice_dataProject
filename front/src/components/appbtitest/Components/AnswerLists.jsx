@@ -11,6 +11,7 @@ const AnswerLists = [
   { id: 10, name: "q5Newst", value: "e2" },
   { id: 11, name: "q6Rich", value: "f1" },
   { id: 12, name: "q6Honor", value: "f2" },
+  // 한g1 영g2
 ];
 
 export default AnswerLists;

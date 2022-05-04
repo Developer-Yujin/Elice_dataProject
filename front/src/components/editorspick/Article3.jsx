@@ -3,196 +3,59 @@ import styled from "styled-components";
 import ReactApexChart from "react-apexcharts";
 
 // 카테고리별 평점 분포 데이터
-const CATEGORY_RATING_DATA = {
+const ADSUPPORTED_DATA = {
   series: [
     {
-      name: "Personalization",
-      data: [0.16, 1.53, 17.65, 80.41, 0.26],
-    },
-    {
-      name: "Travel & Local	",
-      data: [1.41, 10.35, 37.35, 50.57, 0.32],
-    },
-    {
-      name: "Lifestyle",
-      data: [1.37, 8.9, 29.93, 59.54, 0.25],
-    },
-    {
-      name: "Entertainment",
-      data: [0.77, 8.08, 38.64, 52.32, 0.19],
-    },
-    {
-      name: "Tools",
-      data: [1.4, 10.28, 37.56, 50.6, 0.15],
-    },
-    {
-      name: "Health & Fitness",
-      data: [2.39, 12.58, 31.94, 52.86, 0.22],
-    },
-    {
-      name: "Books & Reference",
-      data: [0.34, 3.67, 19.48, 76.17, 0.35],
-    },
-    {
-      name: "News & Magazines",
-      data: [0.78, 8.05, 32.82, 58.29, 0.06],
-    },
-    {
-      name: "Finance",
-      data: [1.82, 10.94, 35.18, 51.97, 0.09],
-    },
-    {
-      name: "Maps & Navigation",
-      data: [2.05, 13.15, 40.14, 44.57, 0.09],
-    },
-    {
-      name: "Game",
-      data: [0.34, 3.96, 39.33, 56.18, 0.2],
-    },
-    {
-      name: "Productivity",
-      data: [1.39, 9.35, 36.97, 52.11, 0.17],
-    },
-    {
-      name: "Photography",
-      data: [0.84, 6.82, 40.12, 52.06, 0.16],
-    },
-    {
-      name: "Business",
-      data: [2.2, 12.54, 40.28, 44.79, 0.19],
-    },
-    {
-      name: "Music & Audio",
-      data: [0.23, 3.19, 21.44, 74.97, 0.17],
-    },
-    {
-      name: "Shopping",
-      data: [1.28, 9.87, 36.87, 51.72, 0.26],
-    },
-    {
-      name: "Social",
-      data: [1.02, 6.64, 32.3, 59.57, 0.48],
-    },
-    {
-      name: "Video Players & Editors",
-      data: [1.0, 10.15, 43.29, 45.37, 0.2],
-    },
-    {
-      name: "Art & Design",
-      data: [0.98, 7.14, 34.11, 57.45, 0.33],
-    },
-    {
-      name: "Dating",
-      data: [1.29, 9.51, 46.87, 41.73, 0.6],
-    },
-    {
-      name: "Medical",
-      data: [1.06, 9.67, 33.23, 55.77, 0.27],
-    },
-    {
-      name: "Education",
-      data: [2.78, 13.66, 65.0, 18.05, 0.5],
-    },
-    {
-      name: "Communication",
-      data: [0.87, 6.5, 38.03, 54.45, 0.16],
-    },
-    {
-      name: "Weather",
-      data: [0.28, 1.94, 26.04, 70.14, 1.6],
-    },
-    {
-      name: "Food & Drink",
-      data: [1.11, 11.98, 31.78, 54.95, 0.19],
-    },
-    {
-      name: "House & Home",
-      data: [2.9, 15.82, 39.61, 41.26, 0.41],
-    },
-    {
-      name: "Auto & Vehicles",
-      data: [1.66, 12.38, 40.73, 45.06, 0.17],
-    },
-    {
-      name: "Libraries & Demo",
-      data: [1.44, 8.39, 32.37, 57.31, 0.48],
-    },
-    {
-      name: "Events",
-      data: [1.21, 10.87, 32.13, 55.07, 0.72],
-    },
-    {
-      name: "Beauty",
-      data: [1.17, 6.06, 42.42, 50.12, 0.23],
-    },
-    {
-      name: "Comics",
-      data: [1.07, 3.67, 41.13, 53.67, 0.46],
-    },
-    {
-      name: "Parenting",
-      data: [1.51, 6.59, 30.32, 61.39, 0.19],
+      name: "Installs",
+      data: [
+        {
+          x: "True",
+          y: 1492648,
+        },
+        {
+          x: "False",
+          y: 2308279,
+        },
+        {
+          x: "True",
+          y: 1303157,
+        },
+        {
+          x: "False",
+          y: 1243938,
+        },
+      ],
     },
   ],
   options: {
     chart: {
-      height: 450,
-      type: "heatmap",
+      type: "bar",
+      height: 380,
     },
-    dataLabels: {
-      enabled: false,
+    fill: {
+      colors: [
+        function (opt) {
+          if (opt.w.globals.labels[opt.dataPointIndex] === "True") {
+            return "#9775fa";
+          } else {
+            return "#748ffc";
+          }
+        },
+      ],
     },
-    colors: ["#f03e3e", "#d6336c", "#ae3ec9", "#7048e8", "#4263eb", "#1098ad", "#0ca678", "#74b816", "#ffd43b", "#f76707"],
     xaxis: {
       type: "category",
-      categories: ["⭐️", "⭐️⭐️", "⭐️⭐️⭐️", "⭐️⭐️⭐️⭐️", "⭐️⭐️⭐️⭐️⭐️"],
-    },
-    title: {
-      text: "",
-    },
-    grid: {
-      padding: {
-        right: 20,
-      },
-    },
-    formatter: function (seriesName, opts) {
-      return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex] + "%";
-    },
-  },
-};
-
-// 카테고리별 앱 중에서 3점대 이하인 앱의 비율 Rank 10
-const CATEGORY_GRADE_DATA_RANK_10 = {
-  series: [
-    {
-      data: [58.32, 57.67, 55.34, 55.02, 54.78, 54.43, 49.65, 49.24, 49.1, 48.02],
-    },
-  ],
-  options: {
-    chart: {
-      height: 350,
-      type: "bar",
-      events: {
-        click: function (chart, w, e) {
-          // console.log(chart, w, e)
+      categories: ["True", "False", "True", "False"],
+      group: {
+        style: {
+          fontSize: "12px",
+          fontWeight: 700,
         },
+        groups: [
+          { title: "Adsupported", cols: 2 },
+          { title: "Adsupported without Google", cols: 2 },
+        ],
       },
-    },
-    colors: ["#e64980", "#be4bdb", "#7950f2", "#4c6ef5", "#228be6", "#15aabf", "#20c997", "#51cf66", "#94d82d", "#ffe066"],
-    plotOptions: {
-      bar: {
-        columnWidth: "50%",
-        distributed: true,
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    legend: {
-      show: false,
-    },
-    xaxis: {
-      categories: [["House", "& Home"], "Dating", ["Maps &", "Navigation"], "Business", ["Auto &", "Vehicles"], ["Video Players", "& Editors"], "Beauty", "Tools", ["Travel", "& Local"], "Shopping"],
     },
   },
 };
@@ -209,16 +72,20 @@ const Article1 = function ({ openModalHandler }) {
     <ArticleContainer>
       <ArticleBox>
         <PrevGraph>
-          <ReactApexChart options={CATEGORY_GRADE_DATA_RANK_10.options} series={CATEGORY_GRADE_DATA_RANK_10.series} type="bar" height={300} width={500} />
+          <ReactApexChart options={ADSUPPORTED_DATA.options} series={ADSUPPORTED_DATA.series} type="bar" height={320} width={500} />
           <p> - 카테고리별 평점 3점대 이하 앱 비율 RANK10 - </p>
         </PrevGraph>
         <Content>
           <ContentTitle>
-            사용자 만족도가 평균치보다 낮아
+            앱 내 광고는
             <br />
-            도전해볼만한 시장
+            사용자의 앱 다운로드에 영향을 미칠까?
           </ContentTitle>
-          <ContentSummary>왼쪽 그래프에 있는 총 10개의 카테고리는 다른 카테고리에 비해 서비스 만족도가 낮은것으로 확인되었습니다.</ContentSummary>
+          <ContentSummary>
+            광고가 있는 서비스와 없는 서비스의 평균 다운로드를 비교한 결과 광고가 없는 서비스의 다운로드수가 더 높은 것으로 확인됩니다.
+            <br />
+            하지만 구글 기본 어플을 제외하고 보았을때, 광고 유무에 따른 평균 다운로드 수에는 큰 차이가 없는 것으로 판단됩니다.
+          </ContentSummary>
           <Button onClick={handleClickModal}>
             <p>자세히보기 👉</p>
           </Button>
@@ -234,17 +101,19 @@ const Article1 = function ({ openModalHandler }) {
                 <div className="close-btn" onClick={handleClickModal}>
                   &times;
                 </div>
-                <ModalTitle>사용자 만족도가 평균치보다 낮아 도전해볼만한 시장</ModalTitle>
+                <ModalTitle>앱 내 광고가 사용자의 앱 다운로드에 미치는 영향</ModalTitle>
                 <ModalBody>
-                  AppBTI 에디터는 Google PlayStore에서 사용자 만족도가 평균치보다 낮아,
+                  AppBTI 에디터는 Google PlayStore에서
                   <br />
-                  도전해볼만한 시장을 찾기 위해 관련 데이터를 분석해보았습니다.
+                  앱내 광고가 사용자의 앱 다운로드에 미치는 영향을 알아보기 위해
+                  <br />
+                  광고 유무에 따른 평균 다운로드 수 데이터를 분석했습니다.
                 </ModalBody>
                 <Graph id="chart">
-                  <ReactApexChart options={CATEGORY_RATING_DATA.options} series={CATEGORY_RATING_DATA.series} type="heatmap" height={1000} width={700} />
+                  <ReactApexChart options={ADSUPPORTED_DATA.options} series={ADSUPPORTED_DATA.series} type="bar" height={350} width={500} />
                 </Graph>
                 <ModalBody>
-                  위의 그래프는 카테고리별 앱의 별점 분포 비율을 나타냅니다.
+                  우선 광고 있는 앱과
                   <br />
                   그래프에서 색이 진할수록 분포 비율이 높음을 의미합니다.
                   <br />
@@ -255,9 +124,6 @@ const Article1 = function ({ openModalHandler }) {
                   추가로 각 카테고리의 앱 별점이 3점대 이하인 비율을 분석했고, 결과는 아래와 같습니다.
                 </ModalBody>
 
-                <Graph id="chart">
-                  <ReactApexChart options={CATEGORY_GRADE_DATA_RANK_10.options} series={CATEGORY_GRADE_DATA_RANK_10.series} type="bar" height={350} width={800} />
-                </Graph>
                 <ModalBody>
                   위의 그래프와 같이 카테고리별 앱 별점이 3점대 이하인 앱 비율이 RANK 10위 안에 드는 카테고리는 아래와 같습니다.
                   <br />
@@ -333,6 +199,11 @@ const PrevGraph = styled.div`
     top: 410px;
     font-size: 11px;
     color: #707070;
+  }
+
+  #SvgjsPath1974 {
+    background-color: red !important;
+    fill: red !important;
   }
 `;
 
