@@ -77,8 +77,8 @@ findteamRouter.put('/findteams/:id/likes', loginRequired, async (req, res, next)
 // findteamRouter.get('/findteamstag', loginRequired, async (req, res, next) => {
 //   try {
 //     /*
-//      #swagger.tags = ['findteam'] 
-//      #swagger.summary = '태그 필터' 
+//      #swagger.tags = ['findteam']
+//      #swagger.summary = '태그 필터'
 //      #swagger.security = [{ "bearerAuth": [] }]
 //     */
 
@@ -91,7 +91,6 @@ findteamRouter.put('/findteams/:id/likes', loginRequired, async (req, res, next)
 //     next(error);
 //   }
 // })
-
 
 // 특정 글 수정 API
 findteamRouter.put('/findteams/:id', loginRequired, async (req, res, next) => {
@@ -122,7 +121,6 @@ findteamRouter.put('/findteams/:id', loginRequired, async (req, res, next) => {
     next(error);
   }
 });
-
 
 // findteam 게시판의 모든 글
 findteamRouter.get('/findteams', loginRequired, async (req, res, next) => {

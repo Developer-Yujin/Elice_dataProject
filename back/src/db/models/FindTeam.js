@@ -20,20 +20,28 @@ class FindTeam {
   // static async findTag({ tag }) {
   //   const posts = await FindTeamModel.find().where('tag').in(tag)
   //   return posts
-   
+
   // }
 
   static async findAll(newFilter, order, { currentPage, perPage }) {
     // 변수명 변경
-    const findTeamPosts = await FindTeamModel.find(newFilter) 
-    .where('tag').in(newFilter.tag)
-    .populate('author', 'id email name')
-    .sort({ [order]: -1 })
-    .skip(perPage * (currentPage -1))
-    .limit(perPage);
+    const findTeamPosts = await FindTeamModel.find(newFilter)
+      .find({ tag: { $in: newFilter.tag } })
+      .populate('author', 'id email name')
+      .sort({ [order]: -1 })
+      .skip(perPage * (currentPage - 1))
+      .limit(perPage);
     return findTeamPosts;
   }
 
+  static async findAllNoTag(newFilter, order, { currentPage, perPage }) {
+    const findTeamPosts = await FindTeamModel.find(newFilter)
+      .populate('author', 'id email name')
+      .sort({ [order]: -1 })
+      .skip(perPage * (currentPage - 1))
+      .limit(perPage);
+    return findTeamPosts;
+  }
 
   static async update({ post_id, newValues }) {
     const filter = { _id: post_id };
