@@ -5,7 +5,7 @@ class Question {
     const createdNewPost = await QuestionModel.create(newPost);
     return createdNewPost;
   }
-  //populate 뭐지?
+
   static async findById({ post_id }) {
     const post = await QuestionModel.findOne({ _id: post_id }).populate('comment', 'content');
     return post;
@@ -15,7 +15,7 @@ class Question {
     const posts = await QuestionModel.find()
     .sort({ createdAt: -1 })
     .skip(perPage * (currentPage -1))
-    .limit(perPage);;
+    .limit(perPage);
     return posts;
   }
 
@@ -35,7 +35,7 @@ class Question {
 
   static async delete({ post_id }) {
     await QuestionModel.deleteOne({ _id: post_id });
-    return '삭제가 완료되었습니다.';
+    return true;
   }
 }
 
