@@ -30,7 +30,7 @@ const StatusFilter = ({ currentStatusFunction, statusReset, statusResetDoneFunct
             <TabButton
               key={e.filterId}
               value={e.value}
-              isClicked={currentState === e.filterId ? true : false}
+              isClicked={currentState === e.filterId}
               onClick={() => {
                 handleClickStatusTab(e);
               }}

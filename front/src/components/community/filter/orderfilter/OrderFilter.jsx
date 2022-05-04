@@ -30,7 +30,7 @@ const OrderFilter = ({ currentOrderFunction, orderReset, orderResetDoneFunction 
             <TabButton
               key={`order${e.filterId}`}
               value={e.value}
-              isClicked={currentOrder === e.filterId ? true : false}
+              isClicked={currentOrder === e.filterId}
               onClick={() => {
                 handleClickOrderTab(e);
               }}
