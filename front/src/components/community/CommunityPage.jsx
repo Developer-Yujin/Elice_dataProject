@@ -11,7 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Freeboards from "./freeboard/freeboards";
-import Questionboards from "./questionboard/questionboards";
+import Questionboards from "./questionboard/Questionboards";
 import styledComponent from "styled-components";
 
 import { UserStateContext } from "../../App";

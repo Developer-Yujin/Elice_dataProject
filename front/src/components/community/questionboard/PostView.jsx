@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserStateContext } from "../../../App";
 import { get, del } from "../../../api";
-import Comments from "./questionboardComments";
-import CommentAddForm from "./questionboardCommentForm";
+import Comments from "./QuestionboardComments";
+import CommentAddForm from "./QuestionboardCommentForm";
 
 function PostView({ setViewType, user }) {
   const [postInfo, setPostInfo] = useState(null);
