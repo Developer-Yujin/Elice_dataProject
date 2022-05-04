@@ -7,131 +7,135 @@ const CATEGORY_RATING_DATA = {
   series: [
     {
       name: "Personalization",
-      data: [0.16, 1.53, 17.65, 80.41, 0.26],
+      data: [26, 249, 2872, 13086, 42],
+    },
+    {
+      name: "Personalization",
+      data: [26, 249, 2872, 13086, 42],
     },
     {
       name: "Travel & Local	",
-      data: [1.41, 10.35, 37.35, 50.57, 0.32],
+      data: [80, 586, 2115, 2864, 18],
     },
     {
       name: "Lifestyle",
-      data: [1.37, 8.9, 29.93, 59.54, 0.25],
+      data: [142, 920, 3093, 6152, 26],
     },
     {
       name: "Entertainment",
-      data: [0.77, 8.08, 38.64, 52.32, 0.19],
+      data: [162, 1703, 8143, 11028, 40],
     },
     {
       name: "Tools",
-      data: [1.4, 10.28, 37.56, 50.6, 0.15],
+      data: [276, 2024, 7394, 9962, 30],
     },
     {
-      name: "Health & Fitness",
-      data: [2.39, 12.58, 31.94, 52.86, 0.22],
+      name: "Health & Fitness	",
+      data: [150, 788, 2001, 3311, 14],
     },
     {
-      name: "Books & Reference",
-      data: [0.34, 3.67, 19.48, 76.17, 0.35],
+      name: "Books & Reference	",
+      data: [41, 445, 2364, 9246, 42],
     },
     {
-      name: "News & Magazines",
-      data: [0.78, 8.05, 32.82, 58.29, 0.06],
+      name: "News & Magazines	",
+      data: [39, 401, 1635, 2904, 3],
     },
     {
       name: "Finance",
-      data: [1.82, 10.94, 35.18, 51.97, 0.09],
+      data: [187, 1122, 3607, 5329, 9],
     },
     {
       name: "Maps & Navigation",
-      data: [2.05, 13.15, 40.14, 44.57, 0.09],
+      data: [68, 436, 1331, 1478, 3],
     },
     {
       name: "Game",
-      data: [0.34, 3.96, 39.33, 56.18, 0.2],
+      data: [184, 2126, 21127, 30182, 105],
     },
     {
       name: "Productivity",
-      data: [1.39, 9.35, 36.97, 52.11, 0.17],
+      data: [97, 651, 2573, 3627, 12],
     },
     {
       name: "Photography",
-      data: [0.84, 6.82, 40.12, 52.06, 0.16],
+      data: [64, 519, 3052, 3961, 12],
     },
     {
       name: "Business",
-      data: [2.2, 12.54, 40.28, 44.79, 0.19],
+      data: [170, 968, 3109, 3457, 15],
     },
     {
       name: "Music & Audio",
-      data: [0.23, 3.19, 21.44, 74.97, 0.17],
+      data: [32, 442, 2973, 10394, 24],
     },
     {
       name: "Shopping",
-      data: [1.28, 9.87, 36.87, 51.72, 0.26],
+      data: [70, 541, 2021, 2835, 14],
     },
     {
       name: "Social",
-      data: [1.02, 6.64, 32.3, 59.57, 0.48],
+      data: [51, 333, 1621, 2989, 24],
     },
     {
       name: "Video Players & Editors",
-      data: [1.0, 10.15, 43.29, 45.37, 0.2],
+      data: [35, 356, 1519, 1592, 7],
     },
     {
       name: "Art & Design",
-      data: [0.98, 7.14, 34.11, 57.45, 0.33],
+      data: [24, 175, 836, 1408, 8],
     },
     {
       name: "Dating",
-      data: [1.29, 9.51, 46.87, 41.73, 0.6],
+      data: [15, 111, 547, 487, 7],
     },
     {
       name: "Medical",
-      data: [1.06, 9.67, 33.23, 55.77, 0.27],
+      data: [27, 247, 849, 1425, 7],
     },
     {
       name: "Education",
-      data: [2.78, 13.66, 65.0, 18.05, 0.5],
+      data: [226, 1111, 5286, 14068, 41],
     },
     {
       name: "Communication",
-      data: [0.87, 6.5, 38.03, 54.45, 0.16],
+      data: [50, 372, 2177, 3117, 9],
     },
     {
       name: "Weather",
-      data: [0.28, 1.94, 26.04, 70.14, 1.6],
+      data: [5, 34, 457, 1231, 28],
     },
     {
       name: "Food & Drink",
-      data: [1.11, 11.98, 31.78, 54.95, 0.19],
+      data: [30, 323, 857, 1482, 5],
     },
     {
       name: "House & Home",
-      data: [2.9, 15.82, 39.61, 41.26, 0.41],
+      data: [28, 153, 383, 399, 4],
     },
     {
       name: "Auto & Vehicles",
-      data: [1.66, 12.38, 40.73, 45.06, 0.17],
+      data: [30, 223, 734, 812, 3],
     },
     {
       name: "Libraries & Demo",
-      data: [1.44, 8.39, 32.37, 57.31, 0.48],
+      data: [6, 35, 135, 239, 2],
     },
     {
       name: "Events",
-      data: [1.21, 10.87, 32.13, 55.07, 0.72],
+      data: [5, 45, 133, 228, 3],
     },
     {
       name: "Beauty",
-      data: [1.17, 6.06, 42.42, 50.12, 0.23],
+      data: [10, 52, 364, 430, 2],
     },
     {
       name: "Comics",
-      data: [1.07, 3.67, 41.13, 53.67, 0.46],
+      data: [7, 24, 269, 351, 3],
     },
     {
       name: "Parenting",
-      data: [1.51, 6.59, 30.32, 61.39, 0.19],
+      data: [8, 35, 161, 326, 1],
     },
   ],
   options: {
@@ -142,7 +146,39 @@ const CATEGORY_RATING_DATA = {
     dataLabels: {
       enabled: false,
     },
-    colors: ["#f03e3e", "#d6336c", "#ae3ec9", "#7048e8", "#4263eb", "#1098ad", "#0ca678", "#74b816", "#ffd43b", "#f76707"],
+    colors: [
+      "#EB5353",
+      "#F66B0E",
+      "#F9D923",
+      "#36AE7C",
+      "#187498",
+      "#001D6E",
+      "#AB46D2",
+      "#5534A5",
+      "#FF6FB5",
+      "#55D8C1",
+      "#069A8E",
+      "#005555",
+      "#F8B400",
+      "#FF6363",
+      "#ED5EDD",
+      "#6A5495",
+      "#041562",
+      "#11468F",
+      "#35858B",
+      "#F6D860",
+      "#DB6B97",
+      "#557C55",
+      "#F14A16",
+      "#516BEB",
+      "#EC255A",
+      "#9A0680",
+      "#7267CB",
+      "#533535",
+      "#F4A442",
+      "#34BE82",
+      "#0F00FF",
+    ],
     xaxis: {
       type: "category",
       categories: ["⭐️", "⭐️⭐️", "⭐️⭐️⭐️", "⭐️⭐️⭐️⭐️", "⭐️⭐️⭐️⭐️⭐️"],
@@ -154,9 +190,6 @@ const CATEGORY_RATING_DATA = {
       padding: {
         right: 20,
       },
-    },
-    formatter: function (seriesName, opts) {
-      return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex] + "%";
     },
   },
 };
@@ -193,6 +226,12 @@ const CATEGORY_GRADE_DATA_RANK_10 = {
     },
     xaxis: {
       categories: [["House", "& Home"], "Dating", ["Maps &", "Navigation"], "Business", ["Auto &", "Vehicles"], ["Video Players", "& Editors"], "Beauty", "Tools", ["Travel", "& Local"], "Shopping"],
+      labels: {
+        style: {
+          colors: ["#e64980", "#be4bdb", "#7950f2", "#4c6ef5", "#228be6", "#15aabf", "#20c997", "#51cf66", "#94d82d", "#ffe066"],
+          fontSize: "12px",
+        },
+      },
     },
   },
 };
@@ -208,10 +247,9 @@ const Article1 = function ({ openModalHandler }) {
   return (
     <ArticleContainer>
       <ArticleBox>
-        <PrevGraph>
-          <ReactApexChart options={CATEGORY_GRADE_DATA_RANK_10.options} series={CATEGORY_GRADE_DATA_RANK_10.series} type="bar" height={300} width={500} />
-          <p> - 카테고리별 평점 3점대 이하 앱 비율 RANK10 - </p>
-        </PrevGraph>
+        <Graph>
+          <span>그래프 영역</span>
+        </Graph>
         <Content>
           <ContentTitle>
             사용자 만족도가 평균치보다 낮아
@@ -236,35 +274,32 @@ const Article1 = function ({ openModalHandler }) {
                 </div>
                 <ModalTitle>사용자 만족도가 평균치보다 낮아 도전해볼만한 시장</ModalTitle>
                 <ModalBody>
-                  AppBTI 에디터는 Google PlayStore에서 사용자 만족도가 평균치보다 낮아,
+                  AppBTI 에디터는 Google PlayStore에서
                   <br />
-                  도전해볼만한 시장을 찾기 위해 관련 데이터를 분석해보았습니다.
+                  사용자 만족도가 평균치보다 낮아 도전해볼만한 시장을 찾기 위해 관련 데이터를 분석해보았습니다.
                 </ModalBody>
-                <Graph id="chart">
-                  <ReactApexChart options={CATEGORY_RATING_DATA.options} series={CATEGORY_RATING_DATA.series} type="heatmap" height={1000} width={700} />
-                </Graph>
+                <Graph1 id="chart">
+                  <ReactApexChart options={CATEGORY_RATING_DATA.options} series={CATEGORY_RATING_DATA.series} type="heatmap" height={2000} />
+                </Graph1>
                 <ModalBody>
-                  위의 그래프는 카테고리별 앱의 별점 분포 비율을 나타냅니다.
+                  위의 그래프는 카테고리별 평균 설치수에 비해 전체 설치수가 많은 상위 3개 서비스의 점유율을 나타냅니다.
                   <br />
-                  그래프에서 색이 진할수록 분포 비율이 높음을 의미합니다.
+                  Entertainment, Music & Audio, Personalization, Books & Reference 카테고리는
                   <br />
-                  거의 모든 카테고리의 별점 비율이 3~4점대에 머무르는 것을 확인할 수 있습니다.
-                  <br />
-                  AppBTI는 약 절반 정도의 사용자가 서비스에 만족하지 못한 카테고리는 무엇인지 조사하기 위해
-                  <br />
-                  추가로 각 카테고리의 앱 별점이 3점대 이하인 비율을 분석했고, 결과는 아래와 같습니다.
+                  메인으로 점유하고 있는 어플이 있음을 확인할 수 있습니다.
                 </ModalBody>
 
-                <Graph id="chart">
-                  <ReactApexChart options={CATEGORY_GRADE_DATA_RANK_10.options} series={CATEGORY_GRADE_DATA_RANK_10.series} type="bar" height={350} width={800} />
-                </Graph>
+                <Graph1 id="chart">
+                  <ReactApexChart options={CATEGORY_GRADE_DATA_RANK_10.options} series={CATEGORY_GRADE_DATA_RANK_10.series} type="bar" height={350} />
+                </Graph1>
                 <ModalBody>
-                  위의 그래프와 같이 카테고리별 앱 별점이 3점대 이하인 앱 비율이 RANK 10위 안에 드는 카테고리는 아래와 같습니다.
+                  위의 그래프는 카테고리별 앱 별점이 3점대 이하인 앱 비율이 RANK 10위 안에 드는 카테고리를 나타냅니다.
                   <br />
                   House & Home, Dating, Maps & Navigation, Business, Auto & Vehicles,
                   <br />
                   Video Players & Editors, Beauty, Tools, Travel & Local, Shopping
-                  <br />이 카테고리는 다른 서비스들에 비해 사용자 만족도가 낮은 것을 확인할 수 있습니다.
+                  <br />
+                  카테고리는 다른 서비스들에 비해 사용자 만족도가 낮은 것을 확인할 수 있습니다.
                 </ModalBody>
                 <ModalComment>
                   <div>
@@ -316,24 +351,11 @@ const ArticleBox = styled.div`
   box-shadow: 0 7px 10px #e4e4e4;
 `;
 
-const PrevGraph = styled.div`
+const Graph = styled.div`
   width: 500px;
   height: 300px;
+  background-color: #f7f7f7;
   margin: 0 30px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-
-  .apexcharts-toolbar {
-    display: none !important;
-  }
-
-  p {
-    top: 410px;
-    font-size: 11px;
-    color: #707070;
-  }
 `;
 
 const Content = styled.div`
@@ -415,7 +437,6 @@ export const ModalView = styled.div`
   height: 600px;
   border-radius: 1rem;
   position: relative;
-  z-index: 10;
 `;
 
 const ModalArticle = styled.div`
@@ -465,7 +486,6 @@ const ModalComment = styled.div`
   background-color: #f9f9f9;
   font-size: 14px;
   font-style: italic;
-  border-radius: 5px;
 
   #comment {
     text-decoration: underline;
@@ -478,10 +498,4 @@ const ModalFooter = styled.div`
   margin: 50px 0;
 `;
 
-const Graph = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-`;
+const Graph1 = styled.div``;
