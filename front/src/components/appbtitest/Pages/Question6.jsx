@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router";
 import QuestionLists from "../Components/QuestionLists";
+import { QuestionContainer, Progressbar, Progress6, QuestionBox, Button } from "../Components/QuestionSCSS";
 
 function Question6() {
   const navigate = useNavigate();
@@ -10,20 +11,22 @@ function Question6() {
   const SavingAnswers = (e) => {
     const answer = e;
     const q6answer = state.concat(answer);
-    console.log("q6answer", q6answer);
     navigate(`/AppbtiTest/7`, { state: q6answer });
   };
 
   return (
-    <article className="area">
-      <p>{QuestionLists[i].q1}</p>
-      <button id="a1" type="button" value="f1" onClick={() => SavingAnswers("f1")}>
+    <QuestionContainer>
+      <Progressbar>
+        <Progress6 />
+      </Progressbar>
+      <QuestionBox>{QuestionLists[i].q1}</QuestionBox>
+      <Button id="a1" type="button" value="f1" onClick={() => SavingAnswers("f1")}>
         {QuestionLists[i].a1}
-      </button>
-      <button id="a2" type="button" value="f2" onClick={() => SavingAnswers("f2")}>
+      </Button>
+      <Button id="a2" type="button" value="f2" onClick={() => SavingAnswers("f2")}>
         {QuestionLists[i].a2}
-      </button>
-    </article>
+      </Button>
+    </QuestionContainer>
   );
 }
 export default Question6;
