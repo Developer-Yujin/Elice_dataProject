@@ -535,6 +535,7 @@ const ModalComment = styled.div`
   background-color: #f9f9f9;
   font-size: 14px;
   font-style: italic;
+  border-radius: 5px;
 
   #comment {
     text-decoration: underline;
