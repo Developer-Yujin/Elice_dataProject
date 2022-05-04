@@ -1,23 +1,21 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { styled } from "@mui/material/styles";
-import { List } from "@mui/material";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Freeboards from "./freeboard/freeboards";
-import styledComponent from "styled-components";
 import { UserStateContext } from "../../App";
+
 import * as Api from "../../api";
-import Pager from "./pager/Pager";
-import "../styles/CommunityPage.css";
+
+// 컴포넌트 import
+import Freeboards from "./freeboard/freeboards";
 import TagFilter from "./filter/tagfilter/TagFilter";
 import StatusFilter from "./filter/ststusfilter/StatusFilter";
 import OrderFilter from "./filter/orderfilter/OrderFilter";
+import Pager from "./pager/Pager";
+
+// 스타일 import
+import { styled, List, Paper, Grid, ListItemButton, ListItemText, Box, Button } from "../styles/Mui";
+import { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer } from "./CommunityPageStyles";
+import "../styles/CommunityPage.css";
 
 const CommunityPage = function () {
   const navigate = useNavigate();
@@ -209,68 +207,23 @@ export default CommunityPage;
 
 const leftMenuList = [
   {
+    id: 1,
     category: "recruits",
     name: "팀원 구해요",
   },
   {
+    id: 2,
     category: "findteams",
     name: "팀을 찾고있어요",
   },
   {
+    id: 3,
     category: "freeboards",
     name: "자유 게시판",
   },
   {
+    id: 4,
     category: "questions",
     name: "질문 게시판",
   },
 ];
-const TabDiv = styledComponent.div`
-  margin: 10px 0;
-`;
-const TabContainer = styledComponent.div`
-  display: flex;
-`;
-const TagContainer = styledComponent.div`
-display: flex;
-`;
-const TabButton = styledComponent.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 40px;
-  text-align: center;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: ${(props) => (props.isClicked ? "var(--textPrimary)" : "var(--textSecondary)")};
-  cursor: pointer;
-`;
-const TabActiveBar = styledComponent.div`
-  width: 100%;
-  height: 1px;
-  background-color: var(--borderPrimary);
-`;
-const ActiveLine = styledComponent.div`
-  width: 100px;
-  height: 3px;
-  background-color: var(--primary);
-  transition: all 0.3s ease;
-  transform: translateX(calc(100% * ${(props) => props.activeLine}));
-`;
-const FilterContainer = styledComponent.div`
-flex-direction: column; /*수직 정렬*/
-align-items: center;
-margin-bottom: 20px;
-`;
-const CommunityPostContainer = styledComponent.div`
-width: 100%
-display: flex;
-flex-direction: column; /*수직 정렬*/
-align-items: center;
-`;
-const PostButtonContainer = styledComponent.div`
-display: flex;
-flex-direction: row;
-`;
-// const Whitespace = styledComponent.div``;
