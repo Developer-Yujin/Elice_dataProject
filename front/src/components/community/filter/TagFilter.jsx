@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-const TagFilter = function ({ tagQueryFunction, tagUrlQuery }) {
+const TagFilter = function ({ tagQueryFunction, tagReset, tagResetDoneFunction }) {
+  // 현재 URL 정보 가져오기
+  const location = useLocation();
+
   const [tagUrls, setTagUrls] = useState([]);
 
   const handleClickTag = async (e) => {
@@ -19,16 +23,21 @@ const TagFilter = function ({ tagQueryFunction, tagUrlQuery }) {
     }
   };
 
-  console.log("props.tagUrlQuery", tagUrlQuery);
+  const [tagResetDone, setTagResetDone] = useState(false);
 
   useEffect(() => {
     tagQueryFunction(tagUrls);
-  });
+    if (tagReset === true) {
+      setTagUrls("");
+      setTagResetDone(true);
+      tagResetDoneFunction(tagResetDone);
+    }
+  }, [tagUrls, tagQueryFunction, location, tagReset, tagResetDoneFunction, tagResetDone]);
 
   return (
     <TagBox>
       {STACK_LIST.map((e) => (
-        <StackFilterTag className={e.name} key={e.filterId} name={e.name} value={e.name} isClicked={e.isClicked} onClick={() => handleClickTag(e)}>
+        <StackFilterTag className={e.name} key={e.filterId} name={e.name} value={e.name} isClicked={tagReset === true ? (e.isClicked = false) : e.isClicked} onClick={() => handleClickTag(e)}>
           {e.name}
         </StackFilterTag>
       ))}

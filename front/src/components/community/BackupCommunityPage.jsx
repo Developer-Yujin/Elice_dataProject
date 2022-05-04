@@ -21,7 +21,7 @@ import "../styles/CommunityPage.css";
 import TagFilter from "./filter/TagFilter";
 import StatusFilterTab from "./filter/StatusFilterTab";
 
-const CommunityPage = function (props) {
+const CommunityPage = function ({ tagReset }) {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
 

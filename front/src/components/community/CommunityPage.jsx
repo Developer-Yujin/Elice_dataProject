@@ -59,21 +59,27 @@ const CommunityPage = function () {
     }
   };
 
+  const [tagReset, setTagReset] = useState(false);
   const [tagUrlQuery, setTagUrlQuery] = useState("");
   const tagQueryFunction = (tagUrls) => {
-    console.log("TagFilter에서 커뮤니티로 받아옴", tagUrls);
+    // console.log("TagFilter에서 커뮤니티로 받아옴", tagUrls);
 
-    if (tagUrls === 1) {
-      setTagUrlQuery(tagUrls[0]);
+    if (tagUrls.length === 0) {
+      setTagUrlQuery("");
+    } else if (tagUrls.length === 1) {
+      setTagUrlQuery(`&tag=${tagUrls[0]}`);
     } else {
-      setTagUrlQuery(tagUrls.join("%2C"));
+      setTagUrlQuery(`&tag=${tagUrls.join("%2C")}`);
     }
+    // console.log(tagUrlQuery);
+  };
 
-    console.log(tagUrlQuery);
+  const tagResetDoneFunction = (tagResetDone) => {
+    setTagReset(!tagResetDone);
   };
 
   // queryUrl 세팅해서 보내는 곳
-  const [queryUrl, setQueryUrl] = useState("");
+  const [totalQuery, setTotalQuery] = useState("");
 
   useEffect(() => {
     // 만약 전역 상태의 user가 null이라면, 로그인 페이지로 이동함.
@@ -82,19 +88,28 @@ const CommunityPage = function () {
       return;
     }
 
-    if (categoryUrl === "recruits") {
-      Api.get(`${categoryUrl}`).then((res) => setPosts(res.data));
-      navigate("/community/recruits");
-    } else if (categoryUrl === "findteams") {
-      Api.get(`${categoryUrl}`).then((res) => setPosts(res.data));
-      navigate("/community/findteams");
-    } else if (categoryUrl === "questions") {
-      Api.get(`${categoryUrl}`).then((res) => setPosts(res.data));
-      navigate("/community/questions");
-    }
+    const totalQueryFunction = () => {
+      if (statusUrl === "all" && orderUrl === "recently" && tagUrlQuery === "") {
+        setTotalQuery("");
+      } else if (statusUrl === "all" && orderUrl === "recently" && tagUrlQuery !== "") {
+        setTotalQuery(`?${tagUrlQuery}`);
+      } else if (statusUrl === "all" && orderUrl !== "recently") {
+        setTotalQuery(`?${tagUrlQuery}&order=${orderUrl}`);
+      } else if (statusUrl !== "all" && orderUrl === "recently") {
+        setTotalQuery(`?status=${statusUrl}${tagUrlQuery}`);
+      } else if (statusUrl !== "all" && orderUrl !== "recently") {
+        setTotalQuery(`?status=${statusUrl}${tagUrlQuery}&order=${orderUrl}`);
+      }
+      console.clear();
+      console.log("totalQuery : ", totalQuery);
+    };
+
+    totalQueryFunction();
+
     // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
-    // Api.get(`${categoryUrl}?status=${statusUrl}&order=${orderUrl}`).then((res) => setPosts(res.data));
-  }, [categoryUrl, navigate, orderUrl, statusUrl, userState]);
+    Api.get(`${categoryUrl}${totalQuery}`).then((res) => setPosts(res.data));
+    navigate(`/community/${categoryUrl}${totalQuery}`);
+  }, [categoryUrl, navigate, userState, totalQuery, statusUrl, orderUrl, tagUrlQuery]);
 
   const handleClick = async (e) => {
     setIsClicked(true);
@@ -107,6 +122,8 @@ const CommunityPage = function () {
     setCurrentStsteTab(0);
     setCurrentOrder(0);
     setTagUrlQuery("");
+    setTotalQuery("");
+    setTagReset(true);
   };
   return (
     <CommunityPostContainer id="Community">
@@ -160,7 +177,9 @@ const CommunityPage = function () {
               ) : (
                 ""
               )}
-              <TagContainer>{categoryUrl === "recruits" || categoryUrl === "findteams" ? <TagFilter tagQueryFunction={tagQueryFunction} tagUrlQuery={tagUrlQuery} /> : ""}</TagContainer>
+              <TagContainer>
+                {categoryUrl === "recruits" || categoryUrl === "findteams" ? <TagFilter tagQueryFunction={tagQueryFunction} tagReset={tagReset} tagResetDoneFunction={tagResetDoneFunction} /> : ""}
+              </TagContainer>
               <TabDiv>
                 <TabContainer>
                   {orderTabMenu.map((e, index) => {
@@ -192,18 +211,7 @@ const CommunityPage = function () {
               ""
             )}
             <article>
-              {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
-                posts.map((e) => {
-                  return (
-                    <div className="PostItem" key={e.id}>
-                      <Item>
-                        <div>{e.title}</div>
-                        <div>{e.content}</div>
-                      </Item>
-                    </div>
-                  );
-                })
-              ) : categoryUrl === "freeboards" ? (
+              {categoryUrl === "freeboards" ? (
                 <Freeboards />
               ) : (
                 posts.map((e) => {
