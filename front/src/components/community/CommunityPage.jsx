@@ -9,13 +9,13 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Freeboards from "./freeboard/Freeboards";
+import Freeboards from "./freeboard/freeboards";
 import styledComponent from "styled-components";
 import { UserStateContext } from "../../App";
 import * as Api from "../../api";
 import Pager from "./pager/Pager";
 import "../styles/CommunityPage.css";
-import TagFilter from "./filter/TagFilter";
+import TagFilter from "./filter/tagfilter/TagFilter";
 const CommunityPage = function () {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
