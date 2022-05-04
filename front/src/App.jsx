@@ -83,7 +83,10 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/community/freeboards/:id" element={<PostView />} />
-            <Route path="/community" element={<CommunityPage />} />
+            <Route path="/community/recruits" element={<CommunityPage />} />
+            <Route path="/community/findteams" element={<CommunityPage />} />
+            <Route path="/community/freeboards" element={<CommunityPage />} />
+            <Route path="/community/questions" element={<CommunityPage />} />
             <Route path="/editorspick" element={<EditorsPick />} />
 
             <Route path="/AppbtiTest" element={<AppbtiTest />} />

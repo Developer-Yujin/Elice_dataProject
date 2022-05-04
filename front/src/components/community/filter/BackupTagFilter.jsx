@@ -1,25 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
-const TagTest = function () {
+const TagFilter = function ({ handleCallbackTagFilter }) {
   const [tagUrls, setTagUrls] = useState([]);
   const [tagUrlQuery, setTagUrlQuery] = useState("");
+  const doneRef = useRef(false);
 
-  const handleClickTag = (e) => {
+  const handleClickTag = async (e) => {
     // 이미 클릭되어있는 버튼을 또 눌렀을 경우, isClicked== false, tagUrls 배열에서 제거
-    if (tagUrls.includes(e.value) === true) {
+    if (tagUrls.includes(e.name) === true) {
       setTagUrls(
         tagUrls.filter(function (data) {
-          return data !== e.value;
+          return data !== e.name;
         }),
       );
       e.isClicked = false;
+      makeQuery();
     } else {
-      setTagUrls([...tagUrls, e.value]);
+      setTagUrls([...tagUrls, e.name]);
       e.isClicked = true;
+      makeQuery();
     }
   };
-  console.log(tagUrls);
+
+  const makeQuery = () => {
+    doneRef.current = true;
+    if (tagUrls.length === 1) {
+      setTagUrlQuery(tagUrls[0]);
+    } else {
+      setTagUrlQuery(tagUrls.join("%2C"));
+    }
+  };
+  /*
+  useEffect(() => {
+    if (doneRef.current) {
+      doneRef.current = false;
+    }
+    console.log("tagUrlQuery : " + tagUrlQuery);
+  }, [tagUrlQuery]);
+  */
+
+  useEffect(() => {
+    handleCallbackTagFilter(tagUrls);
+  });
 
   return (
     <TagBox>
@@ -32,7 +55,7 @@ const TagTest = function () {
   );
 };
 
-export default TagTest;
+export default TagFilter;
 
 const TagBox = styled.div`
   display: flex;
@@ -65,49 +88,41 @@ const STACK_LIST = [
   {
     filterId: 1,
     name: "Java",
-    value: 1,
     isClicked: false,
   },
   {
     filterId: 2,
     name: "JavaScript",
-    value: 2,
     isClicked: false,
   },
   {
     filterId: 3,
     name: "Python",
-    value: 3,
     isClicked: false,
   },
   {
     filterId: 4,
     name: "C",
-    value: 4,
     isClicked: false,
   },
   {
     filterId: 5,
     name: "C++",
-    value: 5,
     isClicked: false,
   },
   {
     filterId: 6,
     name: "Frond-end",
-    value: 6,
     isClicked: false,
   },
   {
     filterId: 7,
     name: "Back-end",
-    value: 7,
     isClicked: false,
   },
   {
     filterId: 8,
     name: "Full-stack",
-    value: 8,
     isClicked: false,
   },
 ];

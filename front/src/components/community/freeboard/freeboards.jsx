@@ -18,7 +18,7 @@ const Freeboards = () => {
 
   const fetchPostsInfo = async () => {
     try {
-      await get("freeboardlist");
+      await get("freeboards");
       setViewType("list");
       setIsFetchCompleted(true);
     } catch (error) {
