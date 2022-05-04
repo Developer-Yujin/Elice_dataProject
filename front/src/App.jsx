@@ -22,6 +22,7 @@ import Question4 from "./components/appbtitest/Pages/Question4";
 import Question5 from "./components/appbtitest/Pages/Question5";
 import Question6 from "./components/appbtitest/Pages/Question6";
 import Question7 from "./components/appbtitest/Pages/Question7";
+import QuestionResult from "./components/appbtitest/Pages/QuestionResult";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -95,6 +96,7 @@ function App() {
             <Route path="/AppbtiTest/5" element={<Question5 />} />
             <Route path="/AppbtiTest/6" element={<Question6 />} />
             <Route path="/AppbtiTest/7" element={<Question7 />} />
+            <Route path="/AppbtiTest/Result" element={<QuestionResult />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>
