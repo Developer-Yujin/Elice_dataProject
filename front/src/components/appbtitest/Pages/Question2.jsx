@@ -1,50 +1,31 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import QuestionLists from "../Components/QuestionLists";
 import AnswerLists from "../Components/AnswerLists";
 
-function Question() {
+function Question1({ answers, setAnswers }) {
   const navigate = useNavigate();
   const [testResult, setTestResult] = useState([]);
+  const i = 1;
 
-  // const SaveAnswers = (name, value) => {
-  //   setTestResult((prev) => ({ ...prev, [name]: value }));
-  // };
-
-  const SaveAnswers3 = async (e) => {
-    e.preventDefault();
-    console.log(testResult);
-    testResult.push(AnswerLists[2].value);
+  const SaveAnswers = (e) => {
+    if (e.value === "a1") answers.push(AnswerLists[0].value);
+    else if (e.value === "a2") answers.push(AnswerLists[1].value);
+    console.log(answers);
+    // setAnswers((prev) => [...prev], answers);
     navigate(`/AppbtiTest/3`);
-    console.log(testResult);
-    setTestResult((prev) => [...prev]);
-  };
-
-  const SaveAnswers4 = async (e) => {
-    e.preventDefault();
-    console.log(testResult);
-    testResult.push(AnswerLists[3].value);
-    console.log(testResult);
-    navigate(`/AppbtiTest/3`);
-    setTestResult((prev) => [...prev]);
   };
 
   return (
-    <main>
-      <article>
-        <h2>Q2. 나는 보통... </h2>
-        {/* css 수정하면 br 지우기! */}
-        <br />
-        <br />
-        <br />
-        <br />
-        <button type="button" value="" onClick={SaveAnswers3}>
-          카톡 알림이 쌓여있는 건 못참아!!
-        </button>
-        <button type="button" value="" onClick={SaveAnswers4}>
-          알림..? 300++이 뭐 대수라고..
-        </button>
-      </article>
-    </main>
+    <article className="area">
+      <p>{QuestionLists[i].q1}</p>
+      <button type="button" value="a1" onClick={(e) => SaveAnswers("a1", e.value)}>
+        {QuestionLists[i].a1}
+      </button>
+      <button type="button" value="a2" onClick={(e) => SaveAnswers("a2", e.value)}>
+        {QuestionLists[i].a2}
+      </button>
+    </article>
   );
 }
-export default Question;
+export default Question1;
