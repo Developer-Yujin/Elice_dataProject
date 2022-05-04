@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import TagList from "./TagList";
+import TagList from "./TagFilterList";
 import { TagBox, StackFilterTag } from "./TagFilterStyles";
 
 const TagFilter = function ({ tagQueryFunction, tagReset, tagResetDoneFunction }) {
