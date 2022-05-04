@@ -16,6 +16,9 @@ import * as Api from "../../api";
 import Pager from "./pager/Pager";
 import "../styles/CommunityPage.css";
 import TagFilter from "./filter/tagfilter/TagFilter";
+import StatusFilter from "./filter/ststusfilter/StatusFilter";
+import OrderFilter from "./filter/orderfilter/OrderFilter";
+
 const CommunityPage = function () {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
@@ -32,38 +35,34 @@ const CommunityPage = function () {
   const [categoryUrl, setCategoryUrl] = useState("recruits");
 
   // ststus 탭 관련 (전체 / 모집중 / 최신순)
-  const [currentStateTab, setCurrentStsteTab] = useState(0);
-  const [statusUrl, setStatusUrl] = useState("all");
-  const handleClickStatusTab = async (e, index) => {
-    setCurrentStsteTab(index);
-    if (e === "전체") {
-      setStatusUrl("all");
-    } else if (e === "모집중") {
-      setStatusUrl("uncompleted");
-    } else {
-      setStatusUrl("completed");
-    }
+  const [statusReset, setStatusReset] = useState(false);
+  const [currentStatus, setCurrentStatus] = useState("all");
+
+  const currentStatusFunction = (statusUrl) => {
+    setCurrentStatus(statusUrl);
+  };
+
+  const statusResetDoneFunction = (statusResetDone) => {
+    setStatusReset(!statusResetDone);
   };
 
   // order 탭 관련 (최신순 / 댓글많은순 / 좋아요순)
-  const [currentOrder, setCurrentOrder] = useState(0);
-  const [orderUrl, setOrderUrl] = useState("recently");
-  const handleClickOrderTab = (e, index) => {
-    setCurrentOrder(index);
-    if (e === "최신순") {
-      setOrderUrl("recently");
-    } else if (e === "댓글많은순") {
-      setOrderUrl("comment");
-    } else {
-      setOrderUrl("liked");
-    }
+  const [orderReset, setOrderReset] = useState(false);
+  const [currentOrder, setCurrentOrder] = useState("recently");
+
+  const currentOrderFunction = (orderUrl) => {
+    setCurrentOrder(orderUrl);
   };
 
+  const orderResetDoneFunction = (orderResetDone) => {
+    setOrderReset(!orderResetDone);
+  };
+
+  // tag 필터 관련
   const [tagReset, setTagReset] = useState(false);
   const [tagUrlQuery, setTagUrlQuery] = useState("");
+  // tag 필터 배열을 받아 쿼리스트링 형태로 변환
   const tagQueryFunction = (tagUrls) => {
-    // console.log("TagFilter에서 커뮤니티로 받아옴", tagUrls);
-
     if (tagUrls.length === 0) {
       setTagUrlQuery("");
     } else if (tagUrls.length === 1) {
@@ -71,7 +70,6 @@ const CommunityPage = function () {
     } else {
       setTagUrlQuery(`&tag=${tagUrls.join("%2C")}`);
     }
-    // console.log(tagUrlQuery);
   };
 
   const tagResetDoneFunction = (tagResetDone) => {
@@ -89,27 +87,32 @@ const CommunityPage = function () {
     }
 
     const totalQueryFunction = () => {
-      if (statusUrl === "all" && orderUrl === "recently" && tagUrlQuery === "") {
+      if (currentStatus === "all" && currentOrder === "recently" && tagUrlQuery === "") {
         setTotalQuery("");
-      } else if (statusUrl === "all" && orderUrl === "recently" && tagUrlQuery !== "") {
+      } else if (currentStatus === "all" && currentOrder === "recently" && tagUrlQuery !== "") {
         setTotalQuery(`?${tagUrlQuery}`);
-      } else if (statusUrl === "all" && orderUrl !== "recently") {
-        setTotalQuery(`?${tagUrlQuery}&order=${orderUrl}`);
-      } else if (statusUrl !== "all" && orderUrl === "recently") {
-        setTotalQuery(`?status=${statusUrl}${tagUrlQuery}`);
-      } else if (statusUrl !== "all" && orderUrl !== "recently") {
-        setTotalQuery(`?status=${statusUrl}${tagUrlQuery}&order=${orderUrl}`);
+      } else if (currentStatus === "all" && currentOrder !== "recently") {
+        setTotalQuery(`?${tagUrlQuery}&order=${currentOrder}`);
+      } else if (currentStatus !== "all" && currentOrder === "recently") {
+        setTotalQuery(`?status=${currentStatus}${tagUrlQuery}`);
+      } else if (currentStatus !== "all" && currentOrder !== "recently") {
+        setTotalQuery(`?status=${currentStatus}${tagUrlQuery}&order=${currentOrder}`);
+      } else {
+        console.log("뭐를 빠드렸을까?");
       }
-      console.clear();
-      console.log("totalQuery : ", totalQuery);
+
+      // console.clear();
+      // console.log("totalQuery : ", totalQuery);
     };
 
     totalQueryFunction();
 
     // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
-    Api.get(`${categoryUrl}${totalQuery}`).then((res) => setPosts(res.data));
-    navigate(`/community/${categoryUrl}${totalQuery}`);
-  }, [categoryUrl, navigate, userState, totalQuery, statusUrl, orderUrl, tagUrlQuery]);
+    if (categoryUrl === "recruits" || categoryUrl === "findteams") {
+      Api.get(`${categoryUrl}${totalQuery}`).then((res) => setPosts(res.data));
+      navigate(`/community/${categoryUrl}${totalQuery}`);
+    }
+  }, [categoryUrl, navigate, userState, totalQuery, currentStatus, currentOrder, tagUrlQuery]);
 
   const handleClick = async (e) => {
     setIsClicked(true);
@@ -117,10 +120,10 @@ const CommunityPage = function () {
     //console.log(e.currentTarget.getAttribute("value"));
     setCategoryUrl(url);
     // 다른 게시판으로 이동할 때마다 초기화
-    setStatusUrl("all");
-    setOrderUrl("recently");
-    setCurrentStsteTab(0);
-    setCurrentOrder(0);
+    setCurrentStatus("all");
+    setStatusReset(true);
+    setCurrentOrder("recently");
+    setOrderReset(true);
     setTagUrlQuery("");
     setTotalQuery("");
     setTagReset(true);
@@ -153,27 +156,7 @@ const CommunityPage = function () {
           <Grid item xs={9} id="RightPostList">
             <FilterContainer>
               {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
-                <TabDiv>
-                  <TabContainer>
-                    {stateTabMenu.map((e, index) => {
-                      return (
-                        <TabButton
-                          key={index}
-                          value={e}
-                          isClicked={currentStateTab === index ? true : false}
-                          onClick={() => {
-                            handleClickStatusTab(e, index);
-                          }}
-                        >
-                          {e}
-                        </TabButton>
-                      );
-                    })}
-                  </TabContainer>
-                  <TabActiveBar>
-                    <ActiveLine activeLine={currentStateTab} />
-                  </TabActiveBar>
-                </TabDiv>
+                <StatusFilter currentStatusFunction={currentStatusFunction} statusReset={statusReset} statusResetDoneFunction={statusResetDoneFunction} />
               ) : (
                 ""
               )}
@@ -182,23 +165,12 @@ const CommunityPage = function () {
               </TagContainer>
               <TabDiv>
                 <TabContainer>
-                  {orderTabMenu.map((e, index) => {
-                    return (
-                      <TabButton
-                        key={index}
-                        isClicked={currentOrder === index ? true : false}
-                        onClick={() => {
-                          handleClickOrderTab(e, index);
-                        }}
-                      >
-                        {e}
-                      </TabButton>
-                    );
-                  })}
+                  {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
+                    <OrderFilter currentOrderFunction={currentOrderFunction} orderReset={orderReset} orderResetDoneFunction={orderResetDoneFunction} />
+                  ) : (
+                    ""
+                  )}
                 </TabContainer>
-                <TabActiveBar>
-                  <ActiveLine activeLine={currentOrder} />
-                </TabActiveBar>
               </TabDiv>
             </FilterContainer>
             {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
@@ -234,8 +206,7 @@ const CommunityPage = function () {
   );
 };
 export default CommunityPage;
-const stateTabMenu = ["전체", "모집중", "모집완료"];
-const orderTabMenu = ["최신순", "댓글많은순", "좋아요순"];
+
 const leftMenuList = [
   {
     category: "recruits",

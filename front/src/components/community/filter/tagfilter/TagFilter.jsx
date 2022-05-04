@@ -29,7 +29,7 @@ const TagFilter = function ({ tagQueryFunction, tagReset, tagResetDoneFunction }
   useEffect(() => {
     tagQueryFunction(tagUrls);
     if (tagReset === true) {
-      setTagUrls("");
+      setTagUrls([]);
       setTagResetDone(true);
       tagResetDoneFunction(tagResetDone);
     }
