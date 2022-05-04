@@ -10,7 +10,7 @@ import { findteamcommentRouter } from './routers/findteamcommentRouter';
 import { recruitRouter } from './routers/recruitRouter';
 import { recruitcommentRouter } from './routers/recruitcommentRouter';
 import { questionRouter } from './routers/questionRouter';
-import { qtcommentRouter } from './routers/qtcommentRouter';
+import { questioncommentRouter } from './routers/questioncommentRouter';
 import { errorMiddleware } from './middlewares/errorMiddleware';
 import swaggerFile from './swagger/swagger-output.json';
 
@@ -42,7 +42,7 @@ app.use(findteamcommentRouter);
 app.use(recruitRouter);
 app.use(recruitcommentRouter);
 app.use(questionRouter);
-app.use(qtcommentRouter);
+app.use(questioncommentRouter);
 
 //swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile, { explorer: true }));
