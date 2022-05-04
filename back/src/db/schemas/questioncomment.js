@@ -1,10 +1,10 @@
 import { Schema, model, Mongoose } from 'mongoose';
 
-const QTcommentSchema = new Schema(
+const QuestioncommentSchema = new Schema(
   {
     board_id: {
       type: Schema.Types.ObjectId,
-      ref: 'FindTeam',
+      ref: 'Question',
     },
     user_id: {
       type: String,
@@ -24,6 +24,6 @@ const QTcommentSchema = new Schema(
   }
 );
 
-const QTcommentModel = model('QTcomment', QTcommentSchema);
+const QuestioncommentModel = model('Questioncomment', QuestioncommentSchema);
 
-export { QTcommentModel };
+export { QuestioncommentModel };

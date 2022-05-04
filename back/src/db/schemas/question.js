@@ -22,7 +22,7 @@ const QuestionSchema = new Schema(
     comment: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'QTcomment',
+        ref: 'Questioncomment',
       },
     ],
   },
