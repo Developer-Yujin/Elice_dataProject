@@ -11,6 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Freeboards from "./freeboard/freeboards";
+import Questionboards from "./questionboard/questionboards";
 import styledComponent from "styled-components";
 
 import { UserStateContext } from "../../App";
@@ -190,17 +191,20 @@ const CommunityPage = function () {
               ) : categoryUrl === "freeboardlist" ? (
                 <Freeboards />
               ) : (
-                posts.map((e) => {
-                  return (
-                    <div className="PostItem" key={e.id}>
-                      <Item>
-                        <div>{e.title}</div>
-                        <div>{e.content}</div>
-                      </Item>
-                    </div>
-                  );
-                })
+                <Questionboards />
+                // posts.map((e) => {
+                //   return (
+                //     <div className="PostItem" key={e.id}>
+                //       <Item>
+                //         <div>{e.title}</div>
+                //         <div>{e.content}</div>
+                //       </Item>
+                //     </div>
+                // );
+                //   })
+                // )}
               )}
+              )
             </article>
             <Pager />
           </Grid>

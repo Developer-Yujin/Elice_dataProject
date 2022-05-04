@@ -3,15 +3,8 @@ import React from "react";
 
 function introduction() {
 
-  return 
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="UTF-8" />
-        <title>자기소개 페이지</title>
+  return (
     
-        <link rel="stylesheet" href="introduction.css" />
-      </head>
       <body>
         <div class="container">
           <header id="intro">
@@ -84,6 +77,6 @@ function introduction() {
           </footer>
         </div>
       </body>
-    </html>
     
+    )
 }
