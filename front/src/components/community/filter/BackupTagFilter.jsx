@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
-const TagFilter = function ({ tagQueryFunction, tagUrlQuery }) {
+const TagFilter = function ({ handleCallbackTagFilter }) {
   const [tagUrls, setTagUrls] = useState([]);
+  const [tagUrlQuery, setTagUrlQuery] = useState("");
+  const doneRef = useRef(false);
 
   const handleClickTag = async (e) => {
     // 이미 클릭되어있는 버튼을 또 눌렀을 경우, isClicked== false, tagUrls 배열에서 제거
@@ -13,22 +15,39 @@ const TagFilter = function ({ tagQueryFunction, tagUrlQuery }) {
         }),
       );
       e.isClicked = false;
+      makeQuery();
     } else {
       setTagUrls([...tagUrls, e.name]);
       e.isClicked = true;
+      makeQuery();
     }
   };
 
-  console.log("props.tagUrlQuery", tagUrlQuery);
+  const makeQuery = () => {
+    doneRef.current = true;
+    if (tagUrls.length === 1) {
+      setTagUrlQuery(tagUrls[0]);
+    } else {
+      setTagUrlQuery(tagUrls.join("%2C"));
+    }
+  };
+  /*
+  useEffect(() => {
+    if (doneRef.current) {
+      doneRef.current = false;
+    }
+    console.log("tagUrlQuery : " + tagUrlQuery);
+  }, [tagUrlQuery]);
+  */
 
   useEffect(() => {
-    tagQueryFunction(tagUrls);
+    handleCallbackTagFilter(tagUrls);
   });
 
   return (
     <TagBox>
       {STACK_LIST.map((e) => (
-        <StackFilterTag className={e.name} key={e.filterId} name={e.name} value={e.name} isClicked={e.isClicked} onClick={() => handleClickTag(e)}>
+        <StackFilterTag className={e.value} key={e.filterId} name={e.name} value={e.value} isClicked={e.isClicked} onClick={() => handleClickTag(e)}>
           {e.name}
         </StackFilterTag>
       ))}
