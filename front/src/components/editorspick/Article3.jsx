@@ -9,130 +9,6 @@ const CATEGORY_RATING_DATA = {
       name: "Personalization",
       data: [0.16, 1.53, 17.65, 80.41, 0.26],
     },
-    {
-      name: "Travel & Local	",
-      data: [1.41, 10.35, 37.35, 50.57, 0.32],
-    },
-    {
-      name: "Lifestyle",
-      data: [1.37, 8.9, 29.93, 59.54, 0.25],
-    },
-    {
-      name: "Entertainment",
-      data: [0.77, 8.08, 38.64, 52.32, 0.19],
-    },
-    {
-      name: "Tools",
-      data: [1.4, 10.28, 37.56, 50.6, 0.15],
-    },
-    {
-      name: "Health & Fitness",
-      data: [2.39, 12.58, 31.94, 52.86, 0.22],
-    },
-    {
-      name: "Books & Reference",
-      data: [0.34, 3.67, 19.48, 76.17, 0.35],
-    },
-    {
-      name: "News & Magazines",
-      data: [0.78, 8.05, 32.82, 58.29, 0.06],
-    },
-    {
-      name: "Finance",
-      data: [1.82, 10.94, 35.18, 51.97, 0.09],
-    },
-    {
-      name: "Maps & Navigation",
-      data: [2.05, 13.15, 40.14, 44.57, 0.09],
-    },
-    {
-      name: "Game",
-      data: [0.34, 3.96, 39.33, 56.18, 0.2],
-    },
-    {
-      name: "Productivity",
-      data: [1.39, 9.35, 36.97, 52.11, 0.17],
-    },
-    {
-      name: "Photography",
-      data: [0.84, 6.82, 40.12, 52.06, 0.16],
-    },
-    {
-      name: "Business",
-      data: [2.2, 12.54, 40.28, 44.79, 0.19],
-    },
-    {
-      name: "Music & Audio",
-      data: [0.23, 3.19, 21.44, 74.97, 0.17],
-    },
-    {
-      name: "Shopping",
-      data: [1.28, 9.87, 36.87, 51.72, 0.26],
-    },
-    {
-      name: "Social",
-      data: [1.02, 6.64, 32.3, 59.57, 0.48],
-    },
-    {
-      name: "Video Players & Editors",
-      data: [1.0, 10.15, 43.29, 45.37, 0.2],
-    },
-    {
-      name: "Art & Design",
-      data: [0.98, 7.14, 34.11, 57.45, 0.33],
-    },
-    {
-      name: "Dating",
-      data: [1.29, 9.51, 46.87, 41.73, 0.6],
-    },
-    {
-      name: "Medical",
-      data: [1.06, 9.67, 33.23, 55.77, 0.27],
-    },
-    {
-      name: "Education",
-      data: [2.78, 13.66, 65.0, 18.05, 0.5],
-    },
-    {
-      name: "Communication",
-      data: [0.87, 6.5, 38.03, 54.45, 0.16],
-    },
-    {
-      name: "Weather",
-      data: [0.28, 1.94, 26.04, 70.14, 1.6],
-    },
-    {
-      name: "Food & Drink",
-      data: [1.11, 11.98, 31.78, 54.95, 0.19],
-    },
-    {
-      name: "House & Home",
-      data: [2.9, 15.82, 39.61, 41.26, 0.41],
-    },
-    {
-      name: "Auto & Vehicles",
-      data: [1.66, 12.38, 40.73, 45.06, 0.17],
-    },
-    {
-      name: "Libraries & Demo",
-      data: [1.44, 8.39, 32.37, 57.31, 0.48],
-    },
-    {
-      name: "Events",
-      data: [1.21, 10.87, 32.13, 55.07, 0.72],
-    },
-    {
-      name: "Beauty",
-      data: [1.17, 6.06, 42.42, 50.12, 0.23],
-    },
-    {
-      name: "Comics",
-      data: [1.07, 3.67, 41.13, 53.67, 0.46],
-    },
-    {
-      name: "Parenting",
-      data: [1.51, 6.59, 30.32, 61.39, 0.19],
-    },
   ],
   options: {
     chart: {
@@ -142,7 +18,7 @@ const CATEGORY_RATING_DATA = {
     dataLabels: {
       enabled: false,
     },
-    colors: ["#f03e3e", "#d6336c", "#ae3ec9", "#7048e8", "#4263eb", "#1098ad", "#0ca678", "#74b816", "#ffd43b", "#f76707"],
+    colors: ["#f03e3e"],
     xaxis: {
       type: "category",
       categories: ["⭐️", "⭐️⭐️", "⭐️⭐️⭐️", "⭐️⭐️⭐️⭐️", "⭐️⭐️⭐️⭐️⭐️"],
@@ -214,9 +90,9 @@ const Article1 = function ({ openModalHandler }) {
         </PrevGraph>
         <Content>
           <ContentTitle>
-            사용자 만족도가 평균치보다 낮아
+            앱 내 광고는
             <br />
-            도전해볼만한 시장
+            사용자의 앱 다운로드에 영향을 미칠까?
           </ContentTitle>
           <ContentSummary>왼쪽 그래프에 있는 총 10개의 카테고리는 다른 카테고리에 비해 서비스 만족도가 낮은것으로 확인되었습니다.</ContentSummary>
           <Button onClick={handleClickModal}>
