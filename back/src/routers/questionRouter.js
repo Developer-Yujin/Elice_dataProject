@@ -36,7 +36,7 @@ questionRouter.get('/questions/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['question'] 
-     #swagger.summary = '게시 id에 해당하는 글 가져오기' 
+     #swagger.summary = '게시글 id에 게시글 정보 가져오기' 
      #swagger.security = [{ "bearerAuth": [] }]
     */
     const post_id = req.params.id;
@@ -81,7 +81,7 @@ questionRouter.get('/questionlist/:user_id', loginRequired, async (req, res, nex
   try {
     /*
      #swagger.tags = ['question'] 
-     #swagger.summary = '유저 id에 해당하는 모든 글 목록 가져오기' 
+     #swagger.summary = '유저 id에 해당하는 모든 게시글 가져오기' 
      #swagger.security = [{ "bearerAuth": [] }]
     */
     const user_id = req.params.user_id;
