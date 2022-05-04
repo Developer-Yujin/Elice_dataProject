@@ -90,14 +90,15 @@ class recruitService {
     return post;
   }
 
-  static async getPosts(filter) {
+  static async getPosts(filter, { currentPage, perPage }) {
     let newFilter = {};
     let order;
+
     if (filter.status) {
       newFilter.status = filter.status;
     }
     if (filter.tag) {
-      newFilter.tag = filter.tag;
+      newFilter.tag = filter.tag.split(',');
     }
     if (filter.order) {
       order = filter.order;
@@ -105,7 +106,12 @@ class recruitService {
       order = 'updatedAt';
     }
 
-    const posts = await Recruit.findAll(newFilter, order);
+    if (!filter.tag) {
+      const posts = await Recruit.findAllNoTag(newFilter, order, { currentPage, perPage });
+      return posts;
+    }
+
+    const posts = await Recruit.findAll(newFilter, order, { currentPage, perPage });
     return posts;
   }
 
