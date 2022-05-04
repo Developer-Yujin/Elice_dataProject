@@ -110,7 +110,7 @@ questionRouter.get('/questionlist', loginRequired, async (req, res, next) => {
   }
 });
 
-questionRouter.delete('/questiosn/:id', loginRequired, async (req, res, next) => {
+questionRouter.delete('/questions/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['question'] 
