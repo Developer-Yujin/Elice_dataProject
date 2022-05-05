@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { get, del } from "../../../api";
-import styled from "styled-components";
-import Comments from "./FreeboardComments";
-import CommentForm from "./FreeboardCommentForm";
+import { PostViewContainer, PostContainer, PostdAuthor, PostTitle, PostContent, ButtonContainer, ListButton, EditButton, DeleteButton } from "./PostViewStyles";
+
+// import Comments from "./FreeboardComments";
+// import CommentForm from "./FreeboardCommentForm";
 
 function PostView({ setViewType }) {
   const { state } = useLocation();
@@ -39,16 +40,20 @@ function PostView({ setViewType }) {
   };
 
   return (
-    <>
-      <h2>{postInfo.title}</h2>
-      <div> 작성자 : {postInfo.name} </div>
-      <p>{postInfo.content}</p>
-      <button id="list"> 목록</button>
-      <button>수정</button>
-      <button onClick={deleteNavigate}>삭제</button>
-      {/* <Comments user={user} postId={params.id} />
+    <PostViewContainer>
+      <PostContainer>
+        <PostTitle> ✨ {postInfo.title}</PostTitle>
+        <PostdAuthor> 작성자 : {postInfo.name} </PostdAuthor>
+        <PostContent>{postInfo.content}</PostContent>
+        <ButtonContainer>
+          <ListButton onClick={() => setViewType("list")}>목록</ListButton>
+          <EditButton>수정</EditButton>
+          <DeleteButton onClick={deleteNavigate}>삭제</DeleteButton>
+        </ButtonContainer>
+        {/* <Comments user={user} postId={params.id} />
       <CommentForm user={user} postId={params.id} /> */}
-    </>
+      </PostContainer>
+    </PostViewContainer>
   );
 }
 
