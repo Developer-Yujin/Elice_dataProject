@@ -11,6 +11,7 @@ import TagFilter from "./filter/tagfilter/TagFilter";
 import StatusFilter from "./filter/ststusfilter/StatusFilter";
 import OrderFilter from "./filter/orderfilter/OrderFilter";
 import Pager from "./pager/Pager";
+import Questionboards from "./questionboard/Questionboards";
 
 // 스타일 import
 import { styled, List, Paper, Grid, ListItemButton, ListItemText, Box, Button } from "../styles/Mui";
@@ -184,17 +185,20 @@ const CommunityPage = function () {
               {categoryUrl === "freeboards" ? (
                 <Freeboards />
               ) : (
-                posts.map((e) => {
-                  return (
-                    <div className="PostItem" key={e.id}>
-                      <Item>
-                        <div>{e.title}</div>
-                        <div>{e.content}</div>
-                      </Item>
-                    </div>
-                  );
-                })
+                <Questionboards />
+                // posts.map((e) => {
+                //   return (
+                //     <div className="PostItem" key={e.id}>
+                //       <Item>
+                //         <div>{e.title}</div>
+                //         <div>{e.content}</div>
+                //       </Item>
+                //     </div>
+                // );
+                //   })
+                // )}
               )}
+              )
             </article>
             <Pager />
           </Grid>

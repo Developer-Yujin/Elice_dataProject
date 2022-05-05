@@ -7,6 +7,7 @@ import "./App.css";
 
 import Header from "./components/Header";
 import Main from "./components/Main";
+import Introduction from "./components/introduction/Introduction";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import CommunityPage from "./components/community/CommunityPage";
@@ -82,6 +83,8 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/introduction" element={<Introduction />} />
+            <Route path="/AppbtiTest" element={<AppbtiTest />} />
             <Route path="/community/freeboards/:id" element={<PostView />} />
             <Route path="/community/recruits" element={<CommunityPage />} />
             <Route path="/community/findteams" element={<CommunityPage />} />
