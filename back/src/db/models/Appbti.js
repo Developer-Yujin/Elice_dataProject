@@ -1,11 +1,12 @@
-import { AppbtiAnswerModel } from '../schemas/appbtianswer';
+import { GoogleAppModel } from '../schemas/googleApp';
+// import { KoreanAppModel } from '../schemas/googlekoreanApp';
 import { AppbtiResultModel } from '../schemas/appbtiresult';
 
 class Appbti {
-  static async findByKey({ answers }) {
-    const apps = await AppbtiAnswerModel.findOne({ key: { $in: answers } });
-    return apps;
-  }
+  // static async findkoreanApps({}) {
+  //   const apps = await KoreanAppModel.findAll({});
+  //   return apps;
+  // }
   static async create({ newResult }) {
     const createdNewResult = await AppbtiResultModel.create(newResult);
     return createdNewResult;
@@ -13,6 +14,15 @@ class Appbti {
   static async findById({ userId }) {
     const appbtiresult = await AppbtiResultModel.findOne({ userId });
 
+    return appbtiresult;
+  }
+
+  static async findResult({ filter }) {
+    // let start = new Date();
+    const appbtiresult = await GoogleAppModel.find(filter);
+    // let end = new Date();
+    console.log(appbtiresult.length);
+    // console.log(end - start);
     return appbtiresult;
   }
 

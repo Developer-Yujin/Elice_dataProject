@@ -5,7 +5,7 @@ import { appbtiService } from '../services/appbtiService';
 
 const appbtiRouter = Router();
 
-appbtiRouter.post('/appbti', loginRequired, async (req, res, next) => {
+appbtiRouter.post('/appbti', async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['Appbti'] 
@@ -18,12 +18,14 @@ appbtiRouter.post('/appbti', loginRequired, async (req, res, next) => {
     }
 
     // req (request) 에서 데이터 가져오기
-    const userId = req.currentUserId;
+    // const userId = req.currentUserId;
     const answers = req.body.answers;
 
     // 데이터를 유저 db에 추가하기
-    const newresult = await appbtiService.addResult({ userId, answers });
-
+    const newresult = await appbtiService.addResult({ answers });
+    if (newresult) {
+      throw newError({ errorMessage: 'test 중입니다' });
+    }
     if (newresult.errorMessage) {
       throw new Error(newUser.errorMessage);
     }
