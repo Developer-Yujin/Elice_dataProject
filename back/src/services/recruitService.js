@@ -99,9 +99,12 @@ class recruitService {
     }
     if (filter.tag) {
       newFilter.tag = filter.tag.split(',');
+      var last = newFilter.tag[newFilter.tag.length -1].replace("/", "");
+      newFilter.tag.pop();
+      newFilter.tag.push(last);
     }
     if (filter.order) {
-      order = filter.order;
+      newFilter.order = filter.order;
     } else {
       order = 'updatedAt';
     }
