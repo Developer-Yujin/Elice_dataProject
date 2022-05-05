@@ -1,21 +1,21 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { styled } from "@mui/material/styles";
-import { List } from "@mui/material";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import ListItemText from "@mui/material/ListItemText";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Freeboards from "./freeboard/Freeboards";
-import styledComponent from "styled-components";
-
 import { UserStateContext } from "../../App";
-import * as Api from "../../api";
-import Pager from "./pager/Pager";
 
+import * as Api from "../../api";
+
+// 컴포넌트 import
+import Freeboards from "./freeboard/Freeboards";
+import TagFilter from "./filter/tagfilter/TagFilter";
+import StatusFilter from "./filter/ststusfilter/StatusFilter";
+import OrderFilter from "./filter/orderfilter/OrderFilter";
+import Pager from "./pager/Pager";
+import Questionboards from "./questionboard/Questionboards";
+
+// 스타일 import
+import { styled, List, Paper, Grid, ListItemButton, ListItemText, Box, Button } from "../styles/Mui";
+import { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer } from "./CommunityPageStyles";
 import "../styles/CommunityPage.css";
 
 const CommunityPage = function () {
@@ -31,39 +31,52 @@ const CommunityPage = function () {
   const [isClicked, setIsClicked] = useState(false);
 
   // category 메뉴 관련 (팀원 구해요/ 팀 찾아요 / 자유게시판 / 질문게시판)
-  const [categoryUrl, setCategoryUrl] = useState("recruitlist");
+  const [categoryUrl, setCategoryUrl] = useState("recruits");
 
   // ststus 탭 관련 (전체 / 모집중 / 최신순)
-  const [currentStateTab, setCurrentStsteTab] = useState(0);
-  const [statusUrl, setStatusUrl] = useState("all");
+  const [statusReset, setStatusReset] = useState(false);
+  const [currentStatus, setCurrentStatus] = useState("all");
 
-  const handleClickStatusTab = async (e, index) => {
-    setCurrentStsteTab(index);
+  const currentStatusFunction = (statusUrl) => {
+    setCurrentStatus(statusUrl);
+  };
 
-    if (e === "전체") {
-      setStatusUrl("all");
-    } else if (e === "모집중") {
-      setStatusUrl("uncompleted");
-    } else {
-      setStatusUrl("completed");
-    }
+  const statusResetDoneFunction = (statusResetDone) => {
+    setStatusReset(!statusResetDone);
   };
 
   // order 탭 관련 (최신순 / 댓글많은순 / 좋아요순)
-  const [currentOrder, setCurrentOrder] = useState(0);
-  const [orderUrl, setOrderUrl] = useState("recently");
+  const [orderReset, setOrderReset] = useState(false);
+  const [currentOrder, setCurrentOrder] = useState("recently");
 
-  const handleClickOrderTab = (e, index) => {
-    setCurrentOrder(index);
+  const currentOrderFunction = (orderUrl) => {
+    setCurrentOrder(orderUrl);
+  };
 
-    if (e === "최신순") {
-      setOrderUrl("recently");
-    } else if (e === "댓글많은순") {
-      setOrderUrl("comment");
+  const orderResetDoneFunction = (orderResetDone) => {
+    setOrderReset(!orderResetDone);
+  };
+
+  // tag 필터 관련
+  const [tagReset, setTagReset] = useState(false);
+  const [tagUrlQuery, setTagUrlQuery] = useState("");
+  // tag 필터 배열을 받아 쿼리스트링 형태로 변환
+  const tagQueryFunction = (tagUrls) => {
+    if (tagUrls.length === 0) {
+      setTagUrlQuery("");
+    } else if (tagUrls.length === 1) {
+      setTagUrlQuery(`&tag=${tagUrls[0]}`);
     } else {
-      setOrderUrl("liked");
+      setTagUrlQuery(`&tag=${tagUrls.join("%2C")}`);
     }
   };
+
+  const tagResetDoneFunction = (tagResetDone) => {
+    setTagReset(!tagResetDone);
+  };
+
+  // queryUrl 세팅해서 보내는 곳
+  const [totalQuery, setTotalQuery] = useState("");
 
   useEffect(() => {
     // 만약 전역 상태의 user가 null이라면, 로그인 페이지로 이동함.
@@ -72,25 +85,50 @@ const CommunityPage = function () {
       return;
     }
 
+    const totalQueryFunction = () => {
+      if (currentStatus === "all" && currentOrder === "recently" && tagUrlQuery === "") {
+        setTotalQuery("");
+      } else if (currentStatus === "all" && currentOrder === "recently" && tagUrlQuery !== "") {
+        setTotalQuery(`?${tagUrlQuery}`);
+      } else if (currentStatus === "all" && currentOrder !== "recently") {
+        setTotalQuery(`?${tagUrlQuery}&order=${currentOrder}`);
+      } else if (currentStatus !== "all" && currentOrder === "recently") {
+        setTotalQuery(`?status=${currentStatus}${tagUrlQuery}`);
+      } else if (currentStatus !== "all" && currentOrder !== "recently") {
+        setTotalQuery(`?status=${currentStatus}${tagUrlQuery}&order=${currentOrder}`);
+      } else {
+        console.log("뭐를 빠드렸을까?");
+      }
+
+      // console.clear();
+      // console.log("totalQuery : ", totalQuery);
+    };
+
+    totalQueryFunction();
+
     // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
-    Api.get(`${categoryUrl}?status=${statusUrl}&order=${orderUrl}`).then((res) => setPosts(res.data));
-  }, [categoryUrl, navigate, orderUrl, statusUrl, userState]);
+    if (categoryUrl === "recruits" || categoryUrl === "findteams") {
+      Api.get(`${categoryUrl}${totalQuery}`).then((res) => setPosts(res.data));
+      navigate(`/community/${categoryUrl}${totalQuery}`);
+    }
+  }, [categoryUrl, navigate, userState, totalQuery, currentStatus, currentOrder, tagUrlQuery]);
 
   const handleClick = async (e) => {
     setIsClicked(true);
     const url = e.currentTarget.getAttribute("value");
     //console.log(e.currentTarget.getAttribute("value"));
     setCategoryUrl(url);
-
     // 다른 게시판으로 이동할 때마다 초기화
-    setStatusUrl("all");
-    setOrderUrl("recently");
-    setCurrentStsteTab(0);
-    setCurrentOrder(0);
+    setCurrentStatus("all");
+    setStatusReset(true);
+    setCurrentOrder("recently");
+    setOrderReset(true);
+    setTagUrlQuery("");
+    setTotalQuery("");
+    setTagReset(true);
   };
-
   return (
-    <CommunityPostContainer id="Community">
+    <CommunityPostContainer>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={3}>
           <Item id="LeftMenu">
@@ -116,56 +154,25 @@ const CommunityPage = function () {
           </Item>
           <Grid item xs={9} id="RightPostList">
             <FilterContainer>
-              {categoryUrl === "recruitlist" || categoryUrl === "findteamlist" ? (
-                <TabDiv>
-                  <TabContainer>
-                    {stateTabMenu.map((e, index) => {
-                      return (
-                        <TabButton
-                          key={index}
-                          value={e}
-                          isClicked={currentStateTab === index ? true : false}
-                          onClick={() => {
-                            handleClickStatusTab(e, index);
-                          }}
-                        >
-                          {e}
-                        </TabButton>
-                      );
-                    })}
-                  </TabContainer>
-                  <TabActiveBar>
-                    <ActiveLine activeLine={currentStateTab} />
-                  </TabActiveBar>
-                </TabDiv>
+              {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
+                <StatusFilter currentStatusFunction={currentStatusFunction} statusReset={statusReset} statusResetDoneFunction={statusResetDoneFunction} />
               ) : (
                 ""
               )}
               <TagContainer>
-                <h2>태그 검색기능 추가중</h2>
+                {categoryUrl === "recruits" || categoryUrl === "findteams" ? <TagFilter tagQueryFunction={tagQueryFunction} tagReset={tagReset} tagResetDoneFunction={tagResetDoneFunction} /> : ""}
               </TagContainer>
               <TabDiv>
                 <TabContainer>
-                  {orderTabMenu.map((e, index) => {
-                    return (
-                      <TabButton
-                        key={index}
-                        isClicked={currentOrder === index ? true : false}
-                        onClick={() => {
-                          handleClickOrderTab(e, index);
-                        }}
-                      >
-                        {e}
-                      </TabButton>
-                    );
-                  })}
+                  {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
+                    <OrderFilter currentOrderFunction={currentOrderFunction} orderReset={orderReset} orderResetDoneFunction={orderResetDoneFunction} />
+                  ) : (
+                    ""
+                  )}
                 </TabContainer>
-                <TabActiveBar>
-                  <ActiveLine activeLine={currentOrder} />
-                </TabActiveBar>
               </TabDiv>
             </FilterContainer>
-            {categoryUrl === "recruitlist" || categoryUrl === "findteamlist" ? (
+            {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
               <PostButtonContainer>
                 <Button id="createPost" type="submit" fullWidth variant="contained">
                   게시글 작성
@@ -174,33 +181,24 @@ const CommunityPage = function () {
             ) : (
               ""
             )}
-
             <article>
-              {categoryUrl === "recruitlist" || categoryUrl === "findteamlist" ? (
-                posts.map((e) => {
-                  return (
-                    <div className="PostItem" key={e.id}>
-                      <Item>
-                        <div>{e.title}</div>
-                        <div>{e.content}</div>
-                      </Item>
-                    </div>
-                  );
-                })
-              ) : categoryUrl === "freeboardlist" ? (
+              {categoryUrl === "freeboards" ? (
                 <Freeboards />
               ) : (
-                posts.map((e) => {
-                  return (
-                    <div className="PostItem" key={e.id}>
-                      <Item>
-                        <div>{e.title}</div>
-                        <div>{e.content}</div>
-                      </Item>
-                    </div>
-                  );
-                })
+                <Questionboards />
+                // posts.map((e) => {
+                //   return (
+                //     <div className="PostItem" key={e.id}>
+                //       <Item>
+                //         <div>{e.title}</div>
+                //         <div>{e.content}</div>
+                //       </Item>
+                //     </div>
+                // );
+                //   })
+                // )}
               )}
+              )
             </article>
             <Pager />
           </Grid>
@@ -209,87 +207,27 @@ const CommunityPage = function () {
     </CommunityPostContainer>
   );
 };
-
 export default CommunityPage;
-
-const stateTabMenu = ["전체", "모집중", "모집완료"];
-const orderTabMenu = ["최신순", "댓글많은순", "좋아요순"];
 
 const leftMenuList = [
   {
-    category: "recruitlist",
+    id: 1,
+    category: "recruits",
     name: "팀원 구해요",
   },
   {
-    category: "findteamlist",
+    id: 2,
+    category: "findteams",
     name: "팀을 찾고있어요",
   },
   {
-    category: "freeboardlist",
+    id: 3,
+    category: "freeboards",
     name: "자유 게시판",
   },
   {
-    category: "questionlist",
+    id: 4,
+    category: "questions",
     name: "질문 게시판",
   },
 ];
-
-const TabDiv = styledComponent.div`
-  margin: 10px 0;
-`;
-
-const TabContainer = styledComponent.div`
-  display: flex;
-`;
-
-const TagContainer = styledComponent.div`
-display: flex;
-`;
-
-const TabButton = styledComponent.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 40px;
-  text-align: center;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: ${(props) => (props.isClicked ? "var(--textPrimary)" : "var(--textSecondary)")};
-
-  cursor: pointer;
-`;
-
-const TabActiveBar = styledComponent.div`
-  width: 100%;
-  height: 1px;
-  background-color: var(--borderPrimary);
-`;
-
-const ActiveLine = styledComponent.div`
-  width: 100px;
-  height: 3px;
-  background-color: var(--primary);
-  transition: all 0.3s ease;
-  transform: translateX(calc(100% * ${(props) => props.activeLine}));
-`;
-
-const FilterContainer = styledComponent.div`
-
-flex-direction: column; /*수직 정렬*/
-align-items: center;
-margin-bottom: 20px;
-`;
-
-const CommunityPostContainer = styledComponent.div`
-width: 100%
-display: flex;
-flex-direction: column; /*수직 정렬*/
-align-items: center;
-`;
-
-const PostButtonContainer = styledComponent.div`
-display: flex;
-flex-direction: row;
-`;
-// const Whitespace = styledComponent.div``;

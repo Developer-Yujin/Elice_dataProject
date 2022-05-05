@@ -78,24 +78,6 @@ recruitRouter.put('/recruits/:id/likes', loginRequired, async (req, res, next) =
   }
 });
 
-recruitRouter.get('/recruitstag', loginRequired, async (req, res, next) => {
-  try {
-    /*
-     #swagger.tags = ['recruit'] 
-     #swagger.summary = '태그 필터' 
-     #swagger.security = [{ "bearerAuth": [] }]
-    */
-
-    const tag = req.query.tag.split(',');
-
-    const posts = await recruitService.getPostTag({ tag })
-    res.status(200).send(posts)
-
-  } catch (error) {
-    next(error);
-  }
-})
-
 recruitRouter.put('/recruits/:id', loginRequired, async (req, res, next) => {
   try {
     /*
@@ -110,7 +92,7 @@ recruitRouter.put('/recruits/:id', loginRequired, async (req, res, next) => {
     const title = req.body.title ?? null;
     const content = req.body.content ?? null;
     const status = req.body.status ?? null;
-    const tag = req.body.hashtag ?? null;
+    const tag = req.body.tag ?? null;
 
     const toUpdate = { title, content, status, tag };
 
@@ -134,11 +116,14 @@ recruitRouter.get('/recruits', loginRequired, async (req, res, next) => {
      #swagger.description = '전체 게시글 목록'
      #swagger.security = [{ "bearerAuth": [] }]
     */
+    const currentPage = req.query.page || 1;
+    const perPage = 6;
+
     const status = req.query.status ?? null;
     const order = req.query.order ?? null;
     const tag = req.query.tag ?? null;
     const filter = { status, order, tag };
-    const posts = await recruitService.getPosts(filter);
+    const posts = await recruitService.getPosts(filter, { currentPage, perPage });
     res.status(200).send(posts);
   } catch (error) {
     next(error);

@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+
 * {
   margin: 0;
   padding: 0;
+  font-family: "Noto Sans", sans-serif;
 }
 
 *,
@@ -10,15 +13,17 @@
 }
 
 body {
+  height: 100vh;
   min-width: 510px !important;
   font-family: "Noto Sans KR" !important;
   font-weight: 400 !important;
   font-size: 1rem !important;
   letter-spacing: 0 !important;
+  background-color: #f9f9f9;
 }
 
 @font-face {
-  font-family: "Noto Sans KR";
+  font-family: "Noto Sans", sans-serif;
   font-weight: 400;
   src: url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
 }
@@ -41,7 +46,7 @@ body {
 }
 
 :root {
-  --primary: #1976d2;
+  --primary: #304ffe;
   --secondary: #ebebeb;
   --background: #fff;
   --textPrimary: #59595a;
@@ -50,4 +55,5 @@ body {
   --inputBackground: #f8f8f8;
   --borderPrimary: #eae9e9;
   --borderFocus: #59595a;
+  font-family: "Noto Sans", sans-serif;
 }

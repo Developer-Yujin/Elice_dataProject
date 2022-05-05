@@ -90,22 +90,31 @@ class recruitService {
     return post;
   }
 
-  static async getPosts(filter) {
+  static async getPosts(filter, { currentPage, perPage }) {
     let newFilter = {};
     let order;
+
     if (filter.status) {
       newFilter.status = filter.status;
     }
     if (filter.tag) {
-      newFilter.tag = filter.tag;
+      newFilter.tag = filter.tag.split(',');
+      var last = newFilter.tag[newFilter.tag.length -1].replace("/", "");
+      newFilter.tag.pop();
+      newFilter.tag.push(last);
     }
     if (filter.order) {
-      order = filter.order;
+      newFilter.order = filter.order;
     } else {
       order = 'updatedAt';
     }
 
-    const posts = await Recruit.findAll(newFilter, order);
+    if (!filter.tag) {
+      const posts = await Recruit.findAllNoTag(newFilter, order, { currentPage, perPage });
+      return posts;
+    }
+
+    const posts = await Recruit.findAll(newFilter, order, { currentPage, perPage });
     return posts;
   }
 

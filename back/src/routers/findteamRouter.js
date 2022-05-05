@@ -74,25 +74,6 @@ findteamRouter.put('/findteams/:id/likes', loginRequired, async (req, res, next)
   }
 });
 
-findteamRouter.get('/findteamstag', loginRequired, async (req, res, next) => {
-  try {
-    /*
-     #swagger.tags = ['findteam'] 
-     #swagger.summary = '태그 필터' 
-     #swagger.security = [{ "bearerAuth": [] }]
-    */
-
-    const tag = req.query.tag.split(',');
-
-    const posts = await findteamService.getPostTag({ tag })
-    res.status(200).send(posts)
-
-  } catch (error) {
-    next(error);
-  }
-})
-
-
 // 특정 글 수정 API
 findteamRouter.put('/findteams/:id', loginRequired, async (req, res, next) => {
   try {
@@ -107,7 +88,7 @@ findteamRouter.put('/findteams/:id', loginRequired, async (req, res, next) => {
     const title = req.body.title ?? null;
     const content = req.body.content ?? null;
     const status = req.body.status ?? null;
-    const tag = req.body.hashtag ?? null;
+    const tag = req.body.tag ?? null;
 
     const toUpdate = { title, content, status, tag };
 
@@ -123,8 +104,6 @@ findteamRouter.put('/findteams/:id', loginRequired, async (req, res, next) => {
   }
 });
 
-
-// findteam 게시판의 모든 글
 findteamRouter.get('/findteams', loginRequired, async (req, res, next) => {
   try {
     /*
@@ -132,11 +111,15 @@ findteamRouter.get('/findteams', loginRequired, async (req, res, next) => {
      #swagger.summary = '모든 게시글 가져오기' 
      #swagger.security = [{ "bearerAuth": [] }]
     */
+
+    const currentPage = req.query.page || 1;
+    const perPage = 6;
+
     const status = req.query.status ?? null;
     const order = req.query.order ?? null;
     const tag = req.query.tag ?? null;
     const filter = { status, order, tag };
-    const posts = await findteamService.getPosts(filter);
+    const posts = await findteamService.getPosts(filter, { currentPage, perPage });
     res.status(200).send(posts);
   } catch (error) {
     next(error);
