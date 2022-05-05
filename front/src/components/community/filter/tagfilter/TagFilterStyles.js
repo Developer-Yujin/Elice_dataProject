@@ -12,11 +12,13 @@ const TagBox = styled.div`
 `;
 
 const StackFilterTag = styled.button`
+  max-height: 27px;
   margin-right: 10px;
   padding: 5px 10px;
   border-radius: 30px;
   font-size: 11px;
   font-weight: 500;
+  white-space: nowrap;
   color: ${(props) => (props.isClicked ? "#fff" : "var(--primary)")};
   background-color: ${(props) => (props.isClicked ? "var(--primary)" : "#fff")};
   border: 1px solid var(--primary);
