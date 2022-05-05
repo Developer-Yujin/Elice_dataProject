@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ReactApexChart from "react-apexcharts";
 
 // 카테고리별 평점 분포 데이터
-const ADSUPPORTED_DATA = {
+const adsupportedData = {
   series: [
     {
       name: "Installs",
@@ -72,7 +72,7 @@ const Article1 = function ({ openModalHandler }) {
     <ArticleContainer>
       <ArticleBox>
         <PrevGraph>
-          <ReactApexChart options={ADSUPPORTED_DATA.options} series={ADSUPPORTED_DATA.series} type="bar" height={320} width={500} />
+          <ReactApexChart options={adsupportedData.options} series={adsupportedData.series} type="bar" height={320} width={500} />
           <p> - 카테고리별 평점 3점대 이하 앱 비율 RANK10 - </p>
         </PrevGraph>
         <Content>
@@ -110,7 +110,7 @@ const Article1 = function ({ openModalHandler }) {
                   광고 유무에 따른 평균 다운로드 수 데이터를 분석했습니다.
                 </ModalBody>
                 <Graph id="chart">
-                  <ReactApexChart options={ADSUPPORTED_DATA.options} series={ADSUPPORTED_DATA.series} type="bar" height={350} width={500} />
+                  <ReactApexChart options={adsupportedData.options} series={adsupportedData.series} type="bar" height={350} width={500} />
                 </Graph>
                 <ModalBody>
                   우선 광고 있는 앱과

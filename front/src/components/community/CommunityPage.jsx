@@ -127,7 +127,7 @@ const CommunityPage = function () {
     setTagReset(true);
   };
   return (
-    <CommunityPostContainer id="Community">
+    <CommunityPostContainer>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={3}>
           <Item id="LeftMenu">

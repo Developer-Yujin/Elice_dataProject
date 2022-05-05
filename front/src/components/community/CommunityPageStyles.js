@@ -23,6 +23,8 @@ width: 100%
 display: flex;
 flex-direction: column; /*수직 정렬*/
 align-items: center;
+padding: 0 100px;
+margin: 80px 0;
 `;
 
 const PostButtonContainer = styled.div`
