@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { post } from "../../../api";
-import styled from "styled-components";
+import { PostFormContainer, PostTitleForm, PostContentForm, ButtonContainer, SubmitButton, UndoButton } from "./PostFormStyles";
 
 function Postform({ user, setViewType }) {
   const [tempPost, setTempPost] = useState({
@@ -30,42 +30,19 @@ function Postform({ user, setViewType }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <span>
-        <input id="title" type="text" onChange={(e) => handlePostValue("title", e.target.value)} placeholder="제목을 입력해주세요." value={tempPost.title} />
-      </span>
-      <br />
-      <span>
-        <textarea id="content" onChange={(e) => handlePostValue("content", e.target.value)} placeholder="내용을 입력해주세요." value={tempPost.content} />
-      </span>
-      <br />
-      <button margin="10" type="submit" onSubmit={handleSubmit}>
-        등록
-      </button>
-      <button type="button" onClick={() => setViewType("list")}>
-        취소
-      </button>
-    </form>
+    <PostFormContainer onSubmit={handleSubmit}>
+      <PostTitleForm id="title" type="text" onChange={(e) => handlePostValue("title", e.target.value)} placeholder="제목을 작성해주세요." value={tempPost.title} />
+      <PostContentForm id="content" onChange={(e) => handlePostValue("content", e.target.value)} placeholder="내용을 입력해주세요." value={tempPost.content} />
+      <ButtonContainer>
+        <SubmitButton type="submit" onSubmit={handleSubmit}>
+          등록
+        </SubmitButton>
+        <UndoButton type="button" onClick={() => setViewType("list")}>
+          취소
+        </UndoButton>
+      </ButtonContainer>
+    </PostFormContainer>
   );
 }
 
 export default Postform;
-
-// input {
-//   width: 600px;
-//   padding: 10px;
-//   margin: 10px;
-// }
-
-// textarea {
-//   width: 602px;
-//   height: 500px;
-//   padding: 10px;
-//   margin: 10px;
-//   resize: none;
-// }
-
-// button {
-//   padding: 10px;
-//   margin: 10px;
-// }
