@@ -73,7 +73,7 @@ const Article1 = function ({ openModalHandler }) {
       <ArticleBox>
         <PrevGraph>
           <ReactApexChart options={adsupportedData.options} series={adsupportedData.series} type="bar" height={320} width={500} />
-          <p> - 카테고리별 평점 3점대 이하 앱 비율 RANK10 - </p>
+          <p> - 앱 내 광고 유무에 따른 평균 다운로드 수 - </p>
         </PrevGraph>
         <Content>
           <ContentTitle>
@@ -82,7 +82,7 @@ const Article1 = function ({ openModalHandler }) {
             사용자의 앱 다운로드에 영향을 미칠까?
           </ContentTitle>
           <ContentSummary>
-            광고가 있는 서비스와 없는 서비스의 평균 다운로드를 비교한 결과 광고가 없는 서비스의 다운로드수가 더 높은 것으로 확인됩니다.
+            광고가 있는 서비스와 없는 서비스의 평균 다운로드 수를 비교한 결과 광고가 없는 서비스의 다운로드 수가 더 높은 것으로 확인됩니다.
             <br />
             하지만 구글 기본 어플을 제외하고 보았을때, 광고 유무에 따른 평균 다운로드 수에는 큰 차이가 없는 것으로 판단됩니다.
           </ContentSummary>
