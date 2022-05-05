@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { post } from "../../../api";
-import "../../styles/Postform.css";
+import styled from "styled-components";
 
-function Postform({ user, setIsAdding, setViewType }) {
+function Postform({ user, setViewType }) {
   const [tempPost, setTempPost] = useState({
     title: "",
     content: "",
@@ -50,3 +50,22 @@ function Postform({ user, setIsAdding, setViewType }) {
 }
 
 export default Postform;
+
+// input {
+//   width: 600px;
+//   padding: 10px;
+//   margin: 10px;
+// }
+
+// textarea {
+//   width: 602px;
+//   height: 500px;
+//   padding: 10px;
+//   margin: 10px;
+//   resize: none;
+// }
+
+// button {
+//   padding: 10px;
+//   margin: 10px;
+// }

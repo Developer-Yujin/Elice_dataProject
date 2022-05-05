@@ -88,7 +88,7 @@ findteamRouter.put('/findteams/:id', loginRequired, async (req, res, next) => {
     const title = req.body.title ?? null;
     const content = req.body.content ?? null;
     const status = req.body.status ?? null;
-    const tag = req.body.hashtag ?? null;
+    const tag = req.body.tag ?? null;
 
     const toUpdate = { title, content, status, tag };
 
@@ -117,7 +117,7 @@ findteamRouter.get('/findteams', loginRequired, async (req, res, next) => {
 
     const status = req.query.status ?? null;
     const order = req.query.order ?? null;
-    const tag = req.query.hashtag ?? null;
+    const tag = req.query.tag ?? null;
     const filter = { status, order, tag };
     const posts = await findteamService.getPosts(filter, { currentPage, perPage });
     res.status(200).send(posts);

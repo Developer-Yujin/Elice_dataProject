@@ -53,6 +53,25 @@ freeboardRouter.get('/freeboards/:id', loginRequired, async (req, res, next) => 
   }
 });
 
+freeboardRouter.put('/freeboards/:id/likes', loginRequired, async (req, res, next) => {
+  try {
+    /*
+     #swagger.tags = ['freeboard'] 
+     #swagger.summary = '좋아요' 
+     #swagger.description = '좋아요!' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
+
+    const userId = req.currentUserId;
+    const post_id = req.params.id;
+
+    const like = await freeboardService.setPostlike({ userId, post_id });
+    res.status(200).send(like);
+  } catch (error) {
+    next(error);
+  }
+});
+
 freeboardRouter.put('/freeboards/:id', loginRequired, async (req, res, next) => {
   try {
     /*
@@ -78,7 +97,7 @@ freeboardRouter.put('/freeboards/:id', loginRequired, async (req, res, next) => 
   }
 });
 
-freeboardRouter.get('/freeboardlist/:user_id', loginRequired, async (req, res, next) => {
+freeboardRouter.get('/freeboards/:user_id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['freeboard'] 
@@ -93,7 +112,7 @@ freeboardRouter.get('/freeboardlist/:user_id', loginRequired, async (req, res, n
   }
 });
 
-freeboardRouter.get('/freeboardlist', loginRequired, async (req, res, next) => {
+freeboardRouter.get('/freeboards', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['freeboard'] 

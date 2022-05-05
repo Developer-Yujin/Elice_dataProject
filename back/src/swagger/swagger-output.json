@@ -901,7 +901,7 @@
             }
           },
           {
-            "name": "hashtag",
+            "name": "tag",
             "in": "query",
             "schema": {
               "type": "string"
@@ -1019,7 +1019,7 @@
                   "status": {
                     "example": "any"
                   },
-                  "hashtag": {
+                  "tag": {
                     "example": "any"
                   }
                 }
@@ -1401,7 +1401,7 @@
             }
           },
           {
-            "name": "hashtag",
+            "name": "tag",
             "in": "query",
             "schema": {
               "type": "string"
@@ -1519,7 +1519,7 @@
                   "status": {
                     "example": "any"
                   },
-                  "hashtag": {
+                  "tag": {
                     "example": "any"
                   }
                 }

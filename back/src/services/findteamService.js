@@ -18,6 +18,9 @@ class findteamService {
     }
     if (filter.tag) {
       newFilter.tag = filter.tag.split(',');
+      var last = newFilter.tag[newFilter.tag.length -1].replace("/", "");
+      newFilter.tag.pop();
+      newFilter.tag.push(last);
     }
     if (filter.order) {
       newFilter.order = filter.order;
@@ -63,10 +66,6 @@ class findteamService {
     return res;
   }
 
-  // static async getPostTag({ tag }) {
-  // const post = await FindTeam.findTag({ tag });
-  //   return post
-  // }
 
   static async setPost({ userId, post_id, toUpdate }) {
     let post = await FindTeam.findById({ post_id });

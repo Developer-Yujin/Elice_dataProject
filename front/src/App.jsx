@@ -7,14 +7,13 @@ import "./App.css";
 
 import Header from "./components/Header";
 import Main from "./components/Main";
+import Introduction from "./components/introduction/Introduction";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import CommunityPage from "./components/community/CommunityPage";
-import PostView from "./components/community/freeboard/PostView";
 import AppbtiTest from "./components/appbtitest/AppbtiTest";
 import EditorsPick from "./components/editorspick/EditorsPick";
 
-import Questions from "./components/appbtitest/Questions";
 import Question1 from "./components/appbtitest/Pages/Question1";
 import Question2 from "./components/appbtitest/Pages/Question2";
 import Question3 from "./components/appbtitest/Pages/Question3";
@@ -22,6 +21,7 @@ import Question4 from "./components/appbtitest/Pages/Question4";
 import Question5 from "./components/appbtitest/Pages/Question5";
 import Question6 from "./components/appbtitest/Pages/Question6";
 import Question7 from "./components/appbtitest/Pages/Question7";
+import QuestionResult from "./components/appbtitest/Pages/QuestionResult";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -31,7 +31,7 @@ function App() {
   const [userState, dispatch] = useReducer(loginReducer, {
     user: null,
   });
-  const isLogin = !!userState.user;
+  // const isLogin = !!userState.user;
 
   // console.log(currentUser);
 
@@ -82,12 +82,16 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/community/freeboards/:id" element={<PostView />} />
-            <Route path="/community" element={<CommunityPage />} />
+            <Route path="/introduction" element={<Introduction />} />
+            <Route path="/AppbtiTest" element={<AppbtiTest />} />
+
+            <Route path="/community/recruits" element={<CommunityPage />} />
+            <Route path="/community/findteams" element={<CommunityPage />} />
+            <Route path="/community/freeboards" element={<CommunityPage />} />
+            <Route path="/community/questions" element={<CommunityPage />} />
             <Route path="/editorspick" element={<EditorsPick />} />
 
             <Route path="/AppbtiTest" element={<AppbtiTest />} />
-            <Route path="/AppbtiTest/0" element={<Questions />} />
             <Route path="/AppbtiTest/1" element={<Question1 />} />
             <Route path="/AppbtiTest/2" element={<Question2 />} />
             <Route path="/AppbtiTest/3" element={<Question3 />} />
@@ -95,6 +99,7 @@ function App() {
             <Route path="/AppbtiTest/5" element={<Question5 />} />
             <Route path="/AppbtiTest/6" element={<Question6 />} />
             <Route path="/AppbtiTest/7" element={<Question7 />} />
+            <Route path="/AppbtiTest/Result" element={<QuestionResult />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>
