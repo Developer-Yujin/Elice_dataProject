@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ReactApexChart from "react-apexcharts";
 
 // 카테고리별 평점 분포 데이터
-const CATEGORY_RATING_DATA = {
+const categoryRatingData = {
   series: [
     {
       name: "Personalization",
@@ -162,7 +162,7 @@ const CATEGORY_RATING_DATA = {
 };
 
 // 카테고리별 앱 중에서 3점대 이하인 앱의 비율 Rank 10
-const CATEGORY_GRADE_DATA_RANK_10 = {
+const categoryGradeDataRank10 = {
   series: [
     {
       data: [58.32, 57.67, 55.34, 55.02, 54.78, 54.43, 49.65, 49.24, 49.1, 48.02],
@@ -209,7 +209,7 @@ const Article1 = function ({ openModalHandler }) {
     <ArticleContainer>
       <ArticleBox>
         <PrevGraph>
-          <ReactApexChart options={CATEGORY_GRADE_DATA_RANK_10.options} series={CATEGORY_GRADE_DATA_RANK_10.series} type="bar" height={300} width={500} />
+          <ReactApexChart options={categoryGradeDataRank10.options} series={categoryGradeDataRank10.series} type="bar" height={300} width={500} />
           <p> - 카테고리별 평점 3점대 이하 앱 비율 RANK10 - </p>
         </PrevGraph>
         <Content>
@@ -241,7 +241,7 @@ const Article1 = function ({ openModalHandler }) {
                   도전해볼만한 시장을 찾기 위해 관련 데이터를 분석해보았습니다.
                 </ModalBody>
                 <Graph id="chart">
-                  <ReactApexChart options={CATEGORY_RATING_DATA.options} series={CATEGORY_RATING_DATA.series} type="heatmap" height={1000} width={700} />
+                  <ReactApexChart options={categoryRatingData.options} series={categoryRatingData.series} type="heatmap" height={1000} width={700} />
                 </Graph>
                 <ModalBody>
                   위의 그래프는 카테고리별 앱의 별점 분포 비율을 나타냅니다.
@@ -256,7 +256,7 @@ const Article1 = function ({ openModalHandler }) {
                 </ModalBody>
 
                 <Graph id="chart">
-                  <ReactApexChart options={CATEGORY_GRADE_DATA_RANK_10.options} series={CATEGORY_GRADE_DATA_RANK_10.series} type="bar" height={350} width={800} />
+                  <ReactApexChart options={categoryGradeDataRank10.options} series={categoryGradeDataRank10.series} type="bar" height={350} width={800} />
                 </Graph>
                 <ModalBody>
                   위의 그래프와 같이 카테고리별 앱 별점이 3점대 이하인 앱 비율이 RANK 10위 안에 드는 카테고리는 아래와 같습니다.
