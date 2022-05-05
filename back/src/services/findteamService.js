@@ -18,6 +18,9 @@ class findteamService {
     }
     if (filter.tag) {
       newFilter.tag = filter.tag.split(',');
+      var last = newFilter.tag[newFilter.tag.length -1].replace("/", "");
+      newFilter.tag.pop();
+      newFilter.tag.push(last);
     }
     if (filter.order) {
       newFilter.order = filter.order;
