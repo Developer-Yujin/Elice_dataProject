@@ -1,28 +1,26 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { UserStateContext } from "../../../App";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { get, del } from "../../../api";
+import styled from "styled-components";
 import Comments from "./FreeboardComments";
 import CommentForm from "./FreeboardCommentForm";
 
-function PostView({ setViewType, setIsAdding }) {
+function PostView({ setViewType }) {
   const { state } = useLocation();
   const [postInfo, setPostInfo] = useState(null);
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
 
   const navigate = useNavigate();
-  const params = useParams();
 
   useEffect(() => {
     async function loadPostView() {
       const res = await get(`freeboards/${state}`);
       setPostInfo(res.data);
       setIsFetchCompleted(true);
-      setIsAdding(false);
     }
     loadPostView();
-  }, [params, setViewType]);
+  }, [setViewType]);
 
   if (!isFetchCompleted) {
     return "loading...";

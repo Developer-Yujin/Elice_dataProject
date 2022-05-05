@@ -12,7 +12,6 @@ const Freeboards = () => {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
-  const [isAdding, setIsAdding] = useState(false);
   const [viewType, setViewType] = useState("list");
   const [freeboards, setFreeboards] = useState([]);
 
@@ -59,9 +58,9 @@ const Freeboards = () => {
       {viewType === "list" ? (
         <Lists user={userState.user} setViewType={setViewType} setFreeboards={setFreeboards} />
       ) : viewType === "form" ? (
-        <Form user={userState.user} setViewType={setViewType} setFreeboards={setFreeboards} setIsAdding={setIsAdding} />
+        <Form user={userState.user} setViewType={setViewType} setFreeboards={setFreeboards} />
       ) : (
-        <View user={userState.user} setViewType={setViewType} setIsAdding={setIsAdding} />
+        <View user={userState.user} setViewType={setViewType} />
       )}
     </div>
   );

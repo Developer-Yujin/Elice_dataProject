@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { get } from "../../../api";
 import styled from "styled-components";
 
-const Lists = ({ setViewType, setIsAdding }) => {
+const Lists = ({ setViewType }) => {
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
   const [lists, setLists] = useState([]);
   const navigate = useNavigate();
@@ -27,8 +27,6 @@ const Lists = ({ setViewType, setIsAdding }) => {
     // setViewType("View");
     navigate(`/community/freeboards`, { state: postid });
     setViewType("View");
-    setIsAdding(true);
-    console.log(postid);
   };
 
   return (
