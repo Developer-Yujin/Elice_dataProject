@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserStateContext } from "../../App";
 
 import * as Api from "../../api";
@@ -15,7 +15,7 @@ import Questionboards from "./questionboard/Questionboards";
 
 // 스타일 import
 import { styled, List, Paper, Grid, ListItemButton, ListItemText, Box, Button } from "../styles/Mui";
-import { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer } from "./CommunityPageStyles";
+import { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer, RightPostContainer, PostsTitle } from "./CommunityPageStyles";
 import "../styles/CommunityPage.css";
 
 // 데이터 import
@@ -162,54 +162,58 @@ const CommunityPage = function () {
               </List>
             </nav>
           </Item>
+
           <Grid item xs={9} id="RightPostList">
-            <FilterContainer>
+            <RightPostContainer>
+              {categoryUrl === "recruits" ? <PostsTitle>💁 팀원 구해요</PostsTitle> : categoryUrl === "findteams" ? <PostsTitle>🙋 팀을 찾고있어요</PostsTitle> : ""}
+              <FilterContainer>
+                {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
+                  <StatusFilter currentStatusFunction={currentStatusFunction} statusReset={statusReset} statusResetDoneFunction={statusResetDoneFunction} />
+                ) : (
+                  ""
+                )}
+                <TagContainer>
+                  {categoryUrl === "recruits" || categoryUrl === "findteams" ? <TagFilter tagQueryFunction={tagQueryFunction} tagReset={tagReset} tagResetDoneFunction={tagResetDoneFunction} /> : ""}
+                </TagContainer>
+                <TabDiv>
+                  <TabContainer>
+                    {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
+                      <OrderFilter currentOrderFunction={currentOrderFunction} orderReset={orderReset} orderResetDoneFunction={orderResetDoneFunction} />
+                    ) : (
+                      ""
+                    )}
+                  </TabContainer>
+                </TabDiv>
+              </FilterContainer>
               {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
-                <StatusFilter currentStatusFunction={currentStatusFunction} statusReset={statusReset} statusResetDoneFunction={statusResetDoneFunction} />
+                <PostButtonContainer>
+                  <Button id="createPost" type="submit" fullWidth variant="contained">
+                    게시글 작성
+                  </Button>
+                </PostButtonContainer>
               ) : (
                 ""
               )}
-              <TagContainer>
-                {categoryUrl === "recruits" || categoryUrl === "findteams" ? <TagFilter tagQueryFunction={tagQueryFunction} tagReset={tagReset} tagResetDoneFunction={tagResetDoneFunction} /> : ""}
-              </TagContainer>
-              <TabDiv>
-                <TabContainer>
-                  {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
-                    <OrderFilter currentOrderFunction={currentOrderFunction} orderReset={orderReset} orderResetDoneFunction={orderResetDoneFunction} />
-                  ) : (
-                    ""
-                  )}
-                </TabContainer>
-              </TabDiv>
-            </FilterContainer>
-            {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
-              <PostButtonContainer>
-                <Button id="createPost" type="submit" fullWidth variant="contained">
-                  게시글 작성
-                </Button>
-              </PostButtonContainer>
-            ) : (
-              ""
-            )}
-            <article>
-              {categoryUrl === "freeboards" ? (
-                <Freeboards />
-              ) : categoryUrl === "questions" ? (
-                <Questionboards />
-              ) : (
-                posts.map((e) => {
-                  return (
-                    <div className="PostItem" key={`post${e._id}`}>
-                      <Item key={`post${e._id}`} id={e._id} onClick={(e) => handlePostClick(e)}>
-                        <div>{e.title}</div>
-                        <div>{e.content}</div>
-                      </Item>
-                    </div>
-                  );
-                })
-              )}
-            </article>
-            <Pager />
+              <article>
+                {categoryUrl === "freeboards" ? (
+                  <Freeboards />
+                ) : categoryUrl === "questions" ? (
+                  <Questionboards />
+                ) : (
+                  posts.map((e) => {
+                    return (
+                      <div className="PostItem" key={`post${e._id}`}>
+                        <Item key={`post${e._id}`} id={e._id} onClick={(e) => handlePostClick(e)}>
+                          <div>{e.title}</div>
+                          <div>{e.content}</div>
+                        </Item>
+                      </div>
+                    );
+                  })
+                )}
+              </article>
+              <Pager />
+            </RightPostContainer>
           </Grid>
         </Grid>
       </Box>

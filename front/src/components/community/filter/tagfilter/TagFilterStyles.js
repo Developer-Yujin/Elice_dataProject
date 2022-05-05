@@ -7,7 +7,6 @@ const TagBox = styled.div`
   height: 30px;
   margin: 10px 0;
   padding: 20px 10px;
-  background-color: var(--inputBackground);
   border-radius: 5px;
 `;
 
@@ -23,6 +22,7 @@ const StackFilterTag = styled.button`
   background-color: ${(props) => (props.isClicked ? "var(--primary)" : "#fff")};
   border: 1px solid var(--primary);
   cursor: pointer;
+  box-shadow: 0 3px 3px #e4e4e4;
   &:hover {
     color: #fff;
     background-color: var(--primary);

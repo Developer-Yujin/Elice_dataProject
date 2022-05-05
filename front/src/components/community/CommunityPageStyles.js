@@ -32,4 +32,20 @@ const PostButtonContainer = styled.div`
   flex-direction: row;
 `;
 
-export { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer };
+const RightPostContainer = styled.div`
+  width: 830px;
+  height: auto;
+  padding: 30px 50px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 7px 10px #e4e4e4;
+`;
+
+const PostsTitle = styled.p`
+  font-size: 25px;
+  margin-bottom: 30px;
+  font-weight: 600;
+  color: var(--textPrimary);
+`;
+
+export { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer, RightPostContainer, PostsTitle };
