@@ -32,7 +32,7 @@ function App() {
   const [userState, dispatch] = useReducer(loginReducer, {
     user: null,
   });
-  const isLogin = !!userState.user;
+  // const isLogin = !!userState.user;
 
   // console.log(currentUser);
 
