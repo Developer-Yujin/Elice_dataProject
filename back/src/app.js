@@ -2,9 +2,15 @@ import cors from 'cors';
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import { userAuthRouter } from './routers/userRouter';
+import { appbtiRouter } from './routers/appbtiRouter';
 import { freeboardRouter } from './routers/freeboardRouter';
-import { commentRouter } from './routers/commentRouter';
+import { freeboardcommentRouter } from './routers/freeboardcommentRouter';
+import { findteamRouter } from './routers/findteamRouter';
+import { findteamcommentRouter } from './routers/findteamcommentRouter';
+import { recruitRouter } from './routers/recruitRouter';
+import { recruitcommentRouter } from './routers/recruitcommentRouter';
 import { questionRouter } from './routers/questionRouter';
+import { questioncommentRouter } from './routers/questioncommentRouter';
 import { errorMiddleware } from './middlewares/errorMiddleware';
 import swaggerFile from './swagger/swagger-output.json';
 
@@ -28,11 +34,16 @@ app.get('/', (req, res) => {
 
 // router, service 구현 (userAuthRouter는 맨 위에 있어야 함.)
 app.use(userAuthRouter);
+app.use(appbtiRouter);
 app.use(freeboardRouter);
-app.use(commentRouter);
+app.use(freeboardcommentRouter);
+app.use(findteamRouter);
+app.use(findteamcommentRouter);
+app.use(recruitRouter);
+app.use(recruitcommentRouter);
 app.use(questionRouter);
+app.use(questioncommentRouter);
 
-console.log(swaggerFile);
 //swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile, { explorer: true }));
 
