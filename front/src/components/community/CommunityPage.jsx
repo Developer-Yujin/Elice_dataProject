@@ -18,6 +18,9 @@ import { styled, List, Paper, Grid, ListItemButton, ListItemText, Box, Button } 
 import { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer } from "./CommunityPageStyles";
 import "../styles/CommunityPage.css";
 
+// 데이터 import
+import CommunitySideMenuList from "./CommunitySideMenuList";
+
 const CommunityPage = function () {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
@@ -27,8 +30,10 @@ const CommunityPage = function () {
     color: theme.palette.text.secondary,
   }));
 
+  const handlePostClick = () => {};
+
+  // 백에서 전달받은 게시글 리스트 저장
   const [posts, setPosts] = useState([]);
-  const [isClicked, setIsClicked] = useState(false);
 
   // category 메뉴 관련 (팀원 구해요/ 팀 찾아요 / 자유게시판 / 질문게시판)
   const [categoryUrl, setCategoryUrl] = useState("recruits");
@@ -60,6 +65,7 @@ const CommunityPage = function () {
   // tag 필터 관련
   const [tagReset, setTagReset] = useState(false);
   const [tagUrlQuery, setTagUrlQuery] = useState("");
+
   // tag 필터 배열을 받아 쿼리스트링 형태로 변환
   const tagQueryFunction = (tagUrls) => {
     if (tagUrls.length === 0) {
@@ -96,12 +102,7 @@ const CommunityPage = function () {
         setTotalQuery(`?status=${currentStatus}${tagUrlQuery}`);
       } else if (currentStatus !== "all" && currentOrder !== "recently") {
         setTotalQuery(`?status=${currentStatus}${tagUrlQuery}&order=${currentOrder}`);
-      } else {
-        console.log("뭐를 빠드렸을까?");
       }
-
-      // console.clear();
-      // console.log("totalQuery : ", totalQuery);
     };
 
     totalQueryFunction();
@@ -111,10 +112,10 @@ const CommunityPage = function () {
       Api.get(`${categoryUrl}${totalQuery}`).then((res) => setPosts(res.data));
       navigate(`/community/${categoryUrl}${totalQuery}`);
     }
-  }, [categoryUrl, navigate, userState, totalQuery, currentStatus, currentOrder, tagUrlQuery]);
+  }, [categoryUrl, navigate, userState, currentStatus, currentOrder, tagUrlQuery, totalQuery]);
 
   const handleClick = async (e) => {
-    setIsClicked(true);
+    // setIsClicked(true);
     const url = e.currentTarget.getAttribute("value");
     //console.log(e.currentTarget.getAttribute("value"));
     setCategoryUrl(url);
@@ -134,7 +135,7 @@ const CommunityPage = function () {
           <Item id="LeftMenu">
             <nav>
               <List>
-                {leftMenuList.map((e) => {
+                {CommunitySideMenuList.map((e) => {
                   return (
                     <div
                       key={e.category}
@@ -184,21 +185,20 @@ const CommunityPage = function () {
             <article>
               {categoryUrl === "freeboards" ? (
                 <Freeboards />
-              ) : (
+              ) : categoryUrl === "questions" ? (
                 <Questionboards />
-                // posts.map((e) => {
-                //   return (
-                //     <div className="PostItem" key={e.id}>
-                //       <Item>
-                //         <div>{e.title}</div>
-                //         <div>{e.content}</div>
-                //       </Item>
-                //     </div>
-                // );
-                //   })
-                // )}
+              ) : (
+                posts.map((e) => {
+                  return (
+                    <div className="PostItem" key={e.id} onClick={handlePostClick}>
+                      <Item>
+                        <div>{e.title}</div>
+                        <div>{e.content}</div>
+                      </Item>
+                    </div>
+                  );
+                })
               )}
-              )
             </article>
             <Pager />
           </Grid>
@@ -207,27 +207,5 @@ const CommunityPage = function () {
     </CommunityPostContainer>
   );
 };
-export default CommunityPage;
 
-const leftMenuList = [
-  {
-    id: 1,
-    category: "recruits",
-    name: "팀원 구해요",
-  },
-  {
-    id: 2,
-    category: "findteams",
-    name: "팀을 찾고있어요",
-  },
-  {
-    id: 3,
-    category: "freeboards",
-    name: "자유 게시판",
-  },
-  {
-    id: 4,
-    category: "questions",
-    name: "질문 게시판",
-  },
-];
+export default CommunityPage;
