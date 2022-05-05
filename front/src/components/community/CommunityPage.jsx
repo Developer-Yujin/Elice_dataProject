@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { UserStateContext } from "../../App";
 
 import * as Api from "../../api";
@@ -30,7 +30,14 @@ const CommunityPage = function () {
     color: theme.palette.text.secondary,
   }));
 
-  const handlePostClick = () => {};
+  // 게시글 리스트 중 하나를 클릭하면 해당 게시글 상세 보기로 이동
+
+  const handlePostClick = (e) => {
+    if (categoryUrl === "recruits" || categoryUrl === "findteams") {
+      console.log(`/community/${categoryUrl}/${e.currentTarget.id}`);
+      navigate(`/community/${categoryUrl}/${e.currentTarget.id}`);
+    }
+  };
 
   // 백에서 전달받은 게시글 리스트 저장
   const [posts, setPosts] = useState([]);
@@ -192,8 +199,8 @@ const CommunityPage = function () {
               ) : (
                 posts.map((e) => {
                   return (
-                    <div className="PostItem" key={e.id} onClick={handlePostClick}>
-                      <Item>
+                    <div className="PostItem" key={`post${e._id}`}>
+                      <Item key={`post${e._id}`} id={e._id} onClick={(e) => handlePostClick(e)}>
                         <div>{e.title}</div>
                         <div>{e.content}</div>
                       </Item>
