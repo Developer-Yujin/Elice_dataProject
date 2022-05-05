@@ -23,12 +23,6 @@ appbtiRouter.post('/appbti', async (req, res, next) => {
 
     // 데이터를 유저 db에 추가하기
     const newresult = await appbtiService.addResult({ answers });
-    if (newresult) {
-      throw newError({ errorMessage: 'test 중입니다' });
-    }
-    if (newresult.errorMessage) {
-      throw new Error(newUser.errorMessage);
-    }
 
     res.status(201).json(newresult);
   } catch (error) {
@@ -36,25 +30,19 @@ appbtiRouter.post('/appbti', async (req, res, next) => {
   }
 });
 
-appbtiRouter.get('/appbti', loginRequired, async (req, res, next) => {
-  try {
-    /*
-     #swagger.tags = ['Appbti'] 
-     #swagger.summary = 'appbti 결과 보여줌' 
-     #swagger.description = 'appbti 테스트 결과를 보내준다.' 
-     #swagger.security = [{ "bearerAuth": [] }]
-    */
+// appbtiRouter.get('/appbti', loginRequired, async (req, res, next) => {
+//   try {
 
-    const userId = req.currentUserId;
-    const appbtiresult = await appbtiService.getAppbtiResult({ userId });
+//     const userId = req.currentUserId;
+//     const appbtiresult = await appbtiService.getAppbtiResult({ userId });
 
-    if (appbtiresult.errorMessage) {
-      throw new Error(appbtiresult.errorMessage);
-    }
-    res.status(200).send(appbtiresult);
-  } catch (error) {
-    next(error);
-  }
-});
+//     if (appbtiresult.errorMessage) {
+//       throw new Error(appbtiresult.errorMessage);
+//     }
+//     res.status(200).send(appbtiresult);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 export { appbtiRouter };

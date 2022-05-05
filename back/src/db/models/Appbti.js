@@ -7,32 +7,28 @@ class Appbti {
   //   const apps = await KoreanAppModel.findAll({});
   //   return apps;
   // }
-  static async create({ newResult }) {
-    const createdNewResult = await AppbtiResultModel.create(newResult);
-    return createdNewResult;
-  }
-  static async findById({ userId }) {
-    const appbtiresult = await AppbtiResultModel.findOne({ userId });
+  // static async create({ newResult }) {
+  //   const createdNewResult = await AppbtiResultModel.create(newResult);
+  //   return createdNewResult;
+  // }
+  // static async findById({ userId }) {
+  //   const appbtiresult = await AppbtiResultModel.findOne({ userId });
 
-    return appbtiresult;
-  }
+  //   return appbtiresult;
+  // }
 
   static async findResult({ filter }) {
-    // let start = new Date();
     const appbtiresult = await GoogleAppModel.find(filter);
-    // let end = new Date();
-    console.log(appbtiresult.length);
-    // console.log(end - start);
     return appbtiresult;
   }
 
-  static async update({ userId, newResult }) {
-    const filter = { userId };
-    const update = { $set: newResult };
-    const option = { returnOriginal: false };
-    const updatedPost = await AppbtiResultModel.findOneAndUpdate(filter, update, option);
-    return updatedPost;
-  }
+  // static async update({ userId, newResult }) {
+  //   const filter = { userId };
+  //   const update = { $set: newResult };
+  //   const option = { returnOriginal: false };
+  //   const updatedPost = await AppbtiResultModel.findOneAndUpdate(filter, update, option);
+  //   return updatedPost;
+  // }
 }
 
 export { Appbti };
