@@ -84,7 +84,6 @@ class appbtiService {
       orfilter = [];
       if (!Array.isArray(filtercondition[answers[i]])) {
         filter['$and'].push(filtercondition[answers[i]]);
-        console.log(filtercondition[answers[i]]);
         continue;
       }
       for (let j = 0; j < filtercondition[answers[i]].length; j++) {
@@ -115,16 +114,16 @@ class appbtiService {
     return createdAppbtiResult;
   }
 
-  static async getAppbtiResult({ userId }) {
-    const appbtiresult = await Appbti.findById({ userId });
+  // static async getAppbtiResult({ userId }) {
+  //   const appbtiresult = await Appbti.findById({ userId });
 
-    if (!appbtiresult) {
-      const errorMessage = '해당 포스트가 없습니다. 다시 한 번 확인해 주세요.';
-      return { errorMessage };
-    }
+  //   if (!appbtiresult) {
+  //     const errorMessage = '해당 포스트가 없습니다. 다시 한 번 확인해 주세요.';
+  //     return { errorMessage };
+  //   }
 
-    return appbtiresult;
-  }
+  //   return appbtiresult;
+  // }
 }
 
 export { appbtiService };

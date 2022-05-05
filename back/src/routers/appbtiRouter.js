@@ -1,6 +1,5 @@
 import is from '@sindresorhus/is';
 import { Router } from 'express';
-import { loginRequired } from '../middlewares/loginRequired';
 import { appbtiService } from '../services/appbtiService';
 
 const appbtiRouter = Router();
