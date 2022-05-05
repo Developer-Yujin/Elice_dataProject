@@ -27,22 +27,25 @@ const Lists = ({ setViewType, setIsAdding }) => {
     // setViewType("View");
     navigate(`/community/freeboards`, { state: postid });
     setViewType("View");
-    setIsAdding(false);
+    setIsAdding(true);
     console.log(postid);
   };
 
   return (
-    <ListContainer>
-      {lists.map((freeboard) => (
-        <ListCard key={freeboard._id} id={freeboard._id} onClick={(freeboard) => Changeview(freeboard)}>
-          <BoardAuthor>
-            ✨ <b>{freeboard.name}</b> ✨님이 작성하신 글이예요!
-          </BoardAuthor>
-          <BoardTitle>{freeboard.title}</BoardTitle>
-          {freeboard.content}
-        </ListCard>
-      ))}
-    </ListContainer>
+    <div>
+      <WriteButton onClick={() => setViewType("form")}>게시글 작성</WriteButton>
+      <ListContainer>
+        {lists.map((freeboard) => (
+          <ListCard key={freeboard._id} id={freeboard._id} onClick={(freeboard) => Changeview(freeboard)}>
+            <BoardAuthor>
+              ✨ <b>{freeboard.name}</b> ✨님이 작성하신 글이예요!
+            </BoardAuthor>
+            <BoardTitle>{freeboard.title}</BoardTitle>
+            {freeboard.content}
+          </ListCard>
+        ))}
+      </ListContainer>
+    </div>
   );
 };
 
@@ -81,4 +84,20 @@ const BoardTitle = styled.div`
   font-size: 1.5em;
   font-weight: 800;
   padding: 0 0 5px 0;
+`;
+const WriteButton = styled.div`
+  display: flex;
+  float: right;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  color: white;
+  background-color: #484bcc;
+  &:hover {
+    background-color: #5355c9;
+  }
+  border-radius: 8px;
+  box-shadow: 0 4px 6px #e4e4e4;
+  word-break: keep-all;
 `;

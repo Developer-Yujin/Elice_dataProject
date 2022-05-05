@@ -1,12 +1,12 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router";
-import Button from "@mui/material/Button";
 import { UserStateContext } from "../../../App";
 import { get } from "../../../api";
 import LinearProgress from "@mui/material/LinearProgress";
 import View from "./PostView";
 import Lists from "./Lists";
 import Form from "./Postform";
+import OrderFilter from "../filter/orderfilter/OrderFilter";
 
 const Freeboards = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Freeboards = () => {
 
   const fetchPostsInfo = async () => {
     try {
-      await get("freeboardlist");
+      await get("freeboards");
       setViewType("list");
       setIsFetchCompleted(true);
       navigate("/community/freeboards");
@@ -55,13 +55,7 @@ const Freeboards = () => {
 
   return (
     <div className="freeboards">
-      {!isAdding ? (
-        <Button variant="contained" onClick={() => setViewType("form")}>
-          작성
-        </Button>
-      ) : (
-        <span />
-      )}
+      {/* <OrderFilter /> */}
       {viewType === "list" ? (
         <Lists user={userState.user} setViewType={setViewType} setFreeboards={setFreeboards} />
       ) : viewType === "form" ? (
