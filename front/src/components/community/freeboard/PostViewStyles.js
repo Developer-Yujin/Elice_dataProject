@@ -37,7 +37,7 @@ const PostTitle = styled.div`
 
 const PostContent = styled.div`
   padding: 5px;
-  height: 60%;
+  height: 72%;
 `;
 
 const ButtonContainer = styled.div`
@@ -45,8 +45,6 @@ const ButtonContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 10px 1vh 10px 1vh;
-  margin: 20px 0 10px 0;
   word-break: keep-all;
 `;
 
