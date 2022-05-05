@@ -66,10 +66,6 @@ class findteamService {
     return res;
   }
 
-  // static async getPostTag({ tag }) {
-  // const post = await FindTeam.findTag({ tag });
-  //   return post
-  // }
 
   static async setPost({ userId, post_id, toUpdate }) {
     let post = await FindTeam.findById({ post_id });

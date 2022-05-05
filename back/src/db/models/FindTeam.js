@@ -17,12 +17,6 @@ class FindTeam {
     return post.likes;
   }
 
-  // static async findTag({ tag }) {
-  //   const posts = await FindTeamModel.find().where('tag').in(tag)
-  //   return posts
-
-  // }
-
   static async findAll(newFilter, order, { currentPage, perPage }) {
     // 변수명 변경
     const findTeamPosts = await FindTeamModel.find(newFilter)
