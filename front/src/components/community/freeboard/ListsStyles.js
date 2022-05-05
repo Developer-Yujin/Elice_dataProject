@@ -12,7 +12,6 @@ const ListCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // align-items: center;
   width: 1200px;
   height: 150px;
   padding: 1vh 1vh 2vh 1vh;
@@ -34,7 +33,16 @@ const BoardTitle = styled.div`
   font-weight: 800;
   padding: 0 0 5px 0;
 `;
-const WriteButton = styled.div`
+
+const BoardContent = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 600px;
+  height: 20px;
+`;
+
+const WriteButton = styled.button`
   display: flex;
   float: right;
   justify-content: center;
@@ -51,4 +59,4 @@ const WriteButton = styled.div`
   word-break: keep-all;
 `;
 
-export { ListContainer, ListCard, BoardAuthor, BoardTitle, WriteButton };
+export { ListContainer, ListCard, BoardAuthor, BoardTitle, BoardContent, WriteButton };

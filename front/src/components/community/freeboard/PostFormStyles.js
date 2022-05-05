@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const PostFormContainer = styled.div`
+const PostFormContainer = styled.form`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -39,7 +39,7 @@ const ButtonContainer = styled.div`
   word-break: keep-all;
 `;
 
-const SubmitButton = styled.div`
+const SubmitButton = styled.button`
   display: flex;
   float: center;
   justify-content: center;

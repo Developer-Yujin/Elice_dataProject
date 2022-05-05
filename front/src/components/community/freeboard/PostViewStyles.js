@@ -48,7 +48,7 @@ const ButtonContainer = styled.div`
   word-break: keep-all;
 `;
 
-const ListButton = styled.div`
+const ListButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,7 +65,7 @@ const ListButton = styled.div`
   word-break: keep-all;
 `;
 
-const EditButton = styled.div`
+const EditButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,7 +82,7 @@ const EditButton = styled.div`
   word-break: keep-all;
 `;
 
-const DeleteButton = styled.div`
+const DeleteButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
