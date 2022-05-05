@@ -1,5 +1,5 @@
 import React from "react";
-import "./Introduction.css";
+import "./introduction.css";
 
 function Introduction() {
   return (
@@ -75,6 +75,16 @@ function Introduction() {
           </div>
         </article>
       </main>
+
+      <footer id="footer">
+        <div class="copyright">
+          <p>Copyright © 2021-2022 Try, Catch!. All rights reserved.</p>
+        </div>
+
+        <div class="address">
+          <p>Try, Catch!</p>
+        </div>
+      </footer>
     </div>
   );
 }
