@@ -6,7 +6,7 @@ import { UserStateContext } from "../../App";
 import * as Api from "../../api";
 
 // 컴포넌트 import
-import Freeboards from "./freeboard/freeboards";
+import Freeboards from "./freeboard/Freeboards";
 import TagFilter from "./filter/tagfilter/TagFilter";
 import StatusFilter from "./filter/ststusfilter/StatusFilter";
 import OrderFilter from "./filter/orderfilter/OrderFilter";
