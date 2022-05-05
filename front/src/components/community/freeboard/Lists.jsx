@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { get } from "../../../api";
-import { ListContainer, ListCard, BoardAuthor, BoardTitle, WriteButton } from "./ListsStyles";
+import { ListContainer, ListCard, BoardAuthor, BoardTitle, BoardContent, WriteButton } from "./ListsStyles";
 
 const Lists = ({ setViewType }) => {
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
@@ -39,7 +39,7 @@ const Lists = ({ setViewType }) => {
               ✨ <b>{freeboard.name}</b> ✨님이 작성하신 글이예요!
             </BoardAuthor>
             <BoardTitle>{freeboard.title}</BoardTitle>
-            {freeboard.content}
+            <BoardContent>{freeboard.content}</BoardContent>
           </ListCard>
         ))}
       </ListContainer>
