@@ -113,38 +113,52 @@ const Article1 = function ({ openModalHandler }) {
                   <ReactApexChart options={adsupportedData.options} series={adsupportedData.series} type="bar" height={350} width={500} />
                 </Graph>
                 <ModalBody>
-                  우선 광고 있는 앱과
+                  앱 내 광고 유무를 기준으로 각각의 평균 다운로드수를 구해본 결과
                   <br />
-                  그래프에서 색이 진할수록 분포 비율이 높음을 의미합니다.
+                  앱 내 광고가 없는 앱의 평균 다운로드수가 약 100만회 정도 더 높았습니다.
                   <br />
-                  거의 모든 카테고리의 별점 비율이 3~4점대에 머무르는 것을 확인할 수 있습니다.
                   <br />
-                  AppBTI는 약 절반 정도의 사용자가 서비스에 만족하지 못한 카테고리는 무엇인지 조사하기 위해
+                  광고가 없는 앱이 사용자의 선택을 더 많이 받는다는 가설을 세우고
                   <br />
-                  추가로 각 카테고리의 앱 별점이 3점대 이하인 비율을 분석했고, 결과는 아래와 같습니다.
+                  인앱 광고가 없는 어플들을 다운로드 순으로 살펴 본 결과
+                  <br />
+                  Google Play services, Google Text-to-Speech, Hangouts, Android System WebView등
+                  <br />
+                  핸드폰에 기본으로 다운 받아져 있는 구글 어플들이 상당수를 차지하고 있음을 확인한였습니다.
+                  <br />
                 </ModalBody>
-
+                <Graph id="chart">
+                  <ReactApexChart options={adsupportedData.options} series={adsupportedData.series} type="bar" height={350} width={500} />
+                </Graph>
                 <ModalBody>
-                  위의 그래프와 같이 카테고리별 앱 별점이 3점대 이하인 앱 비율이 RANK 10위 안에 드는 카테고리는 아래와 같습니다.
+                  구글 어플들의 전체 다운로드 수를 합산 해보니 약1000억에 해당하는 결과가 나왔습다.
                   <br />
-                  House & Home, Dating, Maps & Navigation, Business, Auto & Vehicles,
+                  이는 광고 없는 어플들의 전체 다운로드 수인 약 1900억회 중 대략 53퍼센트에 해당하는 횟수입니다.
                   <br />
-                  Video Players & Editors, Beauty, Tools, Travel & Local, Shopping
-                  <br />이 카테고리는 다른 서비스들에 비해 사용자 만족도가 낮은 것을 확인할 수 있습니다.
+                  <br />
+                  이를 통해 인앱 광고 유무와 사용자의 앱 다운로드 선택의 상관 관계를 밝혀내기 위해서는
+                  <br />
+                  핸드폰에 기본적으로 설치되는 어플들을 제외한 후 평균 다운로드 수를 비교해보아야 한다고 판단하였습니다.
+                </ModalBody>
+                <Graph id="chart">
+                  <ReactApexChart options={adsupportedData.options} series={adsupportedData.series} type="bar" height={350} width={500} />
+                </Graph>
+                <ModalBody>
+                  핸드폰에 기본적으로 설치된 구글 앱들을 제외하고 평균 다운로드 수를 비교해본 결과
+                  <br />
+                  위 그래프와 같이 인앱 광고 유무를 기준으로 평균 다운로드 수는 큰 차이를 보이지 않았습니다.
+                  <br />
+                  따라서 앱내 광고 유무가 사용자의 앱 설치 선택에 유의미한 영향을 끼치지 않는다는 결론을 낼 수 있었습니다.
+                  <br />
                 </ModalBody>
                 <ModalComment>
                   <div>
-                    앞서 확인한 바와 같이, 타 서비스에 비해 사용자 만족도가 낮은
-                    <br />
-                    House & Home, Dating, Maps & Navigation, Business, Auto & Vehicles,
-                    <br />
-                    Video Players & Editors, Beauty, Tools, Travel & Local, Shopping
+                    앞서 확인한 바와 같이, 사용자들은 앱내 광고에 민감하지 않으니
                     <br />
                   </div>
                   <div id="comment">
-                    위의 카테고리 내에서 진출해보고 싶은 시장을 정하고, 기존에 출시된 앱들의 실패요인을 분석하여
                     <br />
-                    사용자 만족도가 높은 앱을 만들어 보는것은 어떨까요?
+                    광고를 삽입하여 높은 수익을 창출하는 방향으로 앱을 기획해보면 어떨까요?
                   </div>
                 </ModalComment>
 
