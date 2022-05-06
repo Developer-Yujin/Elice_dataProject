@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-// import CommentAddForm from "./QuestionboardCommentForm";
+import CommentAddForm from "./QuestionboardCommentForm";
 import { get } from "../../../api";
 
 function Comments(postId, user) {
-  // const [isFetchCompleted, setIsFetchCompleted] = useState(false);
+  const [isFetchCompleted, setIsFetchCompleted] = useState(false);
   const [comments, setComments] = useState([]);
 
   // const handleDeleteClick = async (_id) => {
