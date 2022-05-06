@@ -67,7 +67,8 @@ const FinalAnswer = styled.div`
   width: 100%;
   padding: 5vh;
   font-size: 2.5em;
-  color: white;
+  color: #484bcc;
+  font-weight: 700;
 `;
 
 const AnswerCardContainer = styled.div`
@@ -76,7 +77,7 @@ const AnswerCardContainer = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
-  background-color: #484bcc;
+  background-color: #f8f8f8;
 `;
 
 const AnswerCard = styled.div`
