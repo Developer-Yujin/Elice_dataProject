@@ -2,7 +2,36 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ReactApexChart from "react-apexcharts";
 
-// 카테고리별 평점 분포 데이터
+//파이차트
+const pieData = {
+  series: [102400987977, 88228245083],
+  options: {
+    chart: {
+      width: 380,
+      type: "pie",
+    },
+    labels: ["Google Apps", "Others"],
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200,
+          },
+          legend: {
+            position: "bottom",
+          },
+        },
+      },
+    ],
+    title: {
+      text: "인앱 광고 없는 어플 내 다운로드 퍼센트",
+      align: "center",
+    },
+  },
+};
+
+// 아티클3 메인
 const adsupportedData = {
   series: [
     {
@@ -60,6 +89,86 @@ const adsupportedData = {
   },
 };
 
+// 아티클3 전체 비교
+const adsupportedallData = {
+  series: [
+    {
+      name: "Installs",
+      data: [
+        {
+          x: "True",
+          y: 1492648,
+        },
+        {
+          x: "False",
+          y: 2308279,
+        },
+      ],
+    },
+  ],
+  options: {
+    chart: {
+      type: "bar",
+      height: 380,
+    },
+    fill: {
+      colors: [
+        function (opt) {
+          if (opt.w.globals.labels[opt.dataPointIndex] === "True") {
+            return "#9775fa";
+          } else {
+            return "#748ffc";
+          }
+        },
+      ],
+    },
+    xaxis: {
+      type: "category",
+      categories: ["True", "False"],
+    },
+  },
+};
+
+// 아티클3 구글 빼고
+const adsupportedgoogleData = {
+  series: [
+    {
+      name: "Installs",
+      data: [
+        {
+          x: "True",
+          y: 1303157,
+        },
+        {
+          x: "False",
+          y: 1243938,
+        },
+      ],
+    },
+  ],
+  options: {
+    chart: {
+      type: "bar",
+      height: 380,
+    },
+    fill: {
+      colors: [
+        function (opt) {
+          if (opt.w.globals.labels[opt.dataPointIndex] === "True") {
+            return "#9775fa";
+          } else {
+            return "#748ffc";
+          }
+        },
+      ],
+    },
+    xaxis: {
+      type: "category",
+      categories: ["True", "False"],
+    },
+  },
+};
+
 const Article1 = function ({ openModalHandler }) {
   const [isOpen, setIsOpen] = useState(false); //isOpen 상태를 만들어준다.
   // const [articleName, setArticleName] = useState("");
@@ -84,7 +193,7 @@ const Article1 = function ({ openModalHandler }) {
           <ContentSummary>
             광고가 있는 서비스와 없는 서비스의 평균 다운로드 수를 비교한 결과 광고가 없는 서비스의 다운로드 수가 더 높은 것으로 확인됩니다.
             <br />
-            하지만 구글 기본 어플을 제외하고 보았을때, 광고 유무에 따른 평균 다운로드 수에는 큰 차이가 없는 것으로 판단됩니다.
+            하지만 구글 기본 앱을 제외하고 보았을때, 광고 유무에 따른 평균 다운로드 수에는 큰 차이가 없는 것으로 판단됩니다.
           </ContentSummary>
           <Button onClick={handleClickModal}>
             <p>자세히보기 👉</p>
@@ -110,7 +219,7 @@ const Article1 = function ({ openModalHandler }) {
                   광고 유무에 따른 평균 다운로드 수 데이터를 분석했습니다.
                 </ModalBody>
                 <Graph id="chart">
-                  <ReactApexChart options={adsupportedData.options} series={adsupportedData.series} type="bar" height={350} width={500} />
+                  <ReactApexChart options={adsupportedallData.options} series={adsupportedallData.series} type="bar" height={350} width={500} />
                 </Graph>
                 <ModalBody>
                   앱 내 광고 유무를 기준으로 각각의 평균 다운로드수를 구해본 결과
@@ -128,7 +237,7 @@ const Article1 = function ({ openModalHandler }) {
                   <br />
                 </ModalBody>
                 <Graph id="chart">
-                  <ReactApexChart options={adsupportedData.options} series={adsupportedData.series} type="bar" height={350} width={500} />
+                  <ReactApexChart options={pieData.options} series={pieData.series} type="pie" width={380} />
                 </Graph>
                 <ModalBody>
                   구글 어플들의 전체 다운로드 수를 합산 해보니 약1000억에 해당하는 결과가 나왔습다.
@@ -138,10 +247,10 @@ const Article1 = function ({ openModalHandler }) {
                   <br />
                   이를 통해 인앱 광고 유무와 사용자의 앱 다운로드 선택의 상관 관계를 밝혀내기 위해서는
                   <br />
-                  핸드폰에 기본적으로 설치되는 어플들을 제외한 후 평균 다운로드 수를 비교해보아야 한다고 판단하였습니다.
+                  핸드폰에 기본적으로 설치되는 구글 앱들을 제외한 후 평균 다운로드 수를 비교해보아야 한다고 판단하였습니다.
                 </ModalBody>
                 <Graph id="chart">
-                  <ReactApexChart options={adsupportedData.options} series={adsupportedData.series} type="bar" height={350} width={500} />
+                  <ReactApexChart options={adsupportedgoogleData.options} series={adsupportedgoogleData.series} type="bar" height={350} width={500} />
                 </Graph>
                 <ModalBody>
                   핸드폰에 기본적으로 설치된 구글 앱들을 제외하고 평균 다운로드 수를 비교해본 결과
