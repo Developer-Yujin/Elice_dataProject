@@ -17,7 +17,7 @@ function Question1() {
   return (
     <QuestionContainer>
       <Progressbar>
-        <Progress NowGage={16.6 * (i + 1)} />
+        <Progress Gage={16.6 * (i + 1)} />
       </Progressbar>
       <QuestionBox>{QuestionLists[i].q1}</QuestionBox>
       <Button id="a1" type="button" value="a1" onClick={() => SavingAnswers("a1")}>
