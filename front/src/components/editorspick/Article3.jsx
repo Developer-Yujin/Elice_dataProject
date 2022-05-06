@@ -6,11 +6,14 @@ import ReactApexChart from "react-apexcharts";
 const pieData = {
   series: [102400987977, 88228245083],
   options: {
+    labels: ["Google Apps", "Others"],
+    fill: {
+      colors: ["#9775fa", "#91a7ff"],
+    },
     chart: {
       width: 380,
       type: "pie",
     },
-    labels: ["Google Apps", "Others"],
     responsive: [
       {
         breakpoint: 480,
