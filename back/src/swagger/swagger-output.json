@@ -244,7 +244,7 @@
           "Appbti"
         ],
         "summary": "appbti 결과 생성, 답변을 body로 받음",
-        "description": "appbti 테스트 결과를 등록한다.",
+        "description": "appbti 테스트 결과를 반환한다.",
         "parameters": [],
         "responses": {
           "201": {

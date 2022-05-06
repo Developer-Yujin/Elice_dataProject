@@ -1,5 +1,5 @@
 import { Appbti } from '../db'; // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
-
+import { googleplayScrape } from '../middlewares/googleplayScrape';
 class appbtiService {
   static async addResult({ answers }) {
     const fun = [
@@ -80,7 +80,7 @@ class appbtiService {
     let orfilter = [];
     let filter = { $and: [] };
     //  답변에 맞는 filter 생성
-    for (let i = 0; i < answers.length - 1; i++) {
+    for (let i = 0; i < answers.length; i++) {
       orfilter = [];
       if (!Array.isArray(filtercondition[answers[i]])) {
         filter['$and'].push(filtercondition[answers[i]]);
@@ -99,31 +99,20 @@ class appbtiService {
     }
     const appbtiresult = await Appbti.findResult({ filter });
 
-    // if (answers[-1] == 'g1') {
-    //   const lastanswerResult = await Appbti.findByKey({});
-    //   resultNum = 17;
-    //   for (let j = 0; j < 3; j++) {
-    //     result.push(lastanswerResult.result[Math.floor(Math.random() * lastanswerResult.result.length)]);
-    //   }
-    // }
-
-    for (let i = 0; i < resultNum; i++) {
-      createdAppbtiResult.push(appbtiresult[Math.floor(Math.random() * appbtiresult.length)]);
+    let selectedApp = {};
+    let scrapedApp;
+    while (createdAppbtiResult.length < resultNum) {
+      selectedApp = {};
+      selectedApp = appbtiresult[Math.floor(Math.random() * appbtiresult.length)];
+      scrapedApp = await googleplayScrape({ appId: selectedApp.id });
+      if (scrapedApp === null) {
+        continue;
+      }
+      selectedApp.icon = scrapedApp.icon;
+      createdAppbtiResult.push(selectedApp);
     }
-
     return createdAppbtiResult;
   }
-
-  // static async getAppbtiResult({ userId }) {
-  //   const appbtiresult = await Appbti.findById({ userId });
-
-  //   if (!appbtiresult) {
-  //     const errorMessage = '해당 포스트가 없습니다. 다시 한 번 확인해 주세요.';
-  //     return { errorMessage };
-  //   }
-
-  //   return appbtiresult;
-  // }
 }
 
 export { appbtiService };
