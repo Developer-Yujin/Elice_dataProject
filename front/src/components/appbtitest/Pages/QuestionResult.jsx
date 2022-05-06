@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router";
+import { useLocation } from "react-router";
 import { get, post } from "../../../api";
 import styled from "styled-components";
 
 function AppbtiTest() {
-  const navigate = useNavigate();
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
   const [finalAnswer, setFinalAnswer] = useState([]);
   const { state } = useLocation();
-  const CompleteAnswer = state.join("");
+  // const CompleteAnswer = state.join("");
 
   useEffect(() => {
     async function loadAnswerResult() {
+      console.log(state);
       await post(`appbti`, {
-        answers: CompleteAnswer,
+        answers: state,
       });
       const res = await get(`appbti`);
       setFinalAnswer(res.data.result);
