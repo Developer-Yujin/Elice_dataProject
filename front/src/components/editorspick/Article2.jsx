@@ -368,7 +368,7 @@ const ContentTitle = styled.div`
   margin-bottom: 20px;
   font-size: 20px;
   font-weight: bold;
-  color: #000;
+  color: var(--primary);
 `;
 
 const ContentSummary = styled.div`

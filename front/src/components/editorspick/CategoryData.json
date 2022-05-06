@@ -89,6 +89,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Personalization 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -181,6 +184,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Travel & Local 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -273,6 +279,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Lifestyle 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -365,6 +374,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Entertainment 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -457,6 +469,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Tools 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -549,6 +564,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Health & Fitness 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -641,6 +659,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Books & Reference 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -733,6 +754,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'News & Magazines 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -825,6 +849,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Finance 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -917,6 +944,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Maps & Navigation 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -1009,6 +1039,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Game 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -1101,6 +1134,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Productivity 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -1193,6 +1229,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Photography 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -1285,6 +1324,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Business 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -1377,6 +1419,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Music & Audio 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -1469,6 +1514,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Shopping 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -1561,6 +1609,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Social 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -1653,6 +1704,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Video Players & Editors 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -1745,6 +1799,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Art & Design 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -1837,6 +1894,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Dating 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -1929,6 +1989,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Medical 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -2021,6 +2084,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Education 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -2113,6 +2179,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Communication 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -2205,6 +2274,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Weather 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -2297,6 +2369,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Food & Drink 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -2389,6 +2464,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'House & Home 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -2481,6 +2559,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Auto & Vehicles 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -2573,6 +2654,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Libraries & Demo 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -2665,6 +2749,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Events 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -2757,6 +2844,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Beauty 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -2849,6 +2939,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Comics 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     },
@@ -2941,6 +3034,9 @@
           "markers": {
             "fillColors": ["#00E396", "#775DD0"]
           }
+        },
+        "title": {
+          "text": "'Parenting 카테고리 앱 평점 비율' 및 'Google PlayStore 전체 앱 평점 비율' 비교 그래프"
         }
       }
     }
