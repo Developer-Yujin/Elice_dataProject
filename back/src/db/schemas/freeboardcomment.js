@@ -1,6 +1,6 @@
 import { Schema, model, Mongoose } from 'mongoose';
 
-const CommentSchema = new Schema(
+const FreeBoardCommentSchema = new Schema(
   {
     board_id: {
       type: Schema.Types.ObjectId,
@@ -24,6 +24,6 @@ const CommentSchema = new Schema(
   }
 );
 
-const CommentModel = model('Comment', CommentSchema);
+const FreeBoardCommentModel = model('FreeBoardComment', FreeBoardCommentSchema);
 
-export { CommentModel };
+export { FreeBoardCommentModel };
