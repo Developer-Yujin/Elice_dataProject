@@ -48,4 +48,68 @@ const PostsTitle = styled.p`
   color: var(--textPrimary);
 `;
 
-export { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer, RightPostContainer, PostsTitle };
+const PostBox = styled.div`
+  width: 100%;
+  height: auto;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px #e4e4e4;
+  border-radius: 10px;
+  transition: 1s;
+
+  &:hover {
+    background-color: var(--inputBackground);
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+    label {
+      max-height: 28px;
+      padding: 5px 10px;
+      color: #fff;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .recruited {
+      background-color: var(--primary);
+    }
+
+    .unrecruited {
+      background-color: var(--textSecondary);
+    }
+  }
+
+  h2 {
+    color: #000;
+    margin-left: 20px;
+  }
+
+  p {
+    line-height: 1.5; /* 행간조절 */
+    /* description가 넘칠 경우 ...(말줄임)처리 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 2줄이 넘어가면 말줄임 */
+    -webkit-box-orient: vertical;
+  }
+`;
+
+const Button = styled.label`
+  background-color: var(--primary);
+  margin-left: auto;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+`;
+
+const TagBox = styled.div``;
+
+export { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer, RightPostContainer, PostsTitle, PostBox, TagBox, Button };

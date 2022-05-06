@@ -17,7 +17,7 @@ const TabButton = styled.div`
   text-align: center;
   font-size: 0.9rem;
   font-weight: 600;
-  color: ${(props) => (props.isClicked ? "var(--textPrimary)" : "var(--textSecondary)")};
+  color: ${(props) => (props.isClicked ? "var(--primary)" : "var(--textSecondary)")};
 
   cursor: pointer;
 `;

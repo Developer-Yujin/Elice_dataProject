@@ -10,6 +10,7 @@ const PostDetail = function () {
 
   useEffect(() => {
     const postLoading = async () => {
+      console.log(params);
       const res = await get(`recruits/${params.id}`);
       setPostData(res.data);
       setIsFetchCompleted(true);
@@ -23,8 +24,10 @@ const PostDetail = function () {
 
   return (
     <PostDetailContainer>
-      <StatusTag isRecruited={postData.status === "recruited"}>{postData.status === "recruited" ? "모집중" : "모집완료"}</StatusTag>
-      <h3>{postData.title}</h3>
+      <TitleBox>
+        <label className={postData.status}>{postData.status === "recruited" ? "모집중" : "모집완료"}</label>
+        <h2>{postData.title}</h2>
+      </TitleBox>
       <div>
         {postData.name}
         <p>{postData.updatedAt}</p>
@@ -38,20 +41,39 @@ const PostDetail = function () {
 export default PostDetail;
 
 const PostDetailContainer = styled.div`
-  margin: 50px 100px;
-  padding: 30px;
+  width: 830px;
+  min-height: 450px;
+  height: auto;
+  padding: 30px 50px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 7px 10px #e4e4e4;
 `;
 
-const StatusTag = styled.div`
-  width: 60px;
-  padding: 7px 5px;
-  text-align: center;
-  background-color: ${(props) => (props.isRecruited ? "var(--primary)" : "var(--textSecondary)")};
-  border-radius: 7px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #fff;
+const TitleBox = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+
+  label {
+    max-height: 28px;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .recruited {
+    background-color: var(--primary);
+  }
+
+  .unrecruited {
+    background-color: var(--textSecondary);
+  }
+
+  h2 {
+    color: #000;
+    margin-left: 20px;
+  }
 `;

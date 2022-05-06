@@ -16,7 +16,7 @@ const StackFilterTag = styled.button`
   padding: 5px 10px;
   border-radius: 30px;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: bold;
   white-space: nowrap;
   color: ${(props) => (props.isClicked ? "#fff" : "var(--primary)")};
   background-color: ${(props) => (props.isClicked ? "var(--primary)" : "#fff")};

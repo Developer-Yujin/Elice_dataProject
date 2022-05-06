@@ -14,12 +14,13 @@ import Pager from "./pager/Pager";
 import Questionboards from "./questionboard/Questionboards";
 
 // 스타일 import
-import { styled, List, Paper, Grid, ListItemButton, ListItemText, Box, Button } from "../styles/Mui";
-import { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer, RightPostContainer, PostsTitle } from "./CommunityPageStyles";
+import { styled, List, Paper, Grid, ListItemButton, ListItemText, Box } from "../styles/Mui";
+import { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer, RightPostContainer, PostsTitle, PostBox, TagBox, Button } from "./CommunityPageStyles";
 import "../styles/CommunityPage.css";
 
 // 데이터 import
 import CommunitySideMenuList from "./CommunitySideMenuList";
+import PostAdd from "./post/PostAdd";
 
 const CommunityPage = function () {
   const navigate = useNavigate();
@@ -29,6 +30,18 @@ const CommunityPage = function () {
     padding: theme.spacing(3),
     color: theme.palette.text.secondary,
   }));
+
+  // 게시글 작성
+  const [isPostAdd, setIsPostAdd] = useState(false);
+  const handlePostAddClick = () => {
+    setIsPostAdd(true);
+  };
+
+  const PostAddCancelFunction = (isClickedCancel) => {
+    if (isClickedCancel === true) {
+      setIsPostAdd(false);
+    }
+  };
 
   // 게시글 리스트 중 하나를 클릭하면 해당 게시글 상세 보기로 이동
 
@@ -165,19 +178,29 @@ const CommunityPage = function () {
 
           <Grid item xs={9} id="RightPostList">
             <RightPostContainer>
-              {categoryUrl === "recruits" ? <PostsTitle>💁 팀원 구해요</PostsTitle> : categoryUrl === "findteams" ? <PostsTitle>🙋 팀을 찾고있어요</PostsTitle> : ""}
+              {categoryUrl === "recruits" && isPostAdd === false ? (
+                <PostsTitle>💁 팀원 구해요</PostsTitle>
+              ) : categoryUrl === "findteams" && isPostAdd === false ? (
+                <PostsTitle>🙋 팀을 찾고있어요</PostsTitle>
+              ) : (
+                ""
+              )}
               <FilterContainer>
-                {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
+                {(categoryUrl === "recruits" || categoryUrl === "findteams") && isPostAdd === false ? (
                   <StatusFilter currentStatusFunction={currentStatusFunction} statusReset={statusReset} statusResetDoneFunction={statusResetDoneFunction} />
                 ) : (
                   ""
                 )}
                 <TagContainer>
-                  {categoryUrl === "recruits" || categoryUrl === "findteams" ? <TagFilter tagQueryFunction={tagQueryFunction} tagReset={tagReset} tagResetDoneFunction={tagResetDoneFunction} /> : ""}
+                  {(categoryUrl === "recruits" || categoryUrl === "findteams") && isPostAdd === false ? (
+                    <TagFilter tagQueryFunction={tagQueryFunction} tagReset={tagReset} tagResetDoneFunction={tagResetDoneFunction} />
+                  ) : (
+                    ""
+                  )}
                 </TagContainer>
                 <TabDiv>
                   <TabContainer>
-                    {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
+                    {(categoryUrl === "recruits" || categoryUrl === "findteams") && isPostAdd === false ? (
                       <OrderFilter currentOrderFunction={currentOrderFunction} orderReset={orderReset} orderResetDoneFunction={orderResetDoneFunction} />
                     ) : (
                       ""
@@ -187,32 +210,48 @@ const CommunityPage = function () {
               </FilterContainer>
               {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
                 <PostButtonContainer>
-                  <Button id="createPost" type="submit" fullWidth variant="contained">
-                    게시글 작성
-                  </Button>
+                  {isPostAdd === false ? (
+                    <Button type="submit" onClick={handlePostAddClick}>
+                      게시글 작성
+                    </Button>
+                  ) : (
+                    ""
+                  )}
+
+                  {isPostAdd === true ? <PostAdd PostAddCancelFunction={PostAddCancelFunction} /> : ""}
                 </PostButtonContainer>
               ) : (
                 ""
               )}
-              <article>
-                {categoryUrl === "freeboards" ? (
-                  <Freeboards />
-                ) : categoryUrl === "questions" ? (
-                  <Questionboards />
-                ) : (
-                  posts.map((e) => {
-                    return (
-                      <div className="PostItem" key={`post${e._id}`}>
-                        <Item key={`post${e._id}`} id={e._id} onClick={(e) => handlePostClick(e)}>
-                          <div>{e.title}</div>
-                          <div>{e.content}</div>
-                        </Item>
-                      </div>
-                    );
-                  })
-                )}
-              </article>
-              <Pager />
+              {isPostAdd === false ? (
+                <div>
+                  <article>
+                    {categoryUrl === "freeboards" ? (
+                      <Freeboards />
+                    ) : categoryUrl === "questions" ? (
+                      <Questionboards />
+                    ) : (
+                      posts.map((e) => {
+                        return (
+                          <div className="PostItem" key={`post${e._id}`}>
+                            <PostBox key={`post${e._id}`} id={e._id} onClick={(e) => handlePostClick(e)}>
+                              <div>
+                                <label className={e.status}>{e.status === "recruited" ? "모집중" : "모집완료"}</label>
+                                <h2>{e.title}</h2>
+                              </div>
+                              <p>{e.content}</p>
+                              <TagBox>{e.tag.join(", ")}</TagBox>
+                            </PostBox>
+                          </div>
+                        );
+                      })
+                    )}
+                  </article>
+                  <Pager />
+                </div>
+              ) : (
+                ""
+              )}
             </RightPostContainer>
           </Grid>
         </Grid>

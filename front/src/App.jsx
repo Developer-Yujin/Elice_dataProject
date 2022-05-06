@@ -12,7 +12,7 @@ import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import CommunityPage from "./components/community/CommunityPage";
 import PostView from "./components/community/freeboard/PostView";
-import PostDetail from "./components/community/postdetail/PostDetail";
+import PostDetail from "./components/community/post/PostDetail";
 
 import AppbtiTest from "./components/appbtitest/AppbtiTest";
 import EditorsPick from "./components/editorspick/EditorsPick";
