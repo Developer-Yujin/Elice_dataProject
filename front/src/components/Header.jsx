@@ -52,7 +52,7 @@ const Header = function () {
         <Link variant="button" color="text.primary" onClick={() => navigate("/community/recruits")} sx={{ my: 1, mx: 1.5 }}>
           Community
         </Link>
-        <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
+        <Link variant="button" color="text.primary" onClick={() => navigate("/introduction")} sx={{ my: 1, mx: 1.5 }}>
           About us
         </Link>
       </nav>

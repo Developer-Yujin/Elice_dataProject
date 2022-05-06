@@ -245,21 +245,10 @@
         ],
         "summary": "appbti 결과 생성, 답변을 body로 받음",
         "description": "appbti 테스트 결과를 등록한다.",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "201": {
             "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         },
         "security": [
@@ -281,35 +270,6 @@
             }
           }
         }
-      },
-      "get": {
-        "tags": [
-          "Appbti"
-        ],
-        "summary": "appbti 결과 보여줌",
-        "description": "appbti 테스트 결과를 보내준다.",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
       }
     },
     "/freeboards": {
@@ -364,6 +324,42 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "모든 게시글 가져오기",
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/freeboards/{id}": {
@@ -496,16 +492,16 @@
         ]
       }
     },
-    "/freeboardlist/{user_id}": {
-      "get": {
+    "/freeboards/{id}/likes": {
+      "put": {
         "tags": [
           "freeboard"
         ],
-        "summary": "유저 id에 해당하는 모든 게시글 가져오기",
-        "description": "",
+        "summary": "좋아요",
+        "description": "좋아요!",
         "parameters": [
           {
-            "name": "user_id",
+            "name": "id",
             "in": "path",
             "required": true,
             "schema": {
@@ -535,17 +531,18 @@
         ]
       }
     },
-    "/freeboardlist": {
+    "/freeboards/{user_id}": {
       "get": {
         "tags": [
           "freeboard"
         ],
-        "summary": "모든 게시글 가져오기",
+        "summary": "유저 id에 해당하는 모든 게시글 가져오기",
         "description": "",
         "parameters": [
           {
-            "name": "page",
-            "in": "query",
+            "name": "user_id",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string"
             }

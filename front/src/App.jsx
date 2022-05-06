@@ -7,10 +7,10 @@ import "./App.css";
 
 import Header from "./components/Header";
 import Main from "./components/Main";
+import Introduction from "./components/introduction/Introduction";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import CommunityPage from "./components/community/CommunityPage";
-import PostView from "./components/community/freeboard/PostView";
 import AppbtiTest from "./components/appbtitest/AppbtiTest";
 import EditorsPick from "./components/editorspick/EditorsPick";
 
@@ -31,7 +31,7 @@ function App() {
   const [userState, dispatch] = useReducer(loginReducer, {
     user: null,
   });
-  const isLogin = !!userState.user;
+  // const isLogin = !!userState.user;
 
   // console.log(currentUser);
 
@@ -82,7 +82,9 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/community/freeboards/:id" element={<PostView />} />
+            <Route path="/introduction" element={<Introduction />} />
+            <Route path="/AppbtiTest" element={<AppbtiTest />} />
+
             <Route path="/community/recruits" element={<CommunityPage />} />
             <Route path="/community/findteams" element={<CommunityPage />} />
             <Route path="/community/freeboards" element={<CommunityPage />} />

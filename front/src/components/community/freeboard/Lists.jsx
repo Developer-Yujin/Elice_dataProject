@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, Typography } from "@mui/material";
-import { get } from "../../../api";
 import { useNavigate } from "react-router";
+import { get } from "../../../api";
+import { ListContainer, ListCard, BoardAuthor, BoardTitle, BoardContent, WriteButton } from "./ListsStyles";
 
 const Lists = ({ setViewType }) => {
-  const navigate = useNavigate();
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
   const [lists, setLists] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadFreeboardList() {
-      const res = await get(`freeboardlist`);
+      const res = await get(`freeboards`);
       setLists(res.data);
       setIsFetchCompleted(true);
     }
@@ -22,21 +22,27 @@ const Lists = ({ setViewType }) => {
     return "Loading...";
   }
 
+  const Changeview = (freeboard) => {
+    const postid = freeboard.currentTarget.id;
+    // setViewType("View");
+    navigate(`/community/freeboards`, { state: postid });
+    setViewType("View");
+  };
+
   return (
-    <div id="FreeboardLists">
-      {lists.map((freeboard) => (
-        <Card sx={{ minWidth: 275 }} key={freeboard._id} onClick={() => navigate(`freeboards/${freeboard._id}`)}>
-          <CardContent>
-            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-              {freeboard.name}
-            </Typography>
-            <Typography gutterBottom variant="h5" component="div">
-              {freeboard.title}
-            </Typography>
-            <Typography variant="body2">{freeboard.content}</Typography>
-          </CardContent>
-        </Card>
-      ))}
+    <div>
+      <WriteButton onClick={() => setViewType("form")}>게시글 작성</WriteButton>
+      <ListContainer>
+        {lists.map((freeboard) => (
+          <ListCard key={freeboard._id} id={freeboard._id} onClick={(freeboard) => Changeview(freeboard)}>
+            <BoardAuthor>
+              ✨ <b>{freeboard.name}</b> ✨님이 작성하신 글이예요!
+            </BoardAuthor>
+            <BoardTitle>{freeboard.title}</BoardTitle>
+            <BoardContent>{freeboard.content}</BoardContent>
+          </ListCard>
+        ))}
+      </ListContainer>
     </div>
   );
 };
