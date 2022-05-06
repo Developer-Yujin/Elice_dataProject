@@ -1,25 +1,26 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { UserStateContext } from "../../../App";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { get, del } from "../../../api";
-import Comments from "./QuestionboardComments";
-import CommentAddForm from "./QuestionboardCommentForm";
+import { PostViewContainer, PostContainer, PostdAuthor, PostTitle, PostContent, ButtonContainer, ListButton, EditButton, DeleteButton } from ".././freeboard/PostViewStyles";
 
-function PostView({ setViewType, user }) {
+// import Comments from "./FreeboardComments";
+// import CommentForm from "./FreeboardCommentForm";
+
+function PostView({ setViewType, setIsEditable }) {
+  const { state } = useLocation();
   const [postInfo, setPostInfo] = useState(null);
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
-  const [isEditable, setIsEditable] = useState(false);
+
   const navigate = useNavigate();
-  const params = useParams();
 
   useEffect(() => {
     async function loadPostView() {
-      const res = await get(`questions/${params.id}`);
+      const res = await get(`questions/${state}`);
       setPostInfo(res.data);
       setIsFetchCompleted(true);
     }
     loadPostView();
-  }, [params, setViewType]);
+  }, [setViewType]);
 
   if (!isFetchCompleted) {
     return "loading...";
@@ -28,26 +29,40 @@ function PostView({ setViewType, user }) {
   const deleteNavigate = async () => {
     try {
       if (window.confirm("게시글을 삭제하시겠습니까?")) {
-        await del("questions", params.id);
-        // * * 자유게시판 엔드포인트 완성되면 거기로 보내주기
-        navigate("/community");
+        console.log(state);
+        await del("questions", state);
+        navigate("/community/questions");
       }
     } catch (error) {
       alert(`${error}로 인하여 게시글을 삭제하지 못했습니다.`);
     }
   };
 
+  const EditNavigate = async () => {
+    const postid = postInfo;
+    console.log(postid);
+    setIsEditable(true);
+    setViewType("Form");
+    console.log("b");
+    navigate(`/community/questions`, { state: postid });
+    console.log("c");
+  };
+
   return (
-    <>
-      <h2>{postInfo.title}</h2>
-      <div> 작성자 : {postInfo.name} </div>
-      <p>{postInfo.content}</p>
-      <button id="list"> 목록</button>
-      <button>수정</button>
-      <button onClick={deleteNavigate}>삭제</button>
-      {/* <Comments user={user} postId={params.id} />
+    <PostViewContainer>
+      <PostContainer>
+        <PostTitle> ✨ {postInfo.title}</PostTitle>
+        <PostdAuthor> 작성자 : {postInfo.name} </PostdAuthor>
+        <PostContent>{postInfo.content}</PostContent>
+        <ButtonContainer>
+          <ListButton onClick={() => setViewType("list")}>목록</ListButton>
+          <EditButton onClick={EditNavigate}>수정</EditButton>
+          <DeleteButton onClick={deleteNavigate}>삭제</DeleteButton>
+        </ButtonContainer>
+        {/* <Comments user={user} postId={params.id} />
       <CommentForm user={user} postId={params.id} /> */}
-    </>
+      </PostContainer>
+    </PostViewContainer>
   );
 }
 
