@@ -1,100 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ReactApexChart from "react-apexcharts";
+import TagList from "./TagList";
 
-// 카테고리별 평점 분포 데이터
-const categoryRatingData = {
-  series: [
-    {
-      name: "Personalization",
-      data: [
-        {
-          x: "⭐️",
-          y: 0.16,
-          goals: [
-            {
-              name: "전체 앱 평점 비율",
-              value: 0.91,
-              strokeHeight: 5,
-              strokeColor: "#775DD0",
-            },
-          ],
-        },
-        {
-          x: "⭐️⭐️",
-          y: 1.53,
-          goals: [
-            {
-              name: "전체 앱 평점 비율",
-              value: 6.84,
-              strokeHeight: 5,
-              strokeColor: "#775DD0",
-            },
-          ],
-        },
-        {
-          x: "⭐️⭐️⭐️",
-          y: 17.65,
-          goals: [
-            {
-              name: "전체 앱 평점 비율",
-              value: 33.41,
-              strokeHeight: 5,
-              strokeColor: "#775DD0",
-            },
-          ],
-        },
-        {
-          x: "⭐️⭐️⭐️⭐️",
-          y: 80.41,
-          goals: [
-            {
-              name: "전체 앱 평점 비율",
-              value: 58.61,
-              strokeHeight: 5,
-              strokeColor: "#775DD0",
-            },
-          ],
-        },
-        {
-          x: "⭐️⭐️⭐️⭐️⭐️",
-          y: 0.26,
-          goals: [
-            {
-              name: "전체 앱 평점 비율",
-              value: 0.22,
-              strokeHeight: 5,
-              strokeColor: "#775DD0",
-            },
-          ],
-        },
-      ],
-    },
-  ],
-  options: {
-    chart: {
-      height: 350,
-      type: "bar",
-    },
-    plotOptions: {
-      bar: {
-        columnWidth: "60%",
-      },
-    },
-    colors: ["#00E396"],
-    dataLabels: {
-      enabled: false,
-    },
-    legend: {
-      show: true,
-      showForSingleSeries: true,
-      customLegendItems: ["Personalization앱 평점 비율", "전체 앱 평점 비율"],
-      markers: {
-        fillColors: ["#00E396", "#775DD0"],
-      },
-    },
-  },
-};
+import Data from "./CategoryData.json";
 
 // 카테고리별 앱 중에서 3점대 이하인 앱의 비율 Rank 10
 const categoryGradeDataRank10 = {
@@ -140,6 +49,14 @@ const Article1 = function ({ openModalHandler }) {
     setIsOpen(!isOpen);
   };
 
+  const [dataIndex, setDataIndex] = useState(0);
+
+  const handleCategoryClick = (e) => {
+    const categoryIndex = e.target.value;
+    setDataIndex(categoryIndex);
+    //console.log(Data.categoryRatingData[dataIndex]);
+  };
+
   return (
     <ArticleContainer>
       <ArticleBox>
@@ -175,9 +92,28 @@ const Article1 = function ({ openModalHandler }) {
                   <br />
                   도전해볼만한 시장을 찾기 위해 관련 데이터를 분석해보았습니다.
                 </ModalBody>
-                <Graph id="chart">
-                  <ReactApexChart options={categoryRatingData.options} series={categoryRatingData.series} type="bar" height={450} width={700} />
-                </Graph>
+
+                <DynamicGraphContainer>
+                  <ColorSelectorContainer>
+                    {TagList.map((e) => (
+                      <div key={e.name}>
+                        <RadioButton
+                          id={e.name}
+                          type="radio"
+                          name="color-selector"
+                          value={e.Id}
+                          onClick={(e) => {
+                            handleCategoryClick(e);
+                          }}
+                        />
+                        <Label htmlFor={e.name}>{e.name}</Label>
+                      </div>
+                    ))}
+                  </ColorSelectorContainer>
+                  <Graph id="chart">
+                    <ReactApexChart options={Data.categoryRatingData[dataIndex].options} series={Data.categoryRatingData[dataIndex].series} type="bar" height={450} width={700} />
+                  </Graph>
+                </DynamicGraphContainer>
                 <ModalBody>
                   위의 그래프는 카테고리별 앱의 별점 분포 비율을 나타냅니다.
                   <br />
@@ -375,6 +311,34 @@ const ModalArticle = styled.div`
   }
 `;
 
+const DynamicGraphContainer = styled.div``;
+
+const TagBox = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  margin: 10px 0;
+  padding: 20px 10px;
+  background-color: var(--inputBackground);
+  border-radius: 5px;
+  
+  .CategoryTag {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 500;
+    color: ${(props) => (props.isClicked ? "#fff" : "var(--primary)")};
+    background-color: ${(props) => (props.isClicked ? "var(--primary)" : "#fff")};
+    border: 1px solid var(--primary);
+    cursor: pointer;
+    &:hover {
+      color: #fff;
+      background-color: var(--primary);
+    }
+`;
+
 const ModalTitle = styled.div`
   margin: 100px 0 80px 0;
   font-size: 23px;
@@ -419,4 +383,35 @@ const Graph = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+`;
+const ColorSelectorContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 700px;
+  height: auto;
+  margin: 0 40px;
+  padding: 10px;
+  border: 1px solid salmon;
+`;
+
+const Label = styled.label`
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: 20px;
+  border: 1px solid var(--primary);
+  background-color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 3px;
+`;
+
+const RadioButton = styled.input`
+  display: none;
+  &:checked + ${Label} {
+    background: var(--primary);
+    color: #fff;
+  }
 `;
