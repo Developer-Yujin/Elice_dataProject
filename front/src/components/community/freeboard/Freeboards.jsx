@@ -1,26 +1,29 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router";
-import Button from "@mui/material/Button";
 import { UserStateContext } from "../../../App";
 import { get } from "../../../api";
 import LinearProgress from "@mui/material/LinearProgress";
 import View from "./PostView";
 import Lists from "./Lists";
 import Form from "./Postform";
+import OrderFilter from "../filter/orderfilter/OrderFilter";
 
 const Freeboards = () => {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
-  const [isAdding, setIsAdding] = useState(false);
   const [viewType, setViewType] = useState("list");
+  const [freeboards, setFreeboards] = useState([]);
+  const [isEditable, setIsEditable] = useState(false);
+
   const [progress, setProgress] = React.useState(10);
 
   const fetchPostsInfo = async () => {
     try {
-      await get("freeboardlist");
+      await get("freeboards");
       setViewType("list");
       setIsFetchCompleted(true);
+      navigate("/community/freeboards");
     } catch (error) {
       console.log(error);
     }
@@ -51,20 +54,14 @@ const Freeboards = () => {
   }
 
   return (
-    <div ClassName="freeboards">
-      {!isAdding ? (
-        <Button variant="contained" onClick={() => setViewType("form")}>
-          작성
-        </Button>
-      ) : (
-        <span />
-      )}
+    <div className="freeboards">
+      {/* <OrderFilter /> */}
       {viewType === "list" ? (
-        <Lists user={userState.user} setViewType={setViewType} />
+        <Lists user={userState.user} setViewType={setViewType} setFreeboards={setFreeboards} />
       ) : viewType === "form" ? (
-        <Form user={userState.user} setViewType={setViewType} setIsAdding={setIsAdding} />
+        <Form user={userState.user} setViewType={setViewType} isEditable={isEditable} setFreeboards={setFreeboards} setIsEditable={setIsEditable} />
       ) : (
-        <View user={userState.user} setViewType={setViewType} setIsAdding={setIsAdding} />
+        <View user={userState.user} setViewType={setViewType} setIsEditable={setIsEditable} />
       )}
     </div>
   );
