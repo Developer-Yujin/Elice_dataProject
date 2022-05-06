@@ -11,7 +11,7 @@ function Question6() {
   const SavingAnswers = (e) => {
     const answer = e;
     const q6answer = state.concat(answer);
-    navigate(`/AppbtiTest/7`, { state: q6answer });
+    navigate(`/AppbtiTest/Result`, { state: q6answer });
   };
 
   return (
