@@ -6,11 +6,10 @@ import { PostViewContainer, PostContainer, PostdAuthor, PostTitle, PostContent, 
 // import Comments from "./FreeboardComments";
 // import CommentForm from "./FreeboardCommentForm";
 
-function PostView({ setViewType }) {
+function PostView({ setViewType, setIsEditable }) {
   const { state } = useLocation();
   const [postInfo, setPostInfo] = useState(null);
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
-  const [isEditable, setIsEditable] = useState(false);
 
   const navigate = useNavigate();
 
@@ -30,13 +29,23 @@ function PostView({ setViewType }) {
   const deleteNavigate = async () => {
     try {
       if (window.confirm("게시글을 삭제하시겠습니까?")) {
+        console.log(state);
         await del("freeboards", state);
-        // * * 자유게시판 엔드포인트 완성되면 거기로 보내주기
         navigate("/community/freeboards");
       }
     } catch (error) {
       alert(`${error}로 인하여 게시글을 삭제하지 못했습니다.`);
     }
+  };
+
+  const EditNavigate = async () => {
+    const postid = postInfo;
+    console.log(postid);
+    setIsEditable(true);
+    setViewType("Form");
+    console.log("b");
+    navigate(`/community/freeboards`, { state: postid });
+    console.log("c");
   };
 
   return (
@@ -47,7 +56,7 @@ function PostView({ setViewType }) {
         <PostContent>{postInfo.content}</PostContent>
         <ButtonContainer>
           <ListButton onClick={() => setViewType("list")}>목록</ListButton>
-          <EditButton>수정</EditButton>
+          <EditButton onClick={EditNavigate}>수정</EditButton>
           <DeleteButton onClick={deleteNavigate}>삭제</DeleteButton>
         </ButtonContainer>
         {/* <Comments user={user} postId={params.id} />
