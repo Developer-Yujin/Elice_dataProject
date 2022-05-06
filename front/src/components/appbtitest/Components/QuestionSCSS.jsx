@@ -20,13 +20,13 @@ export const Progressbar = styled.div`
 `;
 
 export const progress = keyframes`{ 0% { width: 0%; } 
-100% { width: ${(props) => props.NowGage}%; }
+100% { width: ${(props) => props.Gage}%; }
 }
 `;
 
 export const Progress = styled.div`
   background-color: #484bcc;
-  width: ${(props) => props.NowGage}%;
+  width: ${(props) => props.Gage}%;
   height: 20px;
   border-radius: 20px;
   animation: ${progress} 2s ease-out;
