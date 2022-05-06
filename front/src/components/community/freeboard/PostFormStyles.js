@@ -53,6 +53,8 @@ const SubmitButton = styled.button`
   }
   border-radius: 8px;
   box-shadow: 0 3px 5px #e4e4e4;
+  border: none;
+  margin: 5px 10px 5px 10px;
 `;
 
 const UndoButton = styled.button`
@@ -69,6 +71,8 @@ const UndoButton = styled.button`
   }
   border-radius: 8px;
   box-shadow: 0 3px 5px #e4e4e4;
+  border: none;
+  margin: 5px 10px 5px 10px;
 `;
 
 export { PostFormContainer, PostTitleForm, PostContentForm, ButtonContainer, SubmitButton, UndoButton };

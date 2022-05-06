@@ -57,6 +57,7 @@ const WriteButton = styled.button`
   border-radius: 8px;
   box-shadow: 0 4px 6px #e4e4e4;
   word-break: keep-all;
+  border: none;
 `;
 
 export { ListContainer, ListCard, BoardAuthor, BoardTitle, BoardContent, WriteButton };

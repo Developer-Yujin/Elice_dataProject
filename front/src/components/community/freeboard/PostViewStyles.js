@@ -63,6 +63,7 @@ const ListButton = styled.button`
   border-radius: 8px;
   box-shadow: 0 4px 6px #e4e4e4;
   word-break: keep-all;
+  border: none;
 `;
 
 const EditButton = styled.button`
@@ -80,6 +81,7 @@ const EditButton = styled.button`
   border-radius: 8px;
   box-shadow: 0 4px 6px #e4e4e4;
   word-break: keep-all;
+  border: none;
 `;
 
 const DeleteButton = styled.button`
@@ -97,6 +99,7 @@ const DeleteButton = styled.button`
   border-radius: 8px;
   box-shadow: 0 4px 6px #e4e4e4;
   word-break: keep-all;
+  border: none;
 `;
 
 export { PostViewContainer, PostContainer, PostdAuthor, PostTitle, PostContent, ButtonContainer, ListButton, EditButton, DeleteButton };
