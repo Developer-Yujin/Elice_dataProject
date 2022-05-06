@@ -37,7 +37,9 @@ function AppbtiTest() {
       <FinalAnswer>당신에게 추천 드리는 앱은!</FinalAnswer>
       {finalAnswer.map((fa) => (
         <AnswerCard key={fa._id}>
-          <AppImgBox>이미지암거낭</AppImgBox>
+          <AppImgBox onClick={() => window.open(`https://play.google.com/store/apps/details?id=${fa.id}`, "_blank")}>
+            <img width="100px" src={`${fa.icon}`} alt="앱 아이콘" />
+          </AppImgBox>
           <DescriptionBox>
             <AppTitleBox>{fa.name}</AppTitleBox>
             <AppCTGRBox>{fa.category}</AppCTGRBox>
@@ -90,7 +92,6 @@ const AppImgBox = styled.div`
   height: 100px;
   margin: auto;
   align-items: center;
-  background-color: red;
 `;
 
 const DescriptionBox = styled.div`
