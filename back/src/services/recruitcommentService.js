@@ -23,7 +23,7 @@ class recruitcommentService {
 
   // 수정
   static async setComment({ userId, comment_id, toUpdate }) {
-    let comment = await Recruitcomment.findById({ comment_id });
+    let comment = await Recruitcomment.findByIdWithAuthor({ comment_id });
     const author = await User.findById({ userId });
     if (!comment) {
       const errorMessage = '댓글 내역이 없습니다. 다시 한 번 확인해 주세요.';
@@ -47,7 +47,7 @@ class recruitcommentService {
   }
 
   static async deleteComment({ comment_id }) {
-    const comment = await Recruitcomment.findById({ comment_id });
+    const comment = await Recruitcomment.findByIdWithAuthor({ comment_id });
     if (!comment) {
       const errorMessage = '해당 댓글이 없습니다.';
       return { errorMessage };

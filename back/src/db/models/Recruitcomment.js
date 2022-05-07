@@ -20,7 +20,7 @@ class Recruitcomment {
     return createdNewComment;
   }
 
-  static async findById({ comment_id }) {
+  static async findByIdWithAuthor({ comment_id }) {
     const comment = await RecruitcommentModel.findOne({ _id: comment_id });
 
     await UserModel.populate(comment, {
