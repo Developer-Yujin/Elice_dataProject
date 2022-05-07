@@ -21,7 +21,7 @@ const Index = function () {
         </Panel1Text>
         <img src="https://blog.kakaocdn.net/dn/4JLyC/btrBsGkMH6c/vr4QcD26aRlK27zd6gIlm0/img.gif" alt="appbti test" />
       </Panel1>
-      <ScrollButton onClick={() => window.scrollBy({ top: 650, behavior: "smooth" })}>
+      <ScrollButton onClick={() => window.scrollBy({ top: 700, behavior: "smooth" })}>
         <img src="https://blog.kakaocdn.net/dn/bsXEEr/btrBwuqnjiv/ABlPy1Fn4elvNKIgnmEwl1/img.png" alt="Scroll button" width="100px" />
       </ScrollButton>
     </Background>
@@ -32,21 +32,8 @@ export default Index;
 
 const Background = styled.div`
   width: 100%;
-  height: 650px;
+  height: 600px;
   //   background-color: red;
-`;
-
-const MainContainer2 = styled.div`
-  width: 100%;
-  height: 650px;
-  background: rgb(248, 248, 248);
-  background: linear-gradient(180deg, rgba(248, 248, 248, 1) 5%, rgba(163, 165, 227, 1) 39%, rgba(114, 116, 215, 1) 70%);
-`;
-
-const MainContainer3 = styled.div`
-  width: 100%;
-  height: 400px;
-  background: #7274d7;
 `;
 
 const Panel1 = styled.div`
@@ -125,14 +112,4 @@ const ScrollButton = styled.div`
   justify-content: center;
   align-items: center;
   }
-`;
-
-const Panel2 = styled.div`
-  display: flex;
-  margin: 100px auto;
-  width: 150vh;
-  height: 550px;
-  //   background-color: red;
-  justify-content: center;
-  align-items: center;
 `;
