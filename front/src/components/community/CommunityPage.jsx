@@ -21,6 +21,7 @@ import "../styles/CommunityPage.css";
 // 데이터 import
 import CommunitySideMenuList from "./CommunitySideMenuList";
 import PostAdd from "./post/PostAdd";
+import FindTeamPostAdd from "./findteam/FindTeamPostAdd";
 
 const CommunityPage = function () {
   const navigate = useNavigate();
@@ -216,7 +217,7 @@ const CommunityPage = function () {
                   ) : (
                     ""
                   )}
-                  {isPostAdd === true ? <PostAdd PostAddCancelFunction={PostAddCancelFunction} /> : ""}
+                  {isPostAdd === true ? <PostAdd PostAddCancelFunction={PostAddCancelFunction} tagReset={tagReset} /> : ""}
                 </PostButtonContainer>
               ) : (
                 ""
