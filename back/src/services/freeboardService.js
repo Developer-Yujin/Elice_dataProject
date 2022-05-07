@@ -14,7 +14,7 @@ class freeboardService {
   }
 
   static async getPosts() {
-    const posts = await FreeBoard.findAll()
+    const posts = await FreeBoard.findAll();
     return posts;
   }
 
@@ -43,7 +43,7 @@ class freeboardService {
       $inc: { likesCount: result },
     };
 
-    const res = await FreeBoard.updatearray({ post_id, newValues });
+    const res = await FreeBoard.update({ post_id, newValues });
     return res;
   }
 

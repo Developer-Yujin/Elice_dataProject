@@ -18,6 +18,11 @@ const FreeBoardSchema = new Schema(
       type: String,
       required: true,
     },
+    likes: [{ type: String }],
+    likesCount: {
+      type: Number,
+      default: 0,
+    },
 
     comment: [
       {

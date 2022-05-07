@@ -43,21 +43,11 @@ class Recruit {
 
   static async update({ post_id, newValues }) {
     const filter = { _id: post_id };
-    const update = { $set: newValues };
-    const option = { returnOriginal: false };
-    const updatedPost = await RecruitModel.findOneAndUpdate(filter, update, option);
-    return updatedPost;
-  }
-
-  static async updatearray({ post_id, newValues }) {
-    const filter = { _id: post_id };
     const update = newValues;
     const option = { returnOriginal: false };
-
     const updatedPost = await RecruitModel.findOneAndUpdate(filter, update, option);
     return updatedPost;
   }
-
   static async delete({ post_id }) {
     await RecruitModel.deleteOne({ _id: post_id });
     return '삭제가 완료되었습니다.';

@@ -43,17 +43,8 @@ class FindTeam {
 
   static async update({ post_id, newValues }) {
     const filter = { _id: post_id };
-    const update = { $set: newValues };
-    const option = { returnOriginal: false };
-    const updatedPost = await FindTeamModel.findOneAndUpdate(filter, update, option);
-    return updatedPost;
-  }
-
-  static async updatearray({ post_id, newValues }) {
-    const filter = { _id: post_id };
     const update = newValues;
     const option = { returnOriginal: false };
-
     const updatedPost = await FindTeamModel.findOneAndUpdate(filter, update, option);
     return updatedPost;
   }

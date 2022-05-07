@@ -78,7 +78,7 @@ class findteamService {
       $inc: { likesCount: result },
     };
 
-    const res = await FindTeam.updatearray({ post_id, newValues });
+    const res = await FindTeam.update({ post_id, newValues });
     return res;
   }
 
@@ -109,10 +109,12 @@ class findteamService {
     }
 
     const newValues = {
-      title: toUpdate.title,
-      content: toUpdate.content,
-      status: toUpdate.status,
-      tag: toUpdate.tag,
+      $set: {
+        title: toUpdate.title,
+        content: toUpdate.content,
+        status: toUpdate.status,
+        tag: toUpdate.tag,
+      },
     };
 
     findTeamPost = await FindTeam.update({ post_id, newValues });

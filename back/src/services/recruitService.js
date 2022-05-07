@@ -44,7 +44,7 @@ class recruitService {
       $inc: { likesCount: result },
     };
 
-    const res = await Recruit.updatearray({ post_id, newValues });
+    const res = await Recruit.update({ post_id, newValues });
     return res;
   }
 
@@ -80,10 +80,12 @@ class recruitService {
     }
 
     const newValues = {
-      title: toUpdate.title,
-      content: toUpdate.content,
-      status: toUpdate.status,
-      tag: toUpdate.tag,
+      $set: {
+        title: toUpdate.title,
+        content: toUpdate.content,
+        status: toUpdate.status,
+        tag: toUpdate.tag,
+      },
     };
 
     recruitPost = await Recruit.update({ post_id, newValues });
