@@ -16,11 +16,9 @@ class FreeBoard {
     return post.likes;
   }
 
-  static async findAll({ currentPage, perPage }) {
+  static async findAll() {
     const posts = await FreeBoardModel.find()
     .sort({ createdAt: -1 })
-    .skip(perPage * (currentPage -1))
-    .limit(perPage);
     return posts;
   }
   

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
-import { get, post } from "../../../api";
+import { post } from "../../../api";
 import styled from "styled-components";
 
 function AppbtiTest() {
@@ -15,8 +14,6 @@ function AppbtiTest() {
         answers: state,
       });
       setFinalAnswer(res.data);
-      console.clear();
-      console.log(res.data);
       setIsFetchCompleted(true);
     }
     loadAnswerResult();
@@ -31,8 +28,6 @@ function AppbtiTest() {
       </center>
     );
   }
-
-  const Star = finalAnswer.rating * 20;
 
   return (
     <AnswerCardContainer>
@@ -72,7 +67,8 @@ const FinalAnswer = styled.div`
   width: 100%;
   padding: 5vh;
   font-size: 2.5em;
-  color: white;
+  color: #484bcc;
+  font-weight: 700;
 `;
 
 const AnswerCardContainer = styled.div`
@@ -81,7 +77,7 @@ const AnswerCardContainer = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
-  background-color: #484bcc;
+  background-color: #f8f8f8;
 `;
 
 const AnswerCard = styled.div`

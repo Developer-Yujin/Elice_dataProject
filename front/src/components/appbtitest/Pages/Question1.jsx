@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import QuestionLists from "../Components/QuestionLists";
-import { QuestionContainer, Progressbar, Progress1, QuestionBox, Button } from "../Components/QuestionSCSS";
+import { QuestionContainer, Progressbar, Progress, QuestionBox, Button } from "../Components/QuestionSCSS";
 
 function Question1() {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ function Question1() {
   return (
     <QuestionContainer>
       <Progressbar>
-        <Progress1 />
+        <Progress Gage={16.6 * (i + 1)} />
       </Progressbar>
       <QuestionBox>{QuestionLists[i].q1}</QuestionBox>
       <Button id="a1" type="button" value="a1" onClick={() => SavingAnswers("a1")}>

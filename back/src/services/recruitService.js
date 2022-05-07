@@ -90,9 +90,22 @@ class recruitService {
     return post;
   }
 
-  static async getPosts(filter, { currentPage, perPage }) {
+  static async getPosts(filter) {
     let newFilter = {};
     let order;
+
+    if (filter.status && !filter.tag) {
+      newFilter.status = filter.status.replace("/", "");
+      
+      if (filter.order) {
+               newFilter.order = filter.order;
+      } else {
+               order = 'updatedAt';
+      }
+
+      const posts = await Recruit.findAllNoTagWithStatus(newFilter, order);
+      return posts;
+    } 
 
     if (filter.status) {
       newFilter.status = filter.status;
@@ -110,11 +123,11 @@ class recruitService {
     }
 
     if (!filter.tag) {
-      const posts = await Recruit.findAllNoTag(newFilter, order, { currentPage, perPage });
+      const posts = await Recruit.findAllNoTag(newFilter, order);
       return posts;
     }
 
-    const posts = await Recruit.findAll(newFilter, order, { currentPage, perPage });
+    const posts = await Recruit.findAll(newFilter, order);
     return posts;
   }
 

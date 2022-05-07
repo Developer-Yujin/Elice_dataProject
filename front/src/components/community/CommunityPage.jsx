@@ -14,12 +14,15 @@ import Pager from "./pager/Pager";
 import Questionboards from "./questionboard/Questionboards";
 
 // 스타일 import
-import { styled, List, Paper, Grid, ListItemButton, ListItemText, Box, Button } from "../styles/Mui";
-import { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer } from "./CommunityPageStyles";
+import { styled, List, Paper, Grid, ListItemButton, ListItemText, Box } from "../styles/Mui";
+import { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer, RightPostContainer, PostsTitle, PostBox, Button, TagBox } from "./CommunityPageStyles";
 import "../styles/CommunityPage.css";
 
 // 데이터 import
 import CommunitySideMenuList from "./CommunitySideMenuList";
+import PostAdd from "./post/PostAdd";
+import FindteamsPostDetail from "./post/FindteamsPostDetail";
+import RecruitsPostDetail from "./post/RecruitsPostDetail";
 
 const CommunityPage = function () {
   const navigate = useNavigate();
@@ -30,7 +33,25 @@ const CommunityPage = function () {
     color: theme.palette.text.secondary,
   }));
 
-  const handlePostClick = () => {};
+  // 게시글 작성
+  const [isPostAdd, setIsPostAdd] = useState(false);
+  const handlePostAddClick = () => {
+    setIsPostAdd(true);
+  };
+
+  const PostAddCancelFunction = (isClickedCancel) => {
+    if (isClickedCancel === true) {
+      setIsPostAdd(false);
+    }
+  };
+
+  // 게시글 리스트 중 하나를 클릭하면 해당 게시글 상세 보기로 이동
+  const handlePostClick = (e) => {
+    if (categoryUrl === "recruits" || categoryUrl === "findteams") {
+      // console.log(`/community/${categoryUrl}/${e.currentTarget.id}`);
+      navigate(`/community/${categoryUrl}/${e.currentTarget.id}`);
+    }
+  };
 
   // 백에서 전달받은 게시글 리스트 저장
   const [posts, setPosts] = useState([]);
@@ -88,7 +109,7 @@ const CommunityPage = function () {
     // 만약 전역 상태의 user가 null이라면, 로그인 페이지로 이동함.
     if (!userState.user) {
       // * 경고창이 2번 뜨는 에러가 있습니다. (navigate로 인한 렌더링 반복 문제로 추정)
-      alert("회원 가입 후 이용하실 수 있는 서비스입니다!");
+      // alert("회원 가입 후 이용하실 수 있는 서비스입니다!");
       navigate("/login");
       return;
     }
@@ -155,54 +176,85 @@ const CommunityPage = function () {
               </List>
             </nav>
           </Item>
+
           <Grid item xs={9} id="RightPostList">
-            <FilterContainer>
-              {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
-                <StatusFilter currentStatusFunction={currentStatusFunction} statusReset={statusReset} statusResetDoneFunction={statusResetDoneFunction} />
+            <RightPostContainer>
+              {categoryUrl === "recruits" && isPostAdd === false ? (
+                <PostsTitle>💁 팀원 구해요</PostsTitle>
+              ) : categoryUrl === "findteams" && isPostAdd === false ? (
+                <PostsTitle>🙋 팀을 찾고있어요</PostsTitle>
+              ) : categoryUrl === "freeboards" && isPostAdd === false ? (
+                <PostsTitle>🤪 자유게시판</PostsTitle>
+              ) : categoryUrl === "questions" && isPostAdd === false ? (
+                <PostsTitle>🧐 질문게시판</PostsTitle>
               ) : (
                 ""
               )}
-              <TagContainer>
-                {categoryUrl === "recruits" || categoryUrl === "findteams" ? <TagFilter tagQueryFunction={tagQueryFunction} tagReset={tagReset} tagResetDoneFunction={tagResetDoneFunction} /> : ""}
-              </TagContainer>
-              <TabDiv>
-                <TabContainer>
-                  {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
-                    <OrderFilter currentOrderFunction={currentOrderFunction} orderReset={orderReset} orderResetDoneFunction={orderResetDoneFunction} />
+              <FilterContainer>
+                {(categoryUrl === "recruits" || categoryUrl === "findteams") && isPostAdd === false ? (
+                  <StatusFilter currentStatusFunction={currentStatusFunction} statusReset={statusReset} statusResetDoneFunction={statusResetDoneFunction} />
+                ) : (
+                  ""
+                )}
+                <TagContainer>
+                  {(categoryUrl === "recruits" || categoryUrl === "findteams") && isPostAdd === false ? (
+                    <TagFilter tagQueryFunction={tagQueryFunction} tagReset={tagReset} tagResetDoneFunction={tagResetDoneFunction} />
                   ) : (
                     ""
                   )}
-                </TabContainer>
-              </TabDiv>
-            </FilterContainer>
-            {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
-              <PostButtonContainer>
-                <Button id="createPost" type="submit" fullWidth variant="contained">
-                  게시글 작성
-                </Button>
-              </PostButtonContainer>
-            ) : (
-              ""
-            )}
-            <article>
-              {categoryUrl === "freeboards" ? (
-                <Freeboards />
-              ) : categoryUrl === "questions" ? (
-                <Questionboards />
+                </TagContainer>
+                <TabDiv>
+                  <TabContainer>
+                    {isPostAdd === false ? <OrderFilter currentOrderFunction={currentOrderFunction} orderReset={orderReset} orderResetDoneFunction={orderResetDoneFunction} /> : ""}
+                  </TabContainer>
+                </TabDiv>
+              </FilterContainer>
+              {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
+                <PostButtonContainer>
+                  {isPostAdd === false ? (
+                    <Button type="submit" onClick={handlePostAddClick}>
+                      게시글 작성
+                    </Button>
+                  ) : (
+                    ""
+                  )}
+                  {isPostAdd === true ? <PostAdd /> : ""}
+                </PostButtonContainer>
               ) : (
-                posts.map((e) => {
-                  return (
-                    <div className="PostItem" key={e.id} onClick={handlePostClick}>
-                      <Item>
-                        <div>{e.title}</div>
-                        <div>{e.content}</div>
-                      </Item>
-                    </div>
-                  );
-                })
+                ""
               )}
-            </article>
-            <Pager />
+              {isPostAdd === false ? (
+                <div>
+                  <article>
+                    {categoryUrl === "freeboards" ? (
+                      <Freeboards />
+                    ) : categoryUrl === "questions" ? (
+                      <Questionboards />
+                    ) : (
+                      posts.map((e) => {
+                        return (
+                          <div className="PostItem" key={`post${e._id}`}>
+                            <PostBox key={`post${e._id}`} id={e._id} onClick={(e) => handlePostClick(e)}>
+                              <div>
+                                <label className={e.status}>{e.status === "recruited" ? "모집중" : "모집완료"}</label>
+                                <h2>{e.title}</h2>
+                              </div>
+                              <p>{e.content}</p>
+                              <TagBox>{e.tag.join(", ")}</TagBox>
+                            </PostBox>
+                          </div>
+                        );
+                      })
+                    )}
+                  </article>
+                  {categoryUrl === "recruits" ? <RecruitsPostDetail /> : <FindteamsPostDetail />}
+
+                  <Pager />
+                </div>
+              ) : (
+                ""
+              )}
+            </RightPostContainer>
           </Grid>
         </Grid>
       </Box>

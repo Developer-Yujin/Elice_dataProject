@@ -119,10 +119,8 @@ freeboardRouter.get('/freeboards', loginRequired, async (req, res, next) => {
      #swagger.summary = '모든 게시글 가져오기' 
      #swagger.security = [{ "bearerAuth": [] }]
     */
-    const currentPage = req.query.page || 1;
-    const perPage = 6;
 
-    const posts = await freeboardService.getPosts({ currentPage, perPage });
+    const posts = await freeboardService.getPosts();
 
 
     res.status(200).send(posts);

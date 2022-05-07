@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const PostViewContainer = styled.div`
+const PostDetailContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -105,4 +105,4 @@ const DeleteButton = styled.button`
   border: none;
 `;
 
-export { PostViewContainer, PostContainer, PostdAuthor, PostTitle, PostContent, ButtonContainer, ListButton, EditButton, DeleteButton };
+export { PostDetailContainer, PostContainer, PostdAuthor, PostTitle, PostContent, ButtonContainer, ListButton, EditButton, DeleteButton };
