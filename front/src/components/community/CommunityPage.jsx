@@ -203,7 +203,7 @@ const CommunityPage = function () {
                 </TagContainer>
                 <TabDiv>
                   <TabContainer>
-                    <OrderFilter currentOrderFunction={currentOrderFunction} orderReset={orderReset} orderResetDoneFunction={orderResetDoneFunction} />
+                    {isPostAdd === false ? <OrderFilter currentOrderFunction={currentOrderFunction} orderReset={orderReset} orderResetDoneFunction={orderResetDoneFunction} /> : ""}
                   </TabContainer>
                 </TabDiv>
               </FilterContainer>
