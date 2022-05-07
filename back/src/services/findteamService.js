@@ -13,9 +13,17 @@ class findteamService {
     let newFilter = {};
     let order;
 
+    if (filter.status && !filter.tag) {
+      newFilter.status = filter.status.replace("/", "");
+      console.log(filter.status);
+      const posts = await FindTeam.findAllNoTagWithStatus(newFilter, order, { currentPage, perPage });
+      return posts;
+    } 
+
     if (filter.status) {
       newFilter.status = filter.status;
     }
+
     if (filter.tag) {
       newFilter.tag = filter.tag.split(',');
       var last = newFilter.tag[newFilter.tag.length -1].replace("/", "");
@@ -32,6 +40,7 @@ class findteamService {
       const posts = await FindTeam.findAllNoTag(newFilter, order, { currentPage, perPage });
       return posts;
     }
+
 
     const posts = await FindTeam.findAll(newFilter, order, { currentPage, perPage });
     return posts;

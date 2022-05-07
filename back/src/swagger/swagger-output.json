@@ -1882,6 +1882,42 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": [
+          "question"
+        ],
+        "summary": "모든 게시글 가져오기",
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/questions/{id}": {
@@ -2026,44 +2062,6 @@
             "name": "user_id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/questionlist": {
-      "get": {
-        "tags": [
-          "question"
-        ],
-        "summary": "모든 게시글 가져오기",
-        "description": "",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
             "schema": {
               "type": "string"
             }

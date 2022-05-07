@@ -36,6 +36,16 @@ class Recruit {
     return RecruitPosts;
   }
 
+  static async findAllNoTagWithStatus(newFilter, order, { currentPage, perPage }) {
+    const RecruitPosts = await RecruitModel.find(newFilter)
+      .find({ status: { $eq: newFilter.status } })
+      .populate('author', 'id email name')
+      .sort({ [order]: -1 })
+      .skip(perPage * (currentPage - 1))
+      .limit(perPage);
+    return RecruitPosts;
+  }
+
   static async update({ post_id, newValues }) {
     const filter = { _id: post_id };
     const update = { $set: newValues };

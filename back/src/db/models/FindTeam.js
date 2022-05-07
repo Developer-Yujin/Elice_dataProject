@@ -37,6 +37,16 @@ class FindTeam {
     return findTeamPosts;
   }
 
+  static async findAllNoTagWithStatus(newFilter, order, { currentPage, perPage }) {
+    const findTeamPosts = await FindTeamModel.find(newFilter)
+      .find({ status: { $eq: newFilter.status } })
+      .populate('author', 'id email name')
+      .sort({ [order]: -1 })
+      .skip(perPage * (currentPage - 1))
+      .limit(perPage);
+    return findTeamPosts;
+  }
+
   static async update({ post_id, newValues }) {
     const filter = { _id: post_id };
     const update = { $set: newValues };
