@@ -25,6 +25,10 @@ flex-direction: column; /*수직 정렬*/
 align-items: center;
 padding: 0 100px;
 margin: 80px 0;
+
+.MuiGrid-container {
+  justify-content: center;
+}
 `;
 
 const PostButtonContainer = styled.div`
@@ -33,7 +37,8 @@ const PostButtonContainer = styled.div`
 `;
 
 const RightPostContainer = styled.div`
-  width: 830px;
+  width: 100%;
+  min-width: 830px;
   height: auto;
   padding: 30px 50px;
   background-color: #fff;
