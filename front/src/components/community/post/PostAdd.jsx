@@ -3,9 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { UserStateContext } from "../../../App";
 import { post } from "../../../api";
 import { PostFormContainer, PostTitleForm, PostContentForm, ButtonContainer, SubmitButton, UndoButton } from "../freeboard/PostFormStyles";
-import { TagBox, StackFilterTag } from "./TagFilterStyles";
-
-import TagList from "./TagFilterList";
 
 function PostAdd({ PostAddCancelFunction, tagReset }) {
   const location = useLocation();
@@ -60,20 +57,6 @@ function PostAdd({ PostAddCancelFunction, tagReset }) {
   return (
     <PostFormContainer onSubmit={handleSubmit}>
       <PostTitleForm id="title" type="text" onChange={(e) => setTitle(e.target.value)} placeholder="제목을 작성해주세요." />
-      <TagBox>
-        {TagList.map((e) => (
-          <StackFilterTag
-            className={e.name}
-            key={`tag${e.filterId}`}
-            name={e.name}
-            value={e.name}
-            isClicked={tagReset === true ? (e.isClicked = false) : e.isClicked}
-            onClick={() => handleClickTag(e)}
-          >
-            {e.tag}
-          </StackFilterTag>
-        ))}
-      </TagBox>
       <PostContentForm id="content" onChange={(e) => setContent(e.target.value)} placeholder="내용을 입력해주세요." />
       <ButtonContainer>
         <SubmitButton type="submit" value="trud">
