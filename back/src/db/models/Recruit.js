@@ -8,22 +8,22 @@ class Recruit {
   }
 
   static async findById({ post_id }) {
-    const post = await RecruitModel.findOne({ _id: post_id }).populate('author', 'id email name');
+    const recruitPost = await RecruitModel.findOne({ _id: post_id }).populate('author', 'id email name');
 
-    return post;
+    return recruitPost;
   }
   static async findlike({ post_id, userId }) {
-    const post = await RecruitModel.findOne({ _id: post_id }, { likes: { $elemMatch: { $eq: userId } } });
-    return post.likes;
+    const recruitPost = await RecruitModel.findOne({ _id: post_id }, { likes: { $elemMatch: { $eq: userId } } });
+    return recruitPost.likes;
   }
 
   static async findAll(newFilter, order) {
-    const posts = await RecruitModel.find(newFilter)
+    const recruitPosts = await RecruitModel.find(newFilter)
       .find({ tag: { $in: newFilter.tag } })
       .populate('author', 'id email name')
-      .sort({ [order]: -1 })
+      .sort({ [order]: -1 });
 
-    return posts;
+    return recruitPosts;
   }
 
   static async findAllNoTag(newFilter, order) {
@@ -37,7 +37,7 @@ class Recruit {
     const RecruitPosts = await RecruitModel.find(newFilter)
       .find({ status: { $eq: newFilter.status } })
       .populate('author', 'id email name')
-      .sort({ [order]: -1 })
+      .sort({ [order]: -1 });
     return RecruitPosts;
   }
 

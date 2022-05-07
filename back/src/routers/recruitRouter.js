@@ -121,8 +121,8 @@ recruitRouter.get('/recruits', loginRequired, async (req, res, next) => {
     const order = req.query.order ?? null;
     const tag = req.query.tag ?? null;
     const filter = { status, order, tag };
-    const posts = await recruitService.getPosts(filter);
-    res.status(200).send(posts);
+    const recruitPosts = await recruitService.getPosts(filter);
+    res.status(200).send(recruitPosts);
   } catch (error) {
     next(error);
   }

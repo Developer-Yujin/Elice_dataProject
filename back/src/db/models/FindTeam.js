@@ -13,8 +13,8 @@ class FindTeam {
   }
 
   static async findlike({ post_id, userId }) {
-    const post = await FindTeamModel.findOne({ _id: post_id }, { likes: { $elemMatch: { $eq: userId } } });
-    return post.likes;
+    const findTeamPost = await FindTeamModel.findOne({ _id: post_id }, { likes: { $elemMatch: { $eq: userId } } });
+    return findTeamPost.likes;
   }
 
   static async findAll(newFilter, order) {
@@ -22,14 +22,14 @@ class FindTeam {
     const findTeamPosts = await FindTeamModel.find(newFilter)
       .find({ tag: { $in: newFilter.tag } })
       .populate('author', 'id email name')
-      .sort({ [order]: -1 })
+      .sort({ [order]: -1 });
     return findTeamPosts;
   }
 
   static async findAllNoTag(newFilter, order) {
     const findTeamPosts = await FindTeamModel.find(newFilter)
       .populate('author', 'id email name')
-      .sort({ [order]: -1 })
+      .sort({ [order]: -1 });
     return findTeamPosts;
   }
 
@@ -37,7 +37,7 @@ class FindTeam {
     const findTeamPosts = await FindTeamModel.find(newFilter)
       .find({ status: { $eq: newFilter.status } })
       .populate('author', 'id email name')
-      .sort({ [order]: -1 })
+      .sort({ [order]: -1 });
     return findTeamPosts;
   }
 

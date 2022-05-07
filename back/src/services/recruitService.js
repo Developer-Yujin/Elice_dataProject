@@ -10,19 +10,19 @@ class recruitService {
   }
 
   static async getPostInfo({ post_id }) {
-    const post = await Recruit.findById({ post_id });
+    const recruitPost = await Recruit.findById({ post_id });
 
-    if (!post) {
+    if (!recruitPost) {
       const errorMessage = '해당 포스트가 없습니다. 다시 한 번 확인해 주세요.';
       return { errorMessage };
     }
 
-    return post;
+    return recruitPost;
   }
   static async setPostlike({ userId, post_id }) {
-    const post = await Recruit.findById({ post_id });
+    const recruitPost = await Recruit.findById({ post_id });
 
-    if (!post) {
+    if (!recruitPost) {
       const errorMessage = '해당 포스트가 없습니다. 다시 한 번 확인해 주세요.';
       return { errorMessage };
     }
@@ -49,34 +49,34 @@ class recruitService {
   }
 
   static async getPostTag({ tag }) {
-    const post = await Recruit.findTag({ tag });
-    return post
+    const recruitPost = await Recruit.findTag({ tag });
+    return recruitPost;
   }
 
   static async setPost({ userId, post_id, toUpdate }) {
-    let post = await Recruit.findById({ post_id });
+    let recruitPost = await Recruit.findById({ post_id });
 
-    if (!post) {
+    if (!recruitPost) {
       const errorMessage = '해당 포스트가 없습니다. 다시 한 번 확인해 주세요.';
       return { errorMessage };
     }
 
-    if (post.author.id !== userId) {
+    if (recruitPost.author.id !== userId) {
       const errorMessage = '권한이 없습니다. 자신이 작성한 게시글만 변경할 수 있습니다. ';
       return { errorMessage };
     }
 
     if (!toUpdate.title) {
-      toUpdate.title = post.title;
+      toUpdate.title = recruitPost.title;
     }
     if (!toUpdate.content) {
-      toUpdate.content = post.content;
+      toUpdate.content = recruitPost.content;
     }
     if (!toUpdate.status) {
-      toUpdate.status = post.status;
+      toUpdate.status = recruitPost.status;
     }
     if (!toUpdate.tag) {
-      toUpdate.tag = post.tag;
+      toUpdate.tag = recruitPost.tag;
     }
 
     const newValues = {
@@ -86,8 +86,8 @@ class recruitService {
       tag: toUpdate.tag,
     };
 
-    post = await Recruit.update({ post_id, newValues });
-    return post;
+    recruitPost = await Recruit.update({ post_id, newValues });
+    return recruitPost;
   }
 
   static async getPosts(filter) {
@@ -95,24 +95,24 @@ class recruitService {
     let order;
 
     if (filter.status && !filter.tag) {
-      newFilter.status = filter.status.replace("/", "");
-      
+      newFilter.status = filter.status.replace('/', '');
+
       if (filter.order) {
-               newFilter.order = filter.order;
+        newFilter.order = filter.order;
       } else {
-               order = 'updatedAt';
+        order = 'updatedAt';
       }
 
-      const posts = await Recruit.findAllNoTagWithStatus(newFilter, order);
-      return posts;
-    } 
+      const recruitPosts = await Recruit.findAllNoTagWithStatus(newFilter, order);
+      return recruitPosts;
+    }
 
     if (filter.status) {
       newFilter.status = filter.status;
     }
     if (filter.tag) {
       newFilter.tag = filter.tag.split(',');
-      var last = newFilter.tag[newFilter.tag.length -1].replace("/", "");
+      var last = newFilter.tag[newFilter.tag.length - 1].replace('/', '');
       newFilter.tag.pop();
       newFilter.tag.push(last);
     }
@@ -123,23 +123,23 @@ class recruitService {
     }
 
     if (!filter.tag) {
-      const posts = await Recruit.findAllNoTag(newFilter, order);
-      return posts;
+      const recruitPosts = await Recruit.findAllNoTag(newFilter, order);
+      return recruitPosts;
     }
 
-    const posts = await Recruit.findAll(newFilter, order);
-    return posts;
+    const recruitPosts = await Recruit.findAll(newFilter, order);
+    return recruitPosts;
   }
 
   static async deletePost({ userId, post_id }) {
-    const post = await Recruit.findById({ post_id });
+    const recruitPost = await Recruit.findById({ post_id });
 
-    if (!post) {
+    if (!recruitPost) {
       const errorMessage = '해당 포스트가 없습니다. 다시 한 번 확인해 주세요.';
       return { errorMessage };
     }
 
-    if (post.author.id !== userId) {
+    if (recruitPost.author.id !== userId) {
       const errorMessage = '권한이 없습니다. 자신이 작성한 게시글만 삭제할 수 있습니다. ';
       return { errorMessage };
     }
