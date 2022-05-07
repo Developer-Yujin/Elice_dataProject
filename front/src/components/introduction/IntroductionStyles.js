@@ -146,6 +146,7 @@ const AP = styled.p`
   text-align: right;
 
   padding: 32px 40px 0 0;
+  margin: 0 180px 0 0;
 `;
 
 export { Container, A, Div, Img, One, Two, Three, Four, Five, Six, H2, H4, H1, Footer, Copyright, Address, CP, AP };
