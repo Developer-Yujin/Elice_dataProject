@@ -9,6 +9,7 @@
 
 .PostItem {
   margin: 25px 0;
+  cursor: pointer;
 }
 
 #createPost {
