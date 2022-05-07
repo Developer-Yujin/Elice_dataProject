@@ -15,7 +15,13 @@ class findteamService {
 
     if (filter.status && !filter.tag) {
       newFilter.status = filter.status.replace("/", "");
-      console.log(filter.status);
+
+        if (filter.order) {
+                newFilter.order = filter.order;
+        } else {
+                order = 'updatedAt';
+        }
+        
       const posts = await FindTeam.findAllNoTagWithStatus(newFilter, order, { currentPage, perPage });
       return posts;
     } 
