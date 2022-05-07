@@ -17,32 +17,27 @@ class Recruit {
     return post.likes;
   }
 
-  static async findAll(newFilter, order, { currentPage, perPage }) {
+  static async findAll(newFilter, order) {
     const posts = await RecruitModel.find(newFilter)
       .find({ tag: { $in: newFilter.tag } })
       .populate('author', 'id email name')
       .sort({ [order]: -1 })
-      .skip(perPage * (currentPage -1))
-      .limit(perPage);
+
     return posts;
   }
 
-  static async findAllNoTag(newFilter, order, { currentPage, perPage }) {
+  static async findAllNoTag(newFilter, order) {
     const RecruitPosts = await RecruitModel.find(newFilter)
       .populate('author', 'id email name')
-      .sort({ [order]: -1 })
-      .skip(perPage * (currentPage - 1))
-      .limit(perPage);
+      .sort({ [order]: -1 });
     return RecruitPosts;
   }
 
-  static async findAllNoTagWithStatus(newFilter, order, { currentPage, perPage }) {
+  static async findAllNoTagWithStatus(newFilter, order) {
     const RecruitPosts = await RecruitModel.find(newFilter)
       .find({ status: { $eq: newFilter.status } })
       .populate('author', 'id email name')
       .sort({ [order]: -1 })
-      .skip(perPage * (currentPage - 1))
-      .limit(perPage);
     return RecruitPosts;
   }
 

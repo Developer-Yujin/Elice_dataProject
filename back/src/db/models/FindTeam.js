@@ -17,33 +17,27 @@ class FindTeam {
     return post.likes;
   }
 
-  static async findAll(newFilter, order, { currentPage, perPage }) {
+  static async findAll(newFilter, order) {
     // 변수명 변경
     const findTeamPosts = await FindTeamModel.find(newFilter)
       .find({ tag: { $in: newFilter.tag } })
       .populate('author', 'id email name')
       .sort({ [order]: -1 })
-      .skip(perPage * (currentPage - 1))
-      .limit(perPage);
     return findTeamPosts;
   }
 
-  static async findAllNoTag(newFilter, order, { currentPage, perPage }) {
+  static async findAllNoTag(newFilter, order) {
     const findTeamPosts = await FindTeamModel.find(newFilter)
       .populate('author', 'id email name')
       .sort({ [order]: -1 })
-      .skip(perPage * (currentPage - 1))
-      .limit(perPage);
     return findTeamPosts;
   }
 
-  static async findAllNoTagWithStatus(newFilter, order, { currentPage, perPage }) {
+  static async findAllNoTagWithStatus(newFilter, order) {
     const findTeamPosts = await FindTeamModel.find(newFilter)
       .find({ status: { $eq: newFilter.status } })
       .populate('author', 'id email name')
       .sort({ [order]: -1 })
-      .skip(perPage * (currentPage - 1))
-      .limit(perPage);
     return findTeamPosts;
   }
 
