@@ -12,9 +12,11 @@ const RecruitsPostDetail = function () {
 
   useEffect(() => {
     const recruitsPostDetail = async () => {
-      const res = await get(`recruits/${params.id}`);
-      setPostData(res.data);
-      setIsFetchCompleted(true);
+      if (params.id !== "" && params.id !== undefined) {
+        const res = await get(`recruits/${params.id}`);
+        setPostData(res.data);
+        setIsFetchCompleted(true);
+      }
     };
 
     recruitsPostDetail();
@@ -42,7 +44,7 @@ const RecruitsPostDetail = function () {
       <PostContainer>
         <label className={postData.status}>{postData.status === "recruited" ? "모집중" : "모집완료"}</label>
         <PostTitle> ✨ {postData.title}</PostTitle>
-        <PostdAuthor> 작성자 : {postData.name} </PostdAuthor>
+        <PostdAuthor> 작성자 : {postData.author.name} </PostdAuthor>
         <div>{postData.tag.join(",")}</div>
         <PostContent>{postData.content}</PostContent>
         <ButtonContainer>
