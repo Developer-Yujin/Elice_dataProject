@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router";
 import { post } from "../../../api";
 import styled from "styled-components";
+import Loading from "../../styles/Loading";
 
 function AppbtiTest() {
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
@@ -23,8 +24,7 @@ function AppbtiTest() {
   if (!isFetchCompleted) {
     return (
       <center>
-        <img src="https://cdn.discordapp.com/attachments/964509729659445289/969298919764934666/aac7e5d8fc1fe7bdcebf8025d862a8687414ad4a.gif" alt="작업중" />
-        <span>"열 심 히 작 업 중 이 랍 니 다."</span>
+        <Loading />
       </center>
     );
   }
