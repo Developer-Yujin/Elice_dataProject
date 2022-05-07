@@ -57,7 +57,7 @@ const PostBox = styled.div`
   padding: 20px 30px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
   height: 150px;
   margin: 20px 0 10px 0;
@@ -69,7 +69,6 @@ const PostBox = styled.div`
   div {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
 
     label {
       max-height: 28px;
