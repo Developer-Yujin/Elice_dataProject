@@ -9,7 +9,7 @@ class findteamService {
     return createdNewPost;
   }
 
-  static async getPosts(filter, { currentPage, perPage }) {
+  static async getPosts(filter) {
     let newFilter = {};
     let order;
 
@@ -24,7 +24,7 @@ class findteamService {
                 console.log(order);
         }
         
-      const posts = await FindTeam.findAllNoTagWithStatus(newFilter, order, { currentPage, perPage });
+      const posts = await FindTeam.findAllNoTagWithStatus(newFilter, order);
       return posts;
     } 
 
@@ -45,12 +45,12 @@ class findteamService {
     }
 
     if (!filter.tag) {
-      const posts = await FindTeam.findAllNoTag(newFilter, order, { currentPage, perPage });
+      const posts = await FindTeam.findAllNoTag(newFilter, order);
       return posts;
     }
 
 
-    const posts = await FindTeam.findAll(newFilter, order, { currentPage, perPage });
+    const posts = await FindTeam.findAll(newFilter, order);
     return posts;
   }
 

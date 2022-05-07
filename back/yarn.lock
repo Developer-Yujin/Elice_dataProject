@@ -4428,6 +4428,11 @@
   dependencies:
     "yallist" "^4.0.0"
 
+"lru-cache@^7.9.0":
+  "integrity" "sha512-lkcNMUKqdJk96TuIXUidxaPuEg5sJo/+ZyVE2BDFnuZGzwXem7d8582eG8vbu4todLfT14snP6iHriCHXXi5Rw=="
+  "resolved" "https://registry.npmjs.org/lru-cache/-/lru-cache-7.9.0.tgz"
+  "version" "7.9.0"
+
 "lru-queue@^0.1.0":
   "integrity" "sha1-Jzi9nw089PhEkMVzbEhpmsYyzaM="
   "resolved" "https://registry.npmjs.org/lru-queue/-/lru-queue-0.1.0.tgz"

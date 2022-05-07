@@ -116,14 +116,12 @@ recruitRouter.get('/recruits', loginRequired, async (req, res, next) => {
      #swagger.description = '전체 게시글 목록'
      #swagger.security = [{ "bearerAuth": [] }]
     */
-    const currentPage = req.query.page || 1;
-    const perPage = 6;
 
     const status = req.query.status ?? null;
     const order = req.query.order ?? null;
     const tag = req.query.tag ?? null;
     const filter = { status, order, tag };
-    const posts = await recruitService.getPosts(filter, { currentPage, perPage });
+    const posts = await recruitService.getPosts(filter);
     res.status(200).send(posts);
   } catch (error) {
     next(error);

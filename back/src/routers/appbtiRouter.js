@@ -19,7 +19,6 @@ appbtiRouter.post('/appbti', async (req, res, next) => {
     const answers = req.body.answers;
 
     const newresult = await appbtiService.addResult({ answers });
-
     res.status(201).json(newresult);
   } catch (error) {
     next(error);
