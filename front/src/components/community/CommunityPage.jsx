@@ -167,11 +167,7 @@ const CommunityPage = function () {
               </TagContainer>
               <TabDiv>
                 <TabContainer>
-                  {categoryUrl === "recruits" || categoryUrl === "findteams" ? (
-                    <OrderFilter currentOrderFunction={currentOrderFunction} orderReset={orderReset} orderResetDoneFunction={orderResetDoneFunction} />
-                  ) : (
-                    ""
-                  )}
+                  <OrderFilter currentOrderFunction={currentOrderFunction} orderReset={orderReset} orderResetDoneFunction={orderResetDoneFunction} />
                 </TabContainer>
               </TabDiv>
             </FilterContainer>

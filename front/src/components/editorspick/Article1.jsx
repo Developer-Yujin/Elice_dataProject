@@ -60,34 +60,21 @@ const Article1 = function ({ openModalHandler }) {
   return (
     <ArticleContainer>
       <ArticleBox>
-        <PrevArticleBox>
-          <PrevContent>
-            <PrevContentTitle>사용자 만족도가 평균치보다 낮아 도전해볼만한 시장</PrevContentTitle>
-            <PrevContentSummary>왼쪽 그래프에 있는 총 10개의 카테고리는 다른 카테고리에 비해 서비스 만족도가 낮은것으로 확인되었습니다.</PrevContentSummary>
-            <PrevButton onClick={handleClickModal}>
-              <p>자세히보기 👉</p>
-            </PrevButton>
-          </PrevContent>
-          <PrevGraph>
-            <ReactApexChart options={Data.categoryRatingData[dataIndex].options} series={Data.categoryRatingData[dataIndex].series} type="bar" height={350} width={600} />
-            <PrevSelectorContainer>
-              {TagList.map((e) => (
-                <div key={e.name}>
-                  <PrevRadioButton
-                    id={e.name}
-                    type="radio"
-                    name="color-selector"
-                    value={e.Id}
-                    onClick={(e) => {
-                      handleCategoryClick(e);
-                    }}
-                  />
-                  <PrevLabel htmlFor={e.name}>{e.name}</PrevLabel>
-                </div>
-              ))}
-            </PrevSelectorContainer>
-          </PrevGraph>
-        </PrevArticleBox>
+        <PrevGraph>
+          <ReactApexChart options={categoryGradeDataRank10.options} series={categoryGradeDataRank10.series} type="bar" height={300} width={500} />
+          <p> - 카테고리별 평점 3점대 이하 앱 비율 RANK10 - </p>
+        </PrevGraph>
+        <Content>
+          <ContentTitle>
+            사용자 만족도가 평균치보다 낮아
+            <br />
+            도전해볼만한 시장
+          </ContentTitle>
+          <ContentSummary>왼쪽 그래프에 있는 총 10개의 카테고리는 다른 카테고리에 비해 서비스 만족도가 낮은것으로 확인되었습니다.</ContentSummary>
+          <Button onClick={handleClickModal}>
+            <p>자세히보기 👉</p>
+          </Button>
+        </Content>
         {isOpen ? (
           <ModalBackdrop onClick={handleClickModal}>
             <ModalView
@@ -127,8 +114,11 @@ const Article1 = function ({ openModalHandler }) {
                     <ReactApexChart options={Data.categoryRatingData[dataIndex].options} series={Data.categoryRatingData[dataIndex].series} type="bar" height={450} width={700} />
                   </DynamicGraph>
                 </DynamicGraphContainer>
+
                 <ModalBody>
-                  위의 그래프는 카테고리별 앱의 별점 분포 비율과 전체 앱 별점 분포 비율을 나타냅니다.
+                  위의 그래프는 카테고리별 앱의 별점 분포 비율을 나타냅니다.
+                  <br />
+                  그래프에서 색이 진할수록 분포 비율이 높음을 의미합니다.
                   <br />
                   거의 모든 카테고리의 별점 비율이 3~4점대에 머무르는 것을 확인할 수 있습니다.
                   <br />
@@ -187,53 +177,60 @@ const ArticleContainer = styled.div`
 
 const ArticleBox = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 1100px;
-  height: 650px;
+  height: 400px;
   margin: 50px 0;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 7px 10px #e4e4e4;
 `;
 
-const PrevArticleBox = styled.div`
+const PrevGraph = styled.div`
+  width: 500px;
+  height: 300px;
+  margin: 0 30px;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
-  width: 1000px;
+
+  .apexcharts-toolbar {
+    display: none !important;
+  }
+
+  p {
+    top: 410px;
+    font-size: 11px;
+    color: #707070;
+  }
+`;
+
+const Content = styled.div`
+  width: 400px;
   height: auto;
-`;
-
-const PrevContent = styled.div`
-  text-align: center;
   margin: 0 30px;
-  width: 1000px;
-  position: relative;
-  top: -100px;
 `;
 
-const PrevContentTitle = styled.div`
-  margin: 20px;
+const ContentTitle = styled.div`
+  margin-bottom: 20px;
   font-size: 20px;
   font-weight: bold;
   color: var(--primary);
 `;
 
-const PrevContentSummary = styled.div`
+const ContentSummary = styled.div`
+  margin-bottom: 30px;
   font-size: 14px;
   color: #707070;
-  padding: 10px 0;
 `;
 
-const PrevButton = styled.div`
+const Button = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  right: 0;
-  top: 10px;
 
   width: 130px;
   height: 34px;
@@ -250,62 +247,6 @@ const PrevButton = styled.div`
   &:hover {
     color: #fff;
     background-color: var(--primary);
-  }
-`;
-
-const PrevGraph = styled.div`
-  width: 700px;
-  height: 300px;
-  margin: 0 30px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-
-  .apexcharts-toolbar {
-    display: none !important;
-  }
-
-  .apexcharts-legend-marker {
-    margin: 5px !important;
-  }
-`;
-
-const PrevSelectorContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 900px;
-  height: auto;
-  margin: 0 40px;
-  padding: 10px;
-`;
-
-const PrevLabel = styled.label`
-  display: inline-block;
-  padding: 3px 7px;
-  border-radius: 20px;
-  border: 1px solid var(--primary);
-  background-color: #fff;
-  font-size: 5px;
-  font-weight: 600;
-  color: var(--primary);
-  margin: 3px;
-  cursor: pointer;
-  transition: 0.3s;
-
-  &:hover {
-    color: #fff;
-    background-color: var(--primary);
-  }
-`;
-
-const PrevRadioButton = styled.input`
-  display: none;
-  &:checked + ${PrevLabel} {
-    background: var(--primary);
-    color: #fff;
   }
 `;
 
@@ -370,10 +311,10 @@ const ModalArticle = styled.div`
     font-size: 100px;
   }
 `;
-
 const DynamicGraphContainer = styled.div``;
 
 const DynamicGraph = styled.div`
+  margin-bottom: 30px;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
