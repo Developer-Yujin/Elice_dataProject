@@ -54,17 +54,17 @@ const PostsTitle = styled.p`
 `;
 
 const PostBox = styled.div`
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
-  height: auto;
-  padding: 30px;
+  height: 150px;
+  margin: 20px 0 10px 0;
   background-color: #fff;
-  box-shadow: 0 4px 10px #e4e4e4;
   border-radius: 10px;
-  transition: 1s;
-
-  &:hover {
-    background-color: var(--inputBackground);
-  }
+  box-shadow: 0 3px 10px #e4e4e4;
+  word-break: keep-all;
 
   div {
     display: flex;
@@ -90,7 +90,9 @@ const PostBox = styled.div`
   }
 
   h2 {
-    color: #000;
+    font-size: 1.5em;
+    font-weight: 800;
+    color: var(--primary);
     margin-left: 20px;
   }
 
@@ -100,19 +102,28 @@ const PostBox = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* 2줄이 넘어가면 말줄임 */
+    -webkit-line-clamp: 1; /* 2줄이 넘어가면 말줄임 */
     -webkit-box-orient: vertical;
   }
 `;
 
-const Button = styled.label`
-  background-color: var(--primary);
+const Button = styled.button`
+  display: flex;
+  float: right;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 40px;
   margin-left: auto;
-  padding: 10px 15px;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #fff;
+  color: white;
+  background-color: #484bcc;
+  &:hover {
+    background-color: #5355c9;
+  }
+  border-radius: 8px;
+  box-shadow: 0 4px 6px #e4e4e4;
+  word-break: keep-all;
+  border: none;
 `;
 
 const TagBox = styled.div``;
