@@ -20,21 +20,14 @@ function PostAdd({ PostAddCancelFunction }) {
     e.preventDefault();
     e.stopPropagation();
 
-    if (location.pathname === "/community/recruits") {
-      await post("recruits", {
-        user_id: currentUser.id,
-        title,
-        content,
-      });
-      window.location.replace("/community/recruits");
-    } else if (location.pathname === "/community/findteams") {
-      await post("findteams", {
-        user_id: currentUser.id,
-        title,
-        content,
-      });
-      window.location.replace("/community/findteams");
-    }
+    await post("findteams", {
+      user_id: currentUser.id,
+      title,
+      content,
+    });
+    // window.location.href = "/community/findteams";
+    // window.location.assign("/community/findteams");
+    // window.location.replace("/community/findteams");
 
     setIsClickedCancel(true);
   };
