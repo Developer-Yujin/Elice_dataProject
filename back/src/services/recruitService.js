@@ -96,7 +96,13 @@ class recruitService {
 
     if (filter.status && !filter.tag) {
       newFilter.status = filter.status.replace("/", "");
-      console.log(filter.status);
+      
+      if (filter.order) {
+               newFilter.order = filter.order;
+      } else {
+               order = 'updatedAt';
+      }
+
       const posts = await Recruit.findAllNoTagWithStatus(newFilter, order, { currentPage, perPage });
       return posts;
     } 
