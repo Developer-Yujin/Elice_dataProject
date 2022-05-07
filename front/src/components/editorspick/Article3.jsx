@@ -243,7 +243,7 @@ const Article1 = function ({ openModalHandler }) {
                   <ReactApexChart options={pieData.options} series={pieData.series} type="pie" width={380} />
                 </Graph>
                 <ModalBody>
-                  구글 어플들의 전체 다운로드 수를 합산 해보니 약1000억에 해당하는 결과가 나왔습다.
+                  구글 어플들의 전체 다운로드 수를 합산 해보니 약1000억에 해당하는 결과가 나왔습니다.
                   <br />
                   이는 광고 없는 어플들의 전체 다운로드 수인 약 1900억회 중 대략 53퍼센트에 해당하는 횟수입니다.
                   <br />
