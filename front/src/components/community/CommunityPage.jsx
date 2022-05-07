@@ -181,6 +181,10 @@ const CommunityPage = function () {
                 <PostsTitle>💁 팀원 구해요</PostsTitle>
               ) : categoryUrl === "findteams" && isPostAdd === false ? (
                 <PostsTitle>🙋 팀을 찾고있어요</PostsTitle>
+              ) : categoryUrl === "freeboards" && isPostAdd === false ? (
+                <PostsTitle>🤪 자유게시판</PostsTitle>
+              ) : categoryUrl === "questions" && isPostAdd === false ? (
+                <PostsTitle>🧐 질문게시판</PostsTitle>
               ) : (
                 ""
               )}
@@ -199,11 +203,7 @@ const CommunityPage = function () {
                 </TagContainer>
                 <TabDiv>
                   <TabContainer>
-                    {(categoryUrl === "recruits" || categoryUrl === "findteams") && isPostAdd === false ? (
-                      <OrderFilter currentOrderFunction={currentOrderFunction} orderReset={orderReset} orderResetDoneFunction={orderResetDoneFunction} />
-                    ) : (
-                      ""
-                    )}
+                    <OrderFilter currentOrderFunction={currentOrderFunction} orderReset={orderReset} orderResetDoneFunction={orderResetDoneFunction} />
                   </TabContainer>
                 </TabDiv>
               </FilterContainer>
