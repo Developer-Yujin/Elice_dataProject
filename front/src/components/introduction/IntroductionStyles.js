@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 1200px;
-  margin: 0 0 auto 250px;
+  margin: auto;
+  word-break: keep-all;
 `;
 
 const H1 = styled.h1`
