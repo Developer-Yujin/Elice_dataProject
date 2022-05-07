@@ -25,7 +25,7 @@ const Lists = ({ setViewType }) => {
   const Changeview = (freeboard) => {
     const postid = freeboard.currentTarget.id;
     // setViewType("View");
-    navigate(`/community/freeboards`, { state: postid });
+    navigate(`/community/freeboards/${postid}`, { state: postid });
     setViewType("View");
   };
 
