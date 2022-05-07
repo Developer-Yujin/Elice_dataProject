@@ -93,7 +93,7 @@ function Introduction() {
 
       <Footer>
         <Copyright>
-          <CP>Copyright © 2022-2023 Try, Catch!. All rights reserved.</CP>
+          <CP>Copyright © 2022 Try, Catch! All rights reserved.</CP>
         </Copyright>
 
         <Address>

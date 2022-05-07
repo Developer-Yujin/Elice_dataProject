@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 1000px;
-  margin: 0 auto;
+  width: 1200px;
+  margin: 0 0 auto 250px;
 `;
 
 const H1 = styled.h1`
-  margin: 50px 0px 50px 0px;
+  margin: 50px 0px 50px 150px;
   font-size: 3em;
-  text-align: center;
 `;
 
 const A = styled.a`
@@ -24,81 +23,70 @@ const Div = styled.div`
 `;
 
 const One = styled.article`
-  width: 33%;
+  width: 330px;
   height: 500px;
   float: left;
   display: block;
 
-  background-color: #532fa1;
-  transition: background-color 0.3s;
-  &:hover {
-    background-color: #8683bd;
-  }
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px #e4e4e4;
+  margin: 0px 20px 20px 0px;
 `;
 
 const Two = styled.article`
-  width: 33%;
+  width: 330px;
   height: 500px;
   float: left;
   display: block;
-
-  background-color: #a44789;
-  transition: background-color 0.3s;
-  &:hover {
-    background-color: #bf7eac;
-  }
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px #e4e4e4;
+  margin: 0px 20px 20px 0px;
 `;
 
 const Three = styled.article`
-  width: 33%;
+  width: 330px;
   height: 500px;
   float: left;
   display: block;
-
-  background-color: #3ab6bc;
-  transition: background-color 0.3s;
-  &:hover {
-    background-color: #75ccd0;
-  }
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px #e4e4e4;
+  margin: 0px 0px 20px 0px;
 `;
 
 const Four = styled.article`
-  width: 33%;
+  width: 330px;
   height: 500px;
   float: left;
   display: block;
-
-  background-color: #e8be3f;
-  transition: background-color 0.3s;
-  &:hover {
-    background-color: #f2d581;
-  }
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px #e4e4e4;
+  margin: 0px 20px 0px 0px;
 `;
 
 const Five = styled.article`
-  width: 33%;
+  width: 330px;
   height: 500px;
   float: left;
   display: block;
-
-  background-color: #f058d4;
-  transition: background-color 0.3s;
-  &:hover {
-    background-color: #eb97db;
-  }
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px #e4e4e4;
+  margin: 0px 20px 0px 0px;
 `;
 
 const Six = styled.article`
-  width: 33%;
+  width: 330px;
   height: 500px;
   float: left;
   display: block;
-
-  background-color: #433abc;
-  transition: background-color 0.3s;
-  &:hover {
-    background-color: #5b54bd;
-  }
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px #e4e4e4;
+  margin: 0px 20px 0px 0px;
 `;
 
 const Img = styled.img`
@@ -111,7 +99,7 @@ const Img = styled.img`
 `;
 
 const H2 = styled.h2`
-  color: #fff;
+  color: #a5a5a5;
   font-size: 30px;
 
   text-align: center;
@@ -119,7 +107,7 @@ const H2 = styled.h2`
 `;
 
 const H4 = styled.h4`
-  color: #fff;
+  color: #a5a5a5;
   font-size: 18px;
   margin: 0px 15px 0px 15px;
   text-align: center;
