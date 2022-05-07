@@ -29,7 +29,6 @@ function PostView({ setViewType, setIsEditable }) {
   const deleteNavigate = async () => {
     try {
       if (window.confirm("게시글을 삭제하시겠습니까?")) {
-        console.log(state);
         await del("freeboards", state);
         navigate("/community/freeboards");
       }
@@ -43,25 +42,23 @@ function PostView({ setViewType, setIsEditable }) {
     console.log(postid);
     setIsEditable(true);
     setViewType("Form");
-    console.log("b");
     navigate(`/community/freeboards`, { state: postid });
-    console.log("c");
   };
 
   return (
     <PostViewContainer>
+      <ListButton onClick={() => navigate("/community/freeboards")}>목록</ListButton>
       <PostContainer>
         <PostTitle> ✨ {postInfo.title}</PostTitle>
         <PostdAuthor> 작성자 : {postInfo.name} </PostdAuthor>
         <PostContent>{postInfo.content}</PostContent>
-        <ButtonContainer>
-          <ListButton onClick={() => setViewType("list")}>목록</ListButton>
-          <EditButton onClick={EditNavigate}>수정</EditButton>
-          <DeleteButton onClick={deleteNavigate}>삭제</DeleteButton>
-        </ButtonContainer>
         {/* <Comments user={user} postId={params.id} />
       <CommentForm user={user} postId={params.id} /> */}
       </PostContainer>
+      <ButtonContainer>
+        <EditButton onClick={EditNavigate}>수정</EditButton>
+        <DeleteButton onClick={deleteNavigate}>삭제</DeleteButton>
+      </ButtonContainer>
     </PostViewContainer>
   );
 }

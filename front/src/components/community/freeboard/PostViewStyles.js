@@ -4,8 +4,9 @@ const PostViewContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  width: 100%;
+  width: 100vh;
   height: 100%;
+  margin: 60px auto;
 `;
 
 const PostContainer = styled.div`
@@ -24,6 +25,7 @@ const PostdAuthor = styled.div`
   color: #a9a9a9;
   text-align: right;
   padding: 5px;
+  margin: 0 10px 0 0;
 `;
 
 const PostTitle = styled.div`
@@ -46,6 +48,7 @@ const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   word-break: keep-all;
+  margin: 10px 0;
 `;
 
 const ListButton = styled.button`
@@ -54,14 +57,14 @@ const ListButton = styled.button`
   align-items: center;
   width: 120px;
   height: 40px;
-  margin: 0 10px 0px 10px;
+  margin: 0 10px 0px 0px;
   color: white;
   background-color: #cccccc;
   &:hover {
     background-color: #828282;
   }
   border-radius: 8px;
-  box-shadow: 0 4px 6px #e4e4e4;
+  box-shadow: 0 5px 7px #f0f0f0;
   word-break: keep-all;
   border: none;
 `;
