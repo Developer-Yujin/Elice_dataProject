@@ -18,7 +18,7 @@ const FindTeamSchema = new Schema(
     status: {
       type: String,
       required: false,
-      default: 'unrecruited',
+      default: 'recruited',
     },
     tag: {
       type: Array,
