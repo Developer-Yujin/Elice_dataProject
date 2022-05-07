@@ -77,7 +77,7 @@ questionRouter.put("/questions/:id", loginRequired, async (req, res, next) => {
   }
 });
 
-questionRouter.get("/questionlist/:user_id", loginRequired, async (req, res, next) => {
+questionRouter.get("/questions/:user_id", loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['question'] 
