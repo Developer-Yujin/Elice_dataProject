@@ -35,7 +35,7 @@ const YealyAppdata = {
 const YealyAppGraph = function () {
   return (
     <PrevGraph>
-      <ReactApexChart options={YealyAppdata.options} series={YealyAppdata.series} type="bar" height={300} width={600} />
+      <ReactApexChart options={YealyAppdata.options} series={YealyAppdata.series} type="bar" height={300} width={650} />
       <p> - 구글 플레이 스토어 연도별 출시 어플 수 - </p>
     </PrevGraph>
   );
@@ -45,16 +45,12 @@ export default YealyAppGraph;
 
 const PrevGraph = styled.div`
   width: 700px;
-  height: 400px;
-  margin: 0 30px;
+  height: 300px;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 5px 10px 5px 10px;
   align-items: center;
   background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px #e4e4e4;
   word-break: keep-all;
   .apexcharts-toolbar {
     display: none !important;
