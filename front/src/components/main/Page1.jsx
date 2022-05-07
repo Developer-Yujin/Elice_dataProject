@@ -10,10 +10,14 @@ const Page = function () {
           <YearlyGraph />
           <img src="https://blog.kakaocdn.net/dn/HakTv/btrByndrqpi/7dmLGD0O1H4kMXc8ESPzxK/img.png" alt="앱 시장 증가" width="500px" />
         </GraphBox>
-        <TextAd>앱 개발이 그렇게 시장성이 좋다는데... 나도 한번 도전해볼까?</TextAd>
+        <TextAd>
+          요새 다들 앱 개발에 도전해본다던데...시장도 계속 커지고 있다고🤔?
+          <br />
+          그럼... 나도 한번 도전해볼까😏?
+        </TextAd>
         <GoAppbti>AppBTI 테스트 해보러 가기👉</GoAppbti>
       </MainContainer>
-      <ScrollButton onClick={() => window.scrollBy({ top: 650, behavior: "smooth" })}>
+      <ScrollButton onClick={() => window.scrollBy({ top: 900, behavior: "smooth" })}>
         <img src="https://blog.kakaocdn.net/dn/8QI8z/btrBuyNOXqU/iktp61W5CxsECbB0qVKQz0/img.png" alt="Scroll button" width="100px" />
       </ScrollButton>
     </Background>
@@ -29,7 +33,7 @@ const Background = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 950px;
+  height: 95vh;
   background-color: #484bcc;
 `;
 
@@ -65,12 +69,14 @@ const GraphBox = styled.div`
 const TextAd = styled.div`
   width: 100%;
   display: flex;
-  font-size: 2.5em;
+  margin: auto;
+  flex-wrap: wrap;
   color: #484bcc;
   justify-content: center;
-  align-items: center;
   //   background-color: red;
+  font-size: 2em;
   font-weight: 800;
+  text-align: center;
 `;
 
 const GoAppbti = styled.button`
