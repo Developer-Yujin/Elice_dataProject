@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router";
 import YearlyGraph from "./IncreasingAppGraph";
 
 const Page = function () {
+  const navigate = useNavigate();
   return (
     <Background>
       <MainContainer>
@@ -15,7 +17,7 @@ const Page = function () {
           <br />
           그럼... 나도 한번 도전해볼까😏?
         </TextAd>
-        <GoAppbti>AppBTI 테스트 해보러 가기👉</GoAppbti>
+        <GoAppbti onClick={() => navigate("/AppbtiTest")}>AppBTI 테스트 해보러 가기👉</GoAppbti>
       </MainContainer>
       <ScrollButton onClick={() => window.scrollBy({ top: 900, behavior: "smooth" })}>
         <img src="https://blog.kakaocdn.net/dn/8QI8z/btrBuyNOXqU/iktp61W5CxsECbB0qVKQz0/img.png" alt="Scroll button" width="100px" />
