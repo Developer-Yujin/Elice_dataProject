@@ -31,7 +31,7 @@ function AppbtiTest() {
 
   return (
     <AnswerCardContainer>
-      <FinalAnswer>당신에게 추천 드리는 앱은!</FinalAnswer>
+      <FinalAnswer>이 앱들이 당신과 잘 어울릴것 같네요!</FinalAnswer>
       {finalAnswer.map((fa) => (
         <AnswerCard key={fa._id}>
           <AppImgBox>
@@ -74,7 +74,8 @@ const FinalAnswer = styled.div`
 const AnswerCardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 95%;
+  margin: auto;
   justify-content: center;
   align-items: center;
   background-color: #f8f8f8;
