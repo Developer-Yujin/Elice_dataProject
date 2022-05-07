@@ -1,55 +1,12 @@
-import React, { useState, useContext } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { del } from "../../../api";
-import { UserStateContext } from "../../../App";
-
-const PostDetail = function () {
-  const { state } = useLocation();
-  const navigate = useNavigate();
-  const userState = useContext(UserStateContext);
-  const currentUser = userState.user;
-
-  const [postData, setPostData] = useState(null);
-  const [isFetchCompleted, setIsFetchCompleted] = useState(false);
-
-  const deleteNavigate = async () => {
-    await del("recruits", state);
-    navigate("/community/recruits");
-    setIsFetchCompleted(true);
-  };
-
-  if (!isFetchCompleted) {
-    return "postData loading...";
-  }
-
-  return (
-    <PostDetailContainer>
-      <PostContainer>
-        <label className={postData.status}>{postData.status === "recruited" ? "모집중" : "모집완료"}</label>
-
-        <PostTitle> ✨ {postData.title}</PostTitle>
-        <div>{postData.tag.join(",")}</div>
-
-        <PostContent>{postData.content}</PostContent>
-        <ButtonContainer>
-          <ListButton onClick={() => navigate("/community/recruits")}>목록</ListButton>
-          <EditButton>수정</EditButton>
-          <DeleteButton onClick={deleteNavigate}>삭제</DeleteButton>
-        </ButtonContainer>
-      </PostContainer>
-    </PostDetailContainer>
-  );
-};
-
-export default PostDetail;
 
 const PostDetailContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  width: 100%;
+  width: 100vh;
   height: 100%;
+  margin: 60px auto;
 `;
 
 const PostContainer = styled.div`
@@ -68,6 +25,7 @@ const PostdAuthor = styled.div`
   color: #a9a9a9;
   text-align: right;
   padding: 5px;
+  margin: 0 10px 0 0;
 `;
 
 const PostTitle = styled.div`
@@ -90,6 +48,7 @@ const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   word-break: keep-all;
+  margin: 10px 0;
 `;
 
 const ListButton = styled.button`
@@ -98,14 +57,14 @@ const ListButton = styled.button`
   align-items: center;
   width: 120px;
   height: 40px;
-  margin: 0 10px 0px 10px;
+  margin: 0 10px 0px 0px;
   color: white;
   background-color: #cccccc;
   &:hover {
     background-color: #828282;
   }
   border-radius: 8px;
-  box-shadow: 0 4px 6px #e4e4e4;
+  box-shadow: 0 5px 7px #f0f0f0;
   word-break: keep-all;
   border: none;
 `;
@@ -145,3 +104,5 @@ const DeleteButton = styled.button`
   word-break: keep-all;
   border: none;
 `;
+
+export { PostDetailContainer, PostContainer, PostdAuthor, PostTitle, PostContent, ButtonContainer, ListButton, EditButton, DeleteButton };

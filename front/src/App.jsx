@@ -12,7 +12,8 @@ import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import CommunityPage from "./components/community/CommunityPage";
 import PostView from "./components/community/freeboard/PostView";
-import PostDetail from "./components/community/post/PostDetail";
+import RecruitsPostDetail from "./components/community/post/RecruitsPostDetail";
+import FindteamsPostDetail from "./components/community/post/FindteamsPostDetail";
 
 import AppbtiTest from "./components/appbtitest/AppbtiTest";
 import EditorsPick from "./components/editorspick/EditorsPick";
@@ -95,8 +96,8 @@ function App() {
             <Route path="/community/findteams" element={<CommunityPage />} />
             <Route path="/community/freeboards" element={<CommunityPage />} />
             <Route path="/community/questions" element={<CommunityPage />} />
-            <Route path="/community/recruits/:id" element={<PostDetail location={location} />} />
-            <Route path="/community/freeboards/:id" element={<PostDetail location={location} />} />
+            <Route path="/community/recruits/:id" element={<RecruitsPostDetail />} />
+            <Route path="/community/findteams/:id" element={<FindteamsPostDetail />} />
 
             <Route path="/editorspick" element={<EditorsPick />} />
 

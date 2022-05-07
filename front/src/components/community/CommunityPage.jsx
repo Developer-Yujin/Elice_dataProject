@@ -21,6 +21,8 @@ import "../styles/CommunityPage.css";
 // 데이터 import
 import CommunitySideMenuList from "./CommunitySideMenuList";
 import PostAdd from "./post/PostAdd";
+import FindteamsPostDetail from "./post/FindteamsPostDetail";
+import RecruitsPostDetail from "./post/RecruitsPostDetail";
 
 const CommunityPage = function () {
   const navigate = useNavigate();
@@ -245,6 +247,8 @@ const CommunityPage = function () {
                       })
                     )}
                   </article>
+                  {categoryUrl === "recruits" ? <RecruitsPostDetail /> : <FindteamsPostDetail />}
+
                   <Pager />
                 </div>
               ) : (
