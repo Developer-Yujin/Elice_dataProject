@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ReactApexChart from "react-apexcharts";
+import AddPost from "./community/post/AddPost";
 
 // 카테고리별 앱 중에서 3점대 이하인 앱의 비율 Rank 10
 const appYearsData = {
@@ -42,6 +43,7 @@ const Article1 = function ({ openModalHandler }) {
   };
   return (
     <ArticleContainer>
+      <AddPost />
       <ArticleBox>
         <PrevGraph>
           <ReactApexChart options={appYearsData.options} series={appYearsData.series} type="bar" height={300} width={500} />
