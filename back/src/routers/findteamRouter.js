@@ -15,10 +15,11 @@ findteamRouter.post('/findteams', loginRequired, async (req, res, next) => {
      #swagger.security = [{ "bearerAuth": [] }]
     */
     const userId = req.currentUserId;
-    const { title, content, tag } = req.body;
+    const { name, title, content, tag } = req.body;
 
     const newPost = await findteamService.addPost({
       userId,
+      name,
       title,
       content,
       tag,

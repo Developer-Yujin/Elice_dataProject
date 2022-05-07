@@ -865,6 +865,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "name": {
+                    "example": "any"
+                  },
                   "title": {
                     "example": "any"
                   },
@@ -2050,7 +2053,7 @@
         ]
       }
     },
-    "/questionlist/{user_id}": {
+    "/questions/{user_id}": {
       "get": {
         "tags": [
           "question"

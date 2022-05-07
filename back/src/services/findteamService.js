@@ -1,9 +1,9 @@
 import { FindTeam, User } from '../db';
 
 class findteamService {
-  static async addPost({ userId, title, content, tag }) {
+  static async addPost({ userId, name, title, content, tag }) {
     const author = await User.findById({ userId });
-    const newPost = { author, title, content, tag };
+    const newPost = { author, name, title, content, tag };
     const createdNewPost = await FindTeam.create({ newPost });
     createdNewPost.errorMessage = null;
     return createdNewPost;
@@ -18,8 +18,10 @@ class findteamService {
 
         if (filter.order) {
                 newFilter.order = filter.order;
+                console.log(newFilter.order);
         } else {
                 order = 'updatedAt';
+                console.log(order);
         }
         
       const posts = await FindTeam.findAllNoTagWithStatus(newFilter, order, { currentPage, perPage });
