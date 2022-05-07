@@ -44,10 +44,9 @@ const CommunityPage = function () {
   };
 
   // 게시글 리스트 중 하나를 클릭하면 해당 게시글 상세 보기로 이동
-
   const handlePostClick = (e) => {
     if (categoryUrl === "recruits" || categoryUrl === "findteams") {
-      console.log(`/community/${categoryUrl}/${e.currentTarget.id}`);
+      // console.log(`/community/${categoryUrl}/${e.currentTarget.id}`);
       navigate(`/community/${categoryUrl}/${e.currentTarget.id}`);
     }
   };
@@ -108,7 +107,7 @@ const CommunityPage = function () {
     // 만약 전역 상태의 user가 null이라면, 로그인 페이지로 이동함.
     if (!userState.user) {
       // * 경고창이 2번 뜨는 에러가 있습니다. (navigate로 인한 렌더링 반복 문제로 추정)
-      alert("회원 가입 후 이용하실 수 있는 서비스입니다!");
+      // alert("회원 가입 후 이용하실 수 있는 서비스입니다!");
       navigate("/login");
       return;
     }
@@ -217,7 +216,6 @@ const CommunityPage = function () {
                   ) : (
                     ""
                   )}
-
                   {isPostAdd === true ? <PostAdd PostAddCancelFunction={PostAddCancelFunction} /> : ""}
                 </PostButtonContainer>
               ) : (

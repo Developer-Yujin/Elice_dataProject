@@ -39,7 +39,7 @@ function App() {
   // console.log(currentUser);
 
   // 유저 경로 얻기
-  // const location = window.location.pathname;
+  const location = window.location.pathname;
 
   // 아래의 fetchCurrentUser 함수가 실행된 다음에 컴포넌트가 구현되도록 함.
   // 아래 코드를 보면 isFetchCompleted 가 true여야 컴포넌트가 구현됨.
@@ -95,7 +95,8 @@ function App() {
             <Route path="/community/findteams" element={<CommunityPage />} />
             <Route path="/community/freeboards" element={<CommunityPage />} />
             <Route path="/community/questions" element={<CommunityPage />} />
-            <Route path="/community/recruits/:id" element={<PostDetail />} />
+            <Route path="/community/recruits/:id" element={<PostDetail location={location} />} />
+            <Route path="/community/freeboards/:id" element={<PostDetail location={location} />} />
 
             <Route path="/editorspick" element={<EditorsPick />} />
 
