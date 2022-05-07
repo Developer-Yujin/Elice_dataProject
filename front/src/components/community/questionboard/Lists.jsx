@@ -25,7 +25,7 @@ const Lists = ({ setViewType }) => {
   const Changeview = (questionboard) => {
     const postid = questionboard.currentTarget.id;
     // setViewType("View");
-    navigate(`/community/questions`, { state: postid });
+    navigate(`/community/questions/${postid}`, { state: postid });
     setViewType("View");
   };
 

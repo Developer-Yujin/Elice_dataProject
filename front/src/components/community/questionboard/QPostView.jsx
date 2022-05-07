@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { get, del } from "../../../api";
-import { PostViewContainer, PostContainer, PostdAuthor, PostTitle, PostContent, ButtonContainer, ListButton, EditButton, DeleteButton } from ".././freeboard/PostViewStyles";
+import { PostViewContainer, PostContainer, PostdAuthor, PostTitle, PostContent, ButtonContainer, ListButton, EditButton, DeleteButton } from "../freeboard/PostViewStyles";
 
 // import Comments from "./FreeboardComments";
 // import CommentForm from "./FreeboardCommentForm";
 
-function PostView({ setViewType, setIsEditable }) {
+function QPostView({ setViewType, setIsEditable }) {
   const { state } = useLocation();
   const [postInfo, setPostInfo] = useState(null);
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
@@ -50,20 +50,20 @@ function PostView({ setViewType, setIsEditable }) {
 
   return (
     <PostViewContainer>
+      <ListButton onClick={() => navigate("/community/questions")}>목록</ListButton>
       <PostContainer>
         <PostTitle> ✨ {postInfo.title}</PostTitle>
         <PostdAuthor> 작성자 : {postInfo.name} </PostdAuthor>
         <PostContent>{postInfo.content}</PostContent>
-        <ButtonContainer>
-          <ListButton onClick={() => setViewType("list")}>목록</ListButton>
-          <EditButton onClick={EditNavigate}>수정</EditButton>
-          <DeleteButton onClick={deleteNavigate}>삭제</DeleteButton>
-        </ButtonContainer>
         {/* <Comments user={user} postId={params.id} />
       <CommentForm user={user} postId={params.id} /> */}
       </PostContainer>
+      <ButtonContainer>
+        <EditButton onClick={EditNavigate}>수정</EditButton>
+        <DeleteButton onClick={deleteNavigate}>삭제</DeleteButton>
+      </ButtonContainer>
     </PostViewContainer>
   );
 }
 
-export default PostView;
+export default QPostView;

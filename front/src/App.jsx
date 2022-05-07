@@ -12,6 +12,7 @@ import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import CommunityPage from "./components/community/CommunityPage";
 import PostView from "./components/community/freeboard/PostView";
+import QPostView from "./components/community/questionboard/QPostView";
 import RecruitsPostDetail from "./components/community/post/RecruitsPostDetail";
 import FindteamsPostDetail from "./components/community/post/FindteamsPostDetail";
 
@@ -92,6 +93,7 @@ function App() {
             <Route path="/AppbtiTest" element={<AppbtiTest />} />
 
             <Route path="/community/freeboards/:id" element={<PostView />} />
+            <Route path="/community/questions/:id" element={<QPostView />} />
             <Route path="/community/recruits" element={<CommunityPage />} />
             <Route path="/community/findteams" element={<CommunityPage />} />
             <Route path="/community/freeboards" element={<CommunityPage />} />

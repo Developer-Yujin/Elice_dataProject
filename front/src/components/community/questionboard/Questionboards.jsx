@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { UserStateContext } from "../../../App";
 import { get } from "../../../api";
 import LinearProgress from "@mui/material/LinearProgress";
-import View from "./PostView";
+import View from "./QPostView";
 import Lists from "./Lists";
 import Form from "./Postform";
 import OrderFilter from "../filter/orderfilter/OrderFilter";
