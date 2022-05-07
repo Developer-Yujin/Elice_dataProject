@@ -28,7 +28,7 @@ const StatusFilter = ({ currentStatusFunction, statusReset, statusResetDoneFunct
         {StatusFilterList.map((e) => {
           return (
             <TabButton
-              key={e.filterId}
+              key={`status${e.filterId}`}
               value={e.value}
               isClicked={currentState === e.filterId}
               onClick={() => {

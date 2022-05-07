@@ -1,19 +1,19 @@
-import is from '@sindresorhus/is';
-import { Router } from 'express';
-import { loginRequired } from '../middlewares/loginRequired';
-import { questionService } from '../services/questionService';
+import is from "@sindresorhus/is";
+import {Router} from "express";
+import {loginRequired} from "../middlewares/loginRequired";
+import {questionService} from "../services/questionService";
 
 const questionRouter = Router();
 // questionRouter.use(loginRequired);
 
-questionRouter.post('/questions', loginRequired, async (req, res, next) => {
+questionRouter.post("/questions", loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['question'] 
      #swagger.summary = '질문게시판 게시글 생성' 
      #swagger.security = [{ "bearerAuth": [] }]
     */
-    const { user_id, name, title, content } = req.body;
+    const {user_id, name, title, content} = req.body;
 
     const newPost = await questionService.addPost({
       user_id,
@@ -32,7 +32,7 @@ questionRouter.post('/questions', loginRequired, async (req, res, next) => {
   }
 });
 
-questionRouter.get('/questions/:id', loginRequired, async (req, res, next) => {
+questionRouter.get("/questions/:id", loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['question'] 
@@ -40,7 +40,7 @@ questionRouter.get('/questions/:id', loginRequired, async (req, res, next) => {
      #swagger.security = [{ "bearerAuth": [] }]
     */
     const post_id = req.params.id;
-    const currentPostInfo = await questionService.getPostInfo({ post_id });
+    const currentPostInfo = await questionService.getPostInfo({post_id});
 
     if (currentPostInfo.errorMessage) {
       throw new Error(currentPostInfo.errorMessage);
@@ -52,7 +52,7 @@ questionRouter.get('/questions/:id', loginRequired, async (req, res, next) => {
   }
 });
 
-questionRouter.put('/questions/:id', loginRequired, async (req, res, next) => {
+questionRouter.put("/questions/:id", loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['question'] 
@@ -63,9 +63,9 @@ questionRouter.put('/questions/:id', loginRequired, async (req, res, next) => {
     const title = req.body.title ?? null;
     const content = req.body.content ?? null;
 
-    const toUpdate = { title, content };
+    const toUpdate = {title, content};
 
-    const updatedPost = await questionService.setPost({ post_id, toUpdate });
+    const updatedPost = await questionService.setPost({post_id, toUpdate});
 
     if (updatedPost.errorMessage) {
       throw new Error(updatedPost.errorMessage);
@@ -77,7 +77,7 @@ questionRouter.put('/questions/:id', loginRequired, async (req, res, next) => {
   }
 });
 
-questionRouter.get('/questionlist/:user_id', loginRequired, async (req, res, next) => {
+questionRouter.get("/questionlist/:user_id", loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['question'] 
@@ -85,32 +85,32 @@ questionRouter.get('/questionlist/:user_id', loginRequired, async (req, res, nex
      #swagger.security = [{ "bearerAuth": [] }]
     */
     const user_id = req.params.user_id;
-    const posts = await questionService.getUserPosts({ user_id });
+    const posts = await questionService.getUserPosts({user_id});
     res.status(200).send(posts);
   } catch (error) {
     next(error);
   }
 });
 
-questionRouter.get('/questionlist', loginRequired, async (req, res, next) => {
+questionRouter.get("/questions", loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['question'] 
      #swagger.summary = '모든 게시글 가져오기' 
      #swagger.security = [{ "bearerAuth": [] }]
     */
-     const currentPage = req.query.page || 1;
-     const perPage = 6;
- 
-     const posts = await questionService.getPosts({ currentPage, perPage });
-     
+    const currentPage = req.query.page || 1;
+    const perPage = 6;
+
+    const posts = await questionService.getPosts({currentPage, perPage});
+
     res.status(200).send(posts);
   } catch (error) {
     next(error);
   }
 });
 
-questionRouter.delete('/questions/:id', loginRequired, async (req, res, next) => {
+questionRouter.delete("/questions/:id", loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['question'] 
@@ -118,7 +118,7 @@ questionRouter.delete('/questions/:id', loginRequired, async (req, res, next) =>
      #swagger.security = [{ "bearerAuth": [] }]
     */
     const post_id = req.params.id;
-    const deletedPost = await questionService.deletePost({ post_id });
+    const deletedPost = await questionService.deletePost({post_id});
 
     if (deletedPost.errorMessage) {
       throw new Error(deletedPost.errorMessage);
@@ -130,4 +130,4 @@ questionRouter.delete('/questions/:id', loginRequired, async (req, res, next) =>
   }
 });
 
-export { questionRouter };
+export {questionRouter};

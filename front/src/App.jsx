@@ -11,6 +11,9 @@ import Introduction from "./components/introduction/Introduction";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import CommunityPage from "./components/community/CommunityPage";
+import PostView from "./components/community/freeboard/PostView";
+import PostDetail from "./components/community/post/PostDetail";
+
 import AppbtiTest from "./components/appbtitest/AppbtiTest";
 import EditorsPick from "./components/editorspick/EditorsPick";
 
@@ -36,7 +39,7 @@ function App() {
   // console.log(currentUser);
 
   // 유저 경로 얻기
-  // const location = window.location.pathname;
+  const location = window.location.pathname;
 
   // 아래의 fetchCurrentUser 함수가 실행된 다음에 컴포넌트가 구현되도록 함.
   // 아래 코드를 보면 isFetchCompleted 가 true여야 컴포넌트가 구현됨.
@@ -82,13 +85,19 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+
             <Route path="/introduction" element={<Introduction />} />
+
             <Route path="/AppbtiTest" element={<AppbtiTest />} />
 
+            <Route path="/community/freeboards/:id" element={<PostView />} />
             <Route path="/community/recruits" element={<CommunityPage />} />
             <Route path="/community/findteams" element={<CommunityPage />} />
             <Route path="/community/freeboards" element={<CommunityPage />} />
             <Route path="/community/questions" element={<CommunityPage />} />
+            <Route path="/community/recruits/:id" element={<PostDetail location={location} />} />
+            <Route path="/community/freeboards/:id" element={<PostDetail location={location} />} />
+
             <Route path="/editorspick" element={<EditorsPick />} />
 
             <Route path="/AppbtiTest" element={<AppbtiTest />} />
