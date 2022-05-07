@@ -125,6 +125,10 @@ const Button = styled.button`
   border: none;
 `;
 
-const TagBox = styled.div``;
+const TagBox = styled.div`
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 15px;
+`;
 
 export { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer, RightPostContainer, PostsTitle, PostBox, TagBox, Button };

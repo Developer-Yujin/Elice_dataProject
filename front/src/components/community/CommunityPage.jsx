@@ -15,13 +15,12 @@ import Questionboards from "./questionboard/Questionboards";
 
 // 스타일 import
 import { styled, List, Paper, Grid, ListItemButton, ListItemText, Box } from "../styles/Mui";
-import { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer, RightPostContainer, PostsTitle, PostBox, TagBox, Button } from "./CommunityPageStyles";
+import { TabDiv, TabContainer, TagContainer, FilterContainer, CommunityPostContainer, PostButtonContainer, RightPostContainer, PostsTitle, PostBox, Button, TagBox } from "./CommunityPageStyles";
 import "../styles/CommunityPage.css";
 
 // 데이터 import
 import CommunitySideMenuList from "./CommunitySideMenuList";
 import PostAdd from "./post/PostAdd";
-import FindTeamPostAdd from "./findteam/FindTeamPostAdd";
 
 const CommunityPage = function () {
   const navigate = useNavigate();
@@ -217,7 +216,7 @@ const CommunityPage = function () {
                   ) : (
                     ""
                   )}
-                  {isPostAdd === true ? <PostAdd PostAddCancelFunction={PostAddCancelFunction} tagReset={tagReset} /> : ""}
+                  {isPostAdd === true ? <PostAdd /> : ""}
                 </PostButtonContainer>
               ) : (
                 ""
