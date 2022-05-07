@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:4040"
+      "url": "http://localhost:5001"
     }
   ],
   "paths": {
@@ -244,7 +244,7 @@
           "Appbti"
         ],
         "summary": "appbti 결과 생성, 답변을 body로 받음",
-        "description": "appbti 테스트 결과를 등록한다.",
+        "description": "appbti 테스트 결과를 반환한다.",
         "parameters": [],
         "responses": {
           "201": {
@@ -332,13 +332,6 @@
         "summary": "모든 게시글 가져오기",
         "description": "",
         "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "authorization",
             "in": "header",
@@ -865,6 +858,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "name": {
+                    "example": "any"
+                  },
                   "title": {
                     "example": "any"
                   },
@@ -887,13 +883,6 @@
         "summary": "모든 게시글 가져오기",
         "description": "",
         "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "status",
             "in": "query",
@@ -1388,13 +1377,6 @@
         "description": "전체 게시글 목록",
         "parameters": [
           {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "status",
             "in": "query",
             "schema": {
@@ -1882,6 +1864,35 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": [
+          "question"
+        ],
+        "summary": "모든 게시글 가져오기",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/questions/{id}": {
@@ -2014,7 +2025,7 @@
         ]
       }
     },
-    "/questionlist/{user_id}": {
+    "/questions/{user_id}": {
       "get": {
         "tags": [
           "question"
@@ -2026,44 +2037,6 @@
             "name": "user_id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/questionlist": {
-      "get": {
-        "tags": [
-          "question"
-        ],
-        "summary": "모든 게시글 가져오기",
-        "description": "",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
             "schema": {
               "type": "string"
             }

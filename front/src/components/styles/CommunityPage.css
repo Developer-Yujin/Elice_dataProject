@@ -1,6 +1,5 @@
 #RightPostList {
   padding-top: 0 !important;
-  padding-left: 100px;
 }
 
 #LeftMenu {
@@ -9,6 +8,7 @@
 
 .PostItem {
   margin: 25px 0;
+  cursor: pointer;
 }
 
 #createPost {

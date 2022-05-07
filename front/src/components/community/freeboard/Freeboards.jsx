@@ -14,6 +14,7 @@ const Freeboards = () => {
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
   const [viewType, setViewType] = useState("list");
   const [freeboards, setFreeboards] = useState([]);
+  const [isEditable, setIsEditable] = useState(false);
 
   const [progress, setProgress] = React.useState(10);
 
@@ -31,6 +32,7 @@ const Freeboards = () => {
   // ** 로그인 상태가 아닐 때 로그인 하라고 보내주기
   useEffect(() => {
     if (!userState.user) {
+      alert("로그인 후 이용가능한 서비스입니다😂");
       navigate("/login");
       return;
     }
@@ -58,9 +60,9 @@ const Freeboards = () => {
       {viewType === "list" ? (
         <Lists user={userState.user} setViewType={setViewType} setFreeboards={setFreeboards} />
       ) : viewType === "form" ? (
-        <Form user={userState.user} setViewType={setViewType} setFreeboards={setFreeboards} />
+        <Form user={userState.user} setViewType={setViewType} isEditable={isEditable} setFreeboards={setFreeboards} setIsEditable={setIsEditable} />
       ) : (
-        <View user={userState.user} setViewType={setViewType} />
+        <View user={userState.user} setViewType={setViewType} setIsEditable={setIsEditable} />
       )}
     </div>
   );

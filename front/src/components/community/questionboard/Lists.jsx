@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, Typography } from "@mui/material";
 import { get } from "../../../api";
 import { useNavigate } from "react-router";
+import { ListContainer, ListCard, BoardAuthor, BoardTitle, BoardContent, WriteButton } from ".././freeboard/ListsStyles";
 
 const Lists = ({ setViewType }) => {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ const Lists = ({ setViewType }) => {
 
   useEffect(() => {
     async function loadquestionList() {
-      const res = await get(`questionlist`);
+      const res = await get(`questions`);
       setLists(res.data);
       setIsFetchCompleted(true);
     }
@@ -22,21 +22,27 @@ const Lists = ({ setViewType }) => {
     return "Loading...";
   }
 
+  const Changeview = (questionboard) => {
+    const postid = questionboard.currentTarget.id;
+    // setViewType("View");
+    navigate(`/community/questions/${postid}`, { state: postid });
+    setViewType("View");
+  };
+
   return (
-    <div id="questionboardLists">
-      {lists.map((questionboard) => (
-        <Card sx={{ minWidth: 275 }} key={questionboard._id} onClick={() => navigate(`questions/${questionboard._id}`)}>
-          <CardContent>
-            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-              {questionboard.name}
-            </Typography>
-            <Typography gutterBottom variant="h5" component="div">
-              {questionboard.title}
-            </Typography>
-            <Typography variant="body2">{questionboard.content}</Typography>
-          </CardContent>
-        </Card>
-      ))}
+    <div>
+      <WriteButton onClick={() => setViewType("form")}>게시글 작성</WriteButton>
+      <ListContainer>
+        {lists.map((questionboard) => (
+          <ListCard key={questionboard._id} id={questionboard._id} onClick={(questionboard) => Changeview(questionboard)}>
+            <BoardAuthor>
+              ✨ <b>{questionboard.name}</b> ✨님이 작성하신 글이예요!
+            </BoardAuthor>
+            <BoardTitle>{questionboard.title}</BoardTitle>
+            <BoardContent>{questionboard.content}</BoardContent>
+          </ListCard>
+        ))}
+      </ListContainer>
     </div>
   );
 };

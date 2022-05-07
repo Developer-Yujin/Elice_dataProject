@@ -1,11 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import Main from "./main/IndexPage";
 
-const Main = function () {
-  return (
-    <div>
-      <h2>비로그인 유저도 볼 수 있는 페이지입니다.</h2>
-    </div>
-  );
+const MainPage = function () {
+  return <Main />;
 };
 
-export default Main;
+export default MainPage;

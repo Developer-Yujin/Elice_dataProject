@@ -1,21 +1,37 @@
 import { FindTeam, User } from '../db';
 
 class findteamService {
-  static async addPost({ userId, title, content, tag }) {
+  static async addPost({ userId, name, title, content, tag }) {
     const author = await User.findById({ userId });
-    const newPost = { author, title, content, tag };
+    const newPost = { author, name, title, content, tag };
     const createdNewPost = await FindTeam.create({ newPost });
     createdNewPost.errorMessage = null;
     return createdNewPost;
   }
 
-  static async getPosts(filter, { currentPage, perPage }) {
+  static async getPosts(filter) {
     let newFilter = {};
     let order;
+
+    if (filter.status && !filter.tag) {
+      newFilter.status = filter.status.replace("/", "");
+
+        if (filter.order) {
+                newFilter.order = filter.order;
+                console.log(newFilter.order);
+        } else {
+                order = 'updatedAt';
+                console.log(order);
+        }
+        
+      const posts = await FindTeam.findAllNoTagWithStatus(newFilter, order);
+      return posts;
+    } 
 
     if (filter.status) {
       newFilter.status = filter.status;
     }
+
     if (filter.tag) {
       newFilter.tag = filter.tag.split(',');
       var last = newFilter.tag[newFilter.tag.length -1].replace("/", "");
@@ -29,11 +45,12 @@ class findteamService {
     }
 
     if (!filter.tag) {
-      const posts = await FindTeam.findAllNoTag(newFilter, order, { currentPage, perPage });
+      const posts = await FindTeam.findAllNoTag(newFilter, order);
       return posts;
     }
 
-    const posts = await FindTeam.findAll(newFilter, order, { currentPage, perPage });
+
+    const posts = await FindTeam.findAll(newFilter, order);
     return posts;
   }
 

@@ -7,6 +7,12 @@ const FindTeamSchema = new Schema(
       ref: 'User',
       required: true,
     },
+
+    name: {
+      type: String,
+      required: true,
+    },
+
     title: {
       type: String,
       required: true,
@@ -18,7 +24,7 @@ const FindTeamSchema = new Schema(
     status: {
       type: String,
       required: false,
-      default: 'unrecruited',
+      default: 'recruited',
     },
     tag: {
       type: Array,

@@ -11,30 +11,32 @@
 
 .mainpage p {
   text-align: center;
-  color: white;
+  color: #484bcc;
   font-size: 2em;
 }
 
 #totest {
   position: absolute;
-  border: 2px solid white;
-  background: white;
-  color: #465ec7;
+  border: 2px solid #484bcc;
+  color: #484bcc;
   width: 250px;
   height: 50px;
   font-size: 1.5em;
-  border-radius: 5px;
+  border-radius: 8px;
   top: -20vh;
   bottom: 0px;
   left: 0px;
   right: 0px;
   margin: auto;
+}
+#totest:hover {
+  background: #484bcc;
+  color: white;
   transition: 0.3s;
 }
 
 .area {
-  background: #484bcc;
-  background: -webkit-linear-gradient(to left, #8fa8fb, #484bcc);
+  background: #f9f9f9;
   width: 100%;
   height: 100vh;
 }
@@ -81,12 +83,13 @@
   margin: auto;
   transition: 0.3s;
 }
+
 .circles {
   position: absolute;
   top: 45vh;
   left: 0;
   width: 100%;
-  height: 50%;
+  height: 70%;
   overflow: hidden;
 }
 
@@ -96,7 +99,7 @@
   list-style: none;
   width: 20px;
   height: 20px;
-  background: rgba(255, 255, 255, 0.2);
+  background: #484bcc;
   animation: animate 20s linear infinite;
   bottom: -150px;
 }
@@ -113,7 +116,7 @@
   width: 20px;
   height: 20px;
   animation-delay: 2s;
-  animation-duration: 12s;
+  animation-duration: 8s;
 }
 
 .circles li:nth-child(3) {
@@ -157,7 +160,7 @@
   width: 25px;
   height: 25px;
   animation-delay: 15s;
-  animation-duration: 45s;
+  animation-duration: 40s;
 }
 
 .circles li:nth-child(9) {
@@ -165,7 +168,7 @@
   width: 15px;
   height: 15px;
   animation-delay: 2s;
-  animation-duration: 35s;
+  animation-duration: 30s;
 }
 
 .circles li:nth-child(10) {
@@ -173,7 +176,7 @@
   width: 150px;
   height: 150px;
   animation-delay: 0s;
-  animation-duration: 11s;
+  animation-duration: 9s;
 }
 
 @keyframes animate {

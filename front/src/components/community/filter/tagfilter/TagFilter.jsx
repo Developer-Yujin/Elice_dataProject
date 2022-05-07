@@ -39,7 +39,7 @@ const TagFilter = function ({ tagQueryFunction, tagReset, tagResetDoneFunction }
     <TagBox>
       {TagList.map((e) => (
         <StackFilterTag className={e.name} key={`tag${e.filterId}`} name={e.name} value={e.name} isClicked={tagReset === true ? (e.isClicked = false) : e.isClicked} onClick={() => handleClickTag(e)}>
-          {e.name}
+          {e.tag}
         </StackFilterTag>
       ))}
     </TagBox>

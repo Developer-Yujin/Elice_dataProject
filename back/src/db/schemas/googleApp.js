@@ -46,6 +46,9 @@ const GoogleAppSchema = new Schema(
       type: Boolean,
       required: true,
     },
+    icon: {
+      type: String,
+    },
   },
   {
     timestamps: true,
