@@ -34,8 +34,9 @@ const RecruitsPostDetail = function () {
     }
   };
 
+  // * FetchError 존재
   if (!isFetchCompleted) {
-    return "postData loading...";
+    return "";
   }
 
   return (
