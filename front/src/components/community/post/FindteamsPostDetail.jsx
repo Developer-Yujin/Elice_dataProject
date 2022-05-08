@@ -12,9 +12,11 @@ const FindteamsPostDetail = function () {
 
   useEffect(() => {
     const findteamsPostDetail = async () => {
-      const res = await get(`findteams/${params.id}`);
-      setPostData(res.data);
-      setIsFetchCompleted(true);
+      if (params.id !== "" && params.id !== undefined) {
+        const res = await get(`findteams/${params.id}`);
+        setPostData(res.data);
+        setIsFetchCompleted(true);
+      }
     };
 
     findteamsPostDetail();
@@ -42,7 +44,7 @@ const FindteamsPostDetail = function () {
       <PostContainer>
         <Label className={postData.status}>{postData.status === "recruited" ? "모집중" : "모집완료"}</Label>
         <PostTitle> ✨ {postData.title}</PostTitle>
-        <PostdAuthor> 작성자 : {postData.name} </PostdAuthor>
+        <PostdAuthor> 작성자 : {postData.author.name} </PostdAuthor>
         <div>{postData.tag.join(",")}</div>
         <PostContent>{postData.content}</PostContent>
         <ButtonContainer>

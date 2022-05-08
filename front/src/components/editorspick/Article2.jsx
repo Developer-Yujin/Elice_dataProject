@@ -220,7 +220,7 @@ const Article2 = function ({ openModalHandler }) {
       <ArticleBox>
         <Graph id="chart">
           <ReactApexChart options={radialBarData.options} series={radialBarData.series} type="radialBar" height="370" width="400" />
-          <p> - 전체 설치수가 낮고, 앱 개수는 높은 카데고리 상위 4개의 점유율 - </p>
+          <p> - 평균 설치수가 낮고, 전체 설치수가 많은 카테고리 상위 4개 - </p>
         </Graph>
         <Content>
           <ContentTitle>
