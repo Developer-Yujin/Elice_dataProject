@@ -5,7 +5,7 @@ import { UserStateContext, DispatchContext } from "../App";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import Button from "@mui/material/Button";
+import styled from "styled-components";
 
 import "./styles/Header.css";
 import logoUrl from "./img/Logo.png";
@@ -71,3 +71,21 @@ const Header = function () {
 };
 
 export default Header;
+
+const Button = styled.button`
+  display: flex;
+  float: center;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  color: white;
+  background-color: #484bcc;
+  &:hover {
+    background-color: #5355c9;
+  }
+  border-radius: 8px;
+  box-shadow: 0 3px 5px #e4e4e4;
+  border: none;
+  margin: 5px;
+`;

@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 1200px;
-  margin: 0 0 auto 250px;
+  margin: auto;
+  word-break: keep-all;
 `;
 
 const H1 = styled.h1`
@@ -146,6 +147,7 @@ const AP = styled.p`
   text-align: right;
 
   padding: 32px 40px 0 0;
+  margin: 0 180px 0 0;
 `;
 
 export { Container, A, Div, Img, One, Two, Three, Four, Five, Six, H2, H4, H1, Footer, Copyright, Address, CP, AP };

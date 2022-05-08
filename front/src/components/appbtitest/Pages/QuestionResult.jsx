@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router";
 import { post } from "../../../api";
 import styled from "styled-components";
+import Loading from "../../styles/Loading";
 
 function AppbtiTest() {
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
@@ -23,15 +24,14 @@ function AppbtiTest() {
   if (!isFetchCompleted) {
     return (
       <center>
-        <img src="https://cdn.discordapp.com/attachments/964509729659445289/969298919764934666/aac7e5d8fc1fe7bdcebf8025d862a8687414ad4a.gif" alt="작업중" />
-        <span>"열 심 히 작 업 중 이 랍 니 다."</span>
+        <Loading />
       </center>
     );
   }
 
   return (
     <AnswerCardContainer>
-      <FinalAnswer>당신에게 추천 드리는 앱은!</FinalAnswer>
+      <FinalAnswer>이 앱들이 당신과 잘 어울릴것 같네요!</FinalAnswer>
       {finalAnswer.map((fa) => (
         <AnswerCard key={fa._id}>
           <AppImgBox>
@@ -74,7 +74,8 @@ const FinalAnswer = styled.div`
 const AnswerCardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 95%;
+  margin: auto;
   justify-content: center;
   align-items: center;
   background-color: #f8f8f8;

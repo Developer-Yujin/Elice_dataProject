@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { del, get } from "../../../api";
-import { PostDetailContainer, PostContainer, PostdAuthor, PostTitle, PostContent, ButtonContainer, ListButton, EditButton, DeleteButton } from "./PostDetailStyles";
+import { PostDetailContainer, PostContainer, PostdAuthor, PostTitle, PostContent, ButtonContainer, ListButton, EditButton, DeleteButton, Label } from "./PostDetailStyles";
 
 const FindteamsPostDetail = function () {
   const navigate = useNavigate();
@@ -12,9 +12,11 @@ const FindteamsPostDetail = function () {
 
   useEffect(() => {
     const findteamsPostDetail = async () => {
-      const res = await get(`findteams/${params.id}`);
-      setPostData(res.data);
-      setIsFetchCompleted(true);
+      if (params.id !== "" && params.id !== undefined) {
+        const res = await get(`findteams/${params.id}`);
+        setPostData(res.data);
+        setIsFetchCompleted(true);
+      }
     };
 
     findteamsPostDetail();
@@ -40,9 +42,9 @@ const FindteamsPostDetail = function () {
     <PostDetailContainer>
       <ListButton onClick={() => navigate("/community/freeboards")}>목록</ListButton>
       <PostContainer>
-        <label className={postData.status}>{postData.status === "recruited" ? "모집중" : "모집완료"}</label>
+        <Label className={postData.status}>{postData.status === "recruited" ? "모집중" : "모집완료"}</Label>
         <PostTitle> ✨ {postData.title}</PostTitle>
-        <PostdAuthor> 작성자 : {postData.name} </PostdAuthor>
+        <PostdAuthor> 작성자 : {postData.author.name} </PostdAuthor>
         <div>{postData.tag.join(",")}</div>
         <PostContent>{postData.content}</PostContent>
         <ButtonContainer>

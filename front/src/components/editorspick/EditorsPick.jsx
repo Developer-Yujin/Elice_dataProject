@@ -14,6 +14,7 @@ const EditorsPick = function () {
   useEffect(() => {
     // 만약 전역 상태의 user가 null이라면, 로그인 페이지로 이동함.
     if (!userState.user) {
+      alert("로그인 후 이용가능한 서비스입니다😂");
       navigate("/login");
       return;
     }
