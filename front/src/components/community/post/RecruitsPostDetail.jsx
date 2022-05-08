@@ -15,8 +15,8 @@ const RecruitsPostDetail = function () {
       if (params.id !== "" && params.id !== undefined) {
         const res = await get(`recruits/${params.id}`);
         setPostData(res.data);
-        setIsFetchCompleted(true);
       }
+      setIsFetchCompleted(true);
     };
 
     recruitsPostDetail();
@@ -27,15 +27,15 @@ const RecruitsPostDetail = function () {
       if (window.confirm("게시글을 삭제하시겠습니까?")) {
         await del("recruits", params.id);
         navigate("/community/recruits");
-        setIsFetchCompleted(true);
       }
+      setIsFetchCompleted(true);
     } catch (error) {
       alert("게시글 삭제 실패, 다시 시도해주세요.");
     }
   };
 
   if (!isFetchCompleted) {
-    return "postData loading...";
+    return <span>postData loading...</span>;
   }
 
   return (
