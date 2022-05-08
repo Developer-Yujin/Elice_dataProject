@@ -7,9 +7,7 @@ const pieData = {
   series: [102400987977, 88228245083],
   options: {
     labels: ["Google Apps", "Others"],
-    fill: {
-      colors: ["#9775fa", "#91a7ff"],
-    },
+    colors: ["#9775fa", "#91a7ff"],
     chart: {
       width: 380,
       type: "pie",
@@ -227,25 +225,26 @@ const Article1 = function ({ openModalHandler }) {
                 <ModalBody>
                   앱 내 광고 유무를 기준으로 각각의 평균 다운로드수를 구해본 결과
                   <br />
-                  앱 내 광고가 없는 앱의 평균 다운로드수가 약 100만회 정도 더 높았습니다.
+                  앱 내 광고가 없는 앱의 평균 다운로드 수가 약 100만 회 정도 더 높았습니다.
                   <br />
                   <br />
-                  광고가 없는 앱이 사용자의 선택을 더 많이 받는다는 가설을 세우고
+                  이에 따라, 광고가 없는 앱이 사용자의 선택을 더 많이 받는다는 가설을 세우고
                   <br />
                   인앱 광고가 없는 어플들을 다운로드 순으로 살펴 본 결과
                   <br />
-                  Google Play services, Google Text-to-Speech, Hangouts, Android System WebView등
                   <br />
-                  핸드폰에 기본으로 다운 받아져 있는 구글 어플들이 상당수를 차지하고 있음을 확인한였습니다.
+                  Google Play services, Google Text-to-Speech, Hangouts, Android System WebView 등
+                  <br />
+                  핸드폰에 내장되어 있는 구글의 기본 어플들이 상당수를 차지하고 있음을 확인한였습니다.
                   <br />
                 </ModalBody>
                 <Graph id="chart">
                   <ReactApexChart options={pieData.options} series={pieData.series} type="pie" width={380} />
                 </Graph>
                 <ModalBody>
-                  구글 어플들의 전체 다운로드 수를 합산 해보니 약1000억에 해당하는 결과가 나왔습니다.
+                  구글 어플들의 전체 다운로드 수를 합산 해보니 약 1000억에 해당하는 결과가 도출되었습니다.
                   <br />
-                  이는 광고 없는 어플들의 전체 다운로드 수인 약 1900억회 중 대략 53퍼센트에 해당하는 횟수입니다.
+                  이는 광고 없는 어플들의 전체 다운로드 수인 약 1900억 회 중, 약 53%에 해당하는 횟수입니다.
                   <br />
                   <br />
                   이를 통해 인앱 광고 유무와 사용자의 앱 다운로드 선택의 상관 관계를 밝혀내기 위해서는
@@ -260,7 +259,7 @@ const Article1 = function ({ openModalHandler }) {
                   <br />
                   위 그래프와 같이 인앱 광고 유무를 기준으로 평균 다운로드 수는 큰 차이를 보이지 않았습니다.
                   <br />
-                  따라서 앱내 광고 유무가 사용자의 앱 설치 선택에 유의미한 영향을 끼치지 않는다는 결론을 낼 수 있었습니다.
+                  따라서 앱내 광고의 유무가 사용자의 앱 설치 선택에 유의미한 영향을 끼치지 않는다는 결론을 낼 수 있었습니다.
                   <br />
                 </ModalBody>
                 <ModalComment>
@@ -293,6 +292,7 @@ const ArticleContainer = styled.div`
   align-items: center;
   height: 100%;
   position: relative;
+  word-break: keep-all;
 `;
 
 const ArticleBox = styled.div`

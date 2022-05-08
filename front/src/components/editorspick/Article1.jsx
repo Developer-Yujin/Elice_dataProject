@@ -118,7 +118,7 @@ const Article1 = function ({ openModalHandler }) {
                 <ModalBody>
                   위의 그래프는 카테고리별 앱의 별점 분포 비율을 나타냅니다.
                   <br />
-                  그래프에서 색이 진할수록 분포 비율이 높음을 의미합니다.
+                  버튼을 클릭하여 사용자의 카테고리 별 만족도를 확인해보실 수 있습니다.
                   <br />
                   거의 모든 카테고리의 별점 비율이 3~4점대에 머무르는 것을 확인할 수 있습니다.
                   <br />
@@ -173,6 +173,7 @@ const ArticleContainer = styled.div`
   align-items: center;
   height: 100%;
   position: relative;
+  word-break: keep-all;
 `;
 
 const ArticleBox = styled.div`

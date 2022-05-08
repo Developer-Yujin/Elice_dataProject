@@ -10,7 +10,6 @@ import Freeboards from "./freeboard/Freeboards";
 import TagFilter from "./filter/tagfilter/TagFilter";
 import StatusFilter from "./filter/ststusfilter/StatusFilter";
 import OrderFilter from "./filter/orderfilter/OrderFilter";
-import Pager from "./pager/Pager";
 import Questionboards from "./questionboard/Questionboards";
 
 // 스타일 import
@@ -37,12 +36,6 @@ const CommunityPage = function () {
   const [isPostAdd, setIsPostAdd] = useState(false);
   const handlePostAddClick = () => {
     setIsPostAdd(true);
-  };
-
-  const PostAddCancelFunction = (isClickedCancel) => {
-    if (isClickedCancel === true) {
-      setIsPostAdd(false);
-    }
   };
 
   // 게시글 리스트 중 하나를 클릭하면 해당 게시글 상세 보기로 이동
@@ -247,8 +240,6 @@ const CommunityPage = function () {
                     )}
                   </article>
                   {categoryUrl === "recruits" ? <RecruitsPostDetail /> : <FindteamsPostDetail />}
-
-                  <Pager />
                 </div>
               ) : (
                 ""

@@ -220,7 +220,7 @@ const Article2 = function ({ openModalHandler }) {
       <ArticleBox>
         <Graph id="chart">
           <ReactApexChart options={radialBarData.options} series={radialBarData.series} type="radialBar" height="370" width="400" />
-          <p> - 전체 설치수가 낮고, 앱 개수는 높은 카데고리 상위 4개의 점유율 - </p>
+          <p> - 평균 설치수가 적고, 전체 설치수가 많은 카테고리 상위 4개 - </p>
         </Graph>
         <Content>
           <ContentTitle>
@@ -257,14 +257,14 @@ const Article2 = function ({ openModalHandler }) {
                 </ModalBody>
                 <Graph1 id="chart">
                   <ReactApexChart options={radialBarData.options} series={radialBarData.series} type="radialBar" height="370" />
-                  <p> - 전체 설치수가 낮고, 앱 개수는 높은 카데고리 상위 4개의 점유율 - </p>
+                  <p> - 전체 설치수가 적고, 앱 개수는 많은 카데고리 상위 4개의 점유율 - </p>
                 </Graph1>
                 <ModalBody>
                   위의 그래프는 카테고리별 평균 설치수에 비해 전체 설치수가 많은 상위 3개 서비스의 점유율을 나타냅니다.
                   <br />
                   Entertainment, Music & Audio, Personalization, Books & Reference 카테고리는
                   <br />
-                  메인으로 점유하고 있는 어플이 있음을 확인할 수 있습니다.
+                  메인으로 점유하고 있는 어플들이 있음을 확인할 수 있습니다.
                 </ModalBody>
                 <Graph2 id="chart">
                   <ReactApexChart options={graph2BarData.options} series={graph2BarData.series} type="bar" height="400" />
