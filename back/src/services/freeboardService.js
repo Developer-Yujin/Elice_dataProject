@@ -14,8 +14,37 @@ class freeboardService {
   }
 
   static async getPosts() {
-    const posts = await FreeBoard.findAll();
+    const posts = await FreeBoard.findAll()
     return posts;
+  }
+
+  static async setPostlike({ userId, post_id }) {
+    const post = await FreeBoard.findById({ post_id });
+
+    if (!post) {
+      const errorMessage = '해당 포스트가 없습니다. 다시 한 번 확인해 주세요.';
+      return { errorMessage };
+    }
+
+    const like = await FreeBoard.findlike({ post_id, userId });
+    let status, result;
+    // 이미 좋아요를 누른 상태라면?
+    if (like.length != 0) {
+      status = '$pull';
+      result = -1;
+    } else {
+      status = '$push';
+      result = 1;
+    }
+    const newValues = {
+      [status]: {
+        likes: userId,
+      },
+      $inc: { likesCount: result },
+    };
+
+    const res = await FreeBoard.updatearray({ post_id, newValues });
+    return res;
   }
 
   static async setPost({ post_id, toUpdate }) {

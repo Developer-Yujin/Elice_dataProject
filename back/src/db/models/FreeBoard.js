@@ -11,10 +11,17 @@ class FreeBoard {
     return post;
   }
 
+  static async findlike({ post_id, userId }) {
+    const post = await FreeBoardModel.findOne({ _id: post_id }, { likes: { $elemMatch: { $eq: userId } } });
+    return post.likes;
+  }
+
   static async findAll() {
-    const posts = await FreeBoardModel.find({}).sort({ updatedAt: -1 });
+    const posts = await FreeBoardModel.find()
+    .sort({ createdAt: -1 })
     return posts;
   }
+  
 
   static async findAllByUserId({ user_id }) {
     const posts = await FreeBoardModel.find({ user_id: user_id }).sort({ updatedAt: -1 });

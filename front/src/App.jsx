@@ -1,14 +1,32 @@
 import React, { useState, useEffect, useReducer, createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import * as Api from "./api";
+import jwtDecode from "jwt-decode";
+import { get } from "./api";
 import { loginReducer } from "./reducer";
 import "./App.css";
 
 import Header from "./components/Header";
+import Main from "./components/Main";
+import Introduction from "./components/introduction/Introduction";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
-import Home from "./components/Home";
+import CommunityPage from "./components/community/CommunityPage";
+import PostView from "./components/community/freeboard/PostView";
+import QPostView from "./components/community/questionboard/QPostView";
+import RecruitsPostDetail from "./components/community/post/RecruitsPostDetail";
+import FindteamsPostDetail from "./components/community/post/FindteamsPostDetail";
+
+import AppbtiTest from "./components/appbtitest/AppbtiTest";
+import EditorsPick from "./components/editorspick/EditorsPick";
+
+import Question1 from "./components/appbtitest/Pages/Question1";
+import Question2 from "./components/appbtitest/Pages/Question2";
+import Question3 from "./components/appbtitest/Pages/Question3";
+import Question4 from "./components/appbtitest/Pages/Question4";
+import Question5 from "./components/appbtitest/Pages/Question5";
+import Question6 from "./components/appbtitest/Pages/Question6";
+import Question7 from "./components/appbtitest/Pages/Question7";
+import QuestionResult from "./components/appbtitest/Pages/QuestionResult";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -18,10 +36,12 @@ function App() {
   const [userState, dispatch] = useReducer(loginReducer, {
     user: null,
   });
-
   // const isLogin = !!userState.user;
+
+  // console.log(currentUser);
+
   // 유저 경로 얻기
-  // const location = window.location.pathname;
+  const location = window.location.pathname;
 
   // 아래의 fetchCurrentUser 함수가 실행된 다음에 컴포넌트가 구현되도록 함.
   // 아래 코드를 보면 isFetchCompleted 가 true여야 컴포넌트가 구현됨.
@@ -30,9 +50,11 @@ function App() {
   const fetchCurrentUser = React.useCallback(async () => {
     try {
       // 이전에 발급받은 토큰이 있다면, 이를 가지고 유저 정보를 받아옴.
-      const res = await Api.get("user/current");
+      const userToken = sessionStorage.getItem("userToken");
+      const jwtDecoded = jwtDecode(userToken);
+      const userId = jwtDecoded.userId;
+      const res = await get("users", userId);
       const currentUser = res.data;
-
       // dispatch 함수를 통해 로그인 성공 상태로 만듦.
       dispatch({
         type: "LOGIN_SUCCESS",
@@ -53,7 +75,7 @@ function App() {
   }, [fetchCurrentUser]);
 
   if (!isFetchCompleted) {
-    return "loading...";
+    return <span>loading...</span>;
   }
 
   return (
@@ -62,9 +84,34 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+
+            <Route path="/introduction" element={<Introduction />} />
+
+            <Route path="/AppbtiTest" element={<AppbtiTest />} />
+
+            <Route path="/community/freeboards/:id" element={<PostView />} />
+            <Route path="/community/questions/:id" element={<QPostView />} />
+            <Route path="/community/recruits" element={<CommunityPage />} />
+            <Route path="/community/findteams" element={<CommunityPage />} />
+            <Route path="/community/freeboards" element={<CommunityPage />} />
+            <Route path="/community/questions" element={<CommunityPage />} />
+            <Route path="/community/recruits/:id" element={<RecruitsPostDetail />} />
+            <Route path="/community/findteams/:id" element={<FindteamsPostDetail />} />
+
+            <Route path="/editorspick" element={<EditorsPick />} />
+
+            <Route path="/AppbtiTest" element={<AppbtiTest />} />
+            <Route path="/AppbtiTest/1" element={<Question1 />} />
+            <Route path="/AppbtiTest/2" element={<Question2 />} />
+            <Route path="/AppbtiTest/3" element={<Question3 />} />
+            <Route path="/AppbtiTest/4" element={<Question4 />} />
+            <Route path="/AppbtiTest/5" element={<Question5 />} />
+            <Route path="/AppbtiTest/6" element={<Question6 />} />
+            <Route path="/AppbtiTest/7" element={<Question7 />} />
+            <Route path="/AppbtiTest/Result" element={<QuestionResult />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>

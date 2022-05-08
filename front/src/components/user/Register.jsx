@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import * as Api from "../../api";
+import { post } from "../../api";
 
 const Register = function () {
   const theme = createTheme();
@@ -46,7 +46,7 @@ const Register = function () {
 
     try {
       // "user/register" 엔드포인트로 post요청함.
-      await Api.post("user/register", {
+      await post("users", {
         email,
         password,
         name,
@@ -55,7 +55,8 @@ const Register = function () {
       // 로그인 페이지로 이동함.
       navigate("/login");
     } catch (err) {
-      console.log("회원가입에 실패하였습니다.", err);
+      console.log("Register Fail!!!🥲", err);
+      alert("Register Fail!!!🥲 Please try again.");
     }
   };
 
@@ -94,7 +95,7 @@ const Register = function () {
                   }}
                 />
                 {!isNameValid && (
-                  <p className="text-primary" id="change-text-sucess" style={{ fontSize: "12px", margin: "5px 0 0 0" }}>
+                  <p className="text-primary" id="change-text-sucess">
                     Name is too short (minimum is 2 characters)
                   </p>
                 )}
@@ -112,11 +113,7 @@ const Register = function () {
                     setEmail(e.target.value);
                   }}
                 />
-                {!isEmailValid && (
-                  <p className="text-primary" style={{ fontSize: "12px", margin: "5px 0 0 0" }}>
-                    Email is invalid.
-                  </p>
-                )}
+                {!isEmailValid && <p className="text-primary">Email is invalid.</p>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -132,11 +129,7 @@ const Register = function () {
                     setPassword(e.target.value);
                   }}
                 />
-                {!isPasswordValid && (
-                  <p className="text-primary" style={{ fontSize: "12px", margin: "5px 0 0 0" }}>
-                    Password is too short (minimum is 8 characters)
-                  </p>
-                )}
+                {!isPasswordValid && <p className="text-primary">Password is too short (minimum is 8 characters)</p>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -153,7 +146,7 @@ const Register = function () {
                   }}
                 />
                 {!isPasswordSame && (
-                  <p className="text-primary" id="change-text-sucess" style={{ fontSize: "12px", margin: "5px 0 0 0" }}>
+                  <p className="text-primary" id="change-text-sucess">
                     Passwords dose not match.
                   </p>
                 )}
