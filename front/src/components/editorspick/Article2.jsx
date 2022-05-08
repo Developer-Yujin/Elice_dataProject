@@ -257,7 +257,7 @@ const Article2 = function ({ openModalHandler }) {
                 </ModalBody>
                 <Graph1 id="chart">
                   <ReactApexChart options={radialBarData.options} series={radialBarData.series} type="radialBar" height="370" />
-                  <p> - 전체 설치수가 적고, 앱 개수는 많은 카데고리 상위 4개의 점유율 - </p>
+                  <p> - 평균 설치수가 적고, 전체 설치수가 많은 카테고리 상위 4개 - </p>
                 </Graph1>
                 <ModalBody>
                   위의 그래프는 카테고리별 평균 설치수에 비해 전체 설치수가 많은 상위 3개 서비스의 점유율을 나타냅니다.
