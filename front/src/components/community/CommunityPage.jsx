@@ -39,12 +39,6 @@ const CommunityPage = function () {
     setIsPostAdd(true);
   };
 
-  const PostAddCancelFunction = (isClickedCancel) => {
-    if (isClickedCancel === true) {
-      setIsPostAdd(false);
-    }
-  };
-
   // 게시글 리스트 중 하나를 클릭하면 해당 게시글 상세 보기로 이동
   const handlePostClick = (e) => {
     if (categoryUrl === "recruits" || categoryUrl === "findteams") {

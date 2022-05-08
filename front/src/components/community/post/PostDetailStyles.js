@@ -18,7 +18,19 @@ const PostContainer = styled.div`
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 3px 10px #e4e4e4;
-  // word-break: keep-all;
+`;
+
+const Label = styled.label`
+   {
+    padding: 8px 12px;
+    background: #484bcc;
+    border-radius: 10px;
+    float: right;
+    margin: 6px 10px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+  }
 `;
 
 const PostdAuthor = styled.div`
@@ -105,4 +117,4 @@ const DeleteButton = styled.button`
   border: none;
 `;
 
-export { PostDetailContainer, PostContainer, PostdAuthor, PostTitle, PostContent, ButtonContainer, ListButton, EditButton, DeleteButton };
+export { PostDetailContainer, PostContainer, PostdAuthor, PostTitle, PostContent, ButtonContainer, ListButton, EditButton, DeleteButton, Label };
