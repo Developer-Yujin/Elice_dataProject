@@ -10,7 +10,6 @@ import Freeboards from "./freeboard/Freeboards";
 import TagFilter from "./filter/tagfilter/TagFilter";
 import StatusFilter from "./filter/ststusfilter/StatusFilter";
 import OrderFilter from "./filter/orderfilter/OrderFilter";
-import Pager from "./pager/Pager";
 import Questionboards from "./questionboard/Questionboards";
 
 // 스타일 import
@@ -241,8 +240,6 @@ const CommunityPage = function () {
                     )}
                   </article>
                   {categoryUrl === "recruits" ? <RecruitsPostDetail /> : <FindteamsPostDetail />}
-
-                  <Pager />
                 </div>
               ) : (
                 ""
