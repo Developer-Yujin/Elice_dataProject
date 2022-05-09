@@ -23,9 +23,6 @@ const Page = function () {
         </GraphBox>
         <GoAppbti onClick={() => navigate("community/recruits")}>커뮤니티 구경 가기👉</GoAppbti>
       </MainContainer>
-      <ScrollButton onclick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
-        <img src="https://blog.kakaocdn.net/dn/RL8Kv/btrBr5TDbYj/dklV6QQr0hgYlTWfr1AVbk/img.png" alt="Scroll button" width="100px" />
-      </ScrollButton>
     </Background>
   );
 };
@@ -127,14 +124,4 @@ const PanelContent = styled.div`
   flex-wrap: wrap;
   align-items: column;
   word-break: keep-all;
-`;
-
-const ScrollButton = styled.div`
-  width:100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin:auto;
-  padding: 0px 0px 20px 0px;
-  }
 `;

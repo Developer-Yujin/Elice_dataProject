@@ -59,7 +59,7 @@ const MainContainer = styled.div`
 
 const GraphBox = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   align-items: row;
   //   background-color: yellow;
   width: 100%;

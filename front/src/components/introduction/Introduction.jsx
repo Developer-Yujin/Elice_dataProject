@@ -5,23 +5,21 @@ function Introduction() {
   return (
     <Container>
       <H1>
-        <A href="https://www.notion.so/elice/15-Try-Catch-07a058cda6114947b79f96429cf9f545">Try, Catch! 팀원들을 소개합니다!</A>
+        <A href="https://www.notion.so/15-Try-Catch-41b9847a23794f52bc7bb25408d5e4ff">Try, Catch! 팀원들을 소개합니다!</A>
       </H1>
 
       <main role="main" id="main">
         <One>
-          <A href="http://yujinlee.kdt-gitlab.elice.io/introduction/">
-            <Div>
-              <Img src="https://cdn-icons-png.flaticon.com/128/189/189001.png" alt="이유진이미지" />
-              <H2>이유진</H2>
-              <H4>
-                처음에는 미약할지라도
-                <br /> 끝에서는 광대한
-                <br />
-                <br /> IT서비스 기획자 겸<br /> 개발자가 되고 싶습니다.
-              </H4>
-            </Div>
-          </A>
+          <Div>
+            <Img src="https://cdn-icons-png.flaticon.com/128/189/189001.png" alt="이유진이미지" />
+            <H2>이유진</H2>
+            <H4>
+              처음에는 미약할지라도
+              <br /> 끝에서는 광대한
+              <br />
+              <br /> IT서비스 기획자 겸<br /> 개발자가 되고 싶습니다.
+            </H4>
+          </Div>
         </One>
 
         <Two>
